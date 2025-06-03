@@ -15,6 +15,50 @@ checkpoint-prefix = ec
 # Basic evolution parameters
 # ==============================
 
+#defines the main class for managing evolutionary process
+#Gives centralized, domain-aware control over the evolutionary process
+#main driver of the evolution process defining
+#startFresh() - what happens before the first generation
+#evolve() - what happens each generation
+#finish() - how the evolution ends
+#subject to change
+state = ec.simple.SimpleEvolutionState
+
+#specifies how the evolutionary run finishes
+finish = ec.simple.SimpleFinisher
+
+#Defines the exhchanged for migrating indivudals between pops
+exch = ec.simple.SimpleExchanger
+
+#defines the evaluator, which evaluates the fitness for an individual
+breed = ec.simple.SimpleEvaluator
+
+#controls statisticis gathering and reporting
+#stat = ec.simple.SimpleStatistics
+state.file = $out.stat
+
+#configures a child stats object to gather GP specific stats
+stat.num-children = 1
+stat.child.0 = ec.gp.koza.KozaShortStatistics
+stat.child.0.file = $outtabular.stat
+
+#run the evolutionary process for 50 gens
+generations = 50
+
+#exits from ECJ one all generation are done
+quit-on-run-complete = true
+
+#defines the population object to use
+pop = ec.Population
+
+#defines the sub pop
+pop.subpops = 1
+pop.subpop.0 = ec.Subpopulation
+pop.subpop.0.size = 500
+
+#define elitism, keep best 10 individuals
+breed.elite.0 = 10
+
 
 # ==============================
 # GP general parameters
@@ -185,5 +229,53 @@ gp.adf-stack.context = ec.gp.ADFContext
 
 
 # ==============================
-# Problem spesific params
+# Function or Termnial Set
 # ==============================
+
+#only look at one function set
+gp.fs.size = 1
+
+#basic params of function set with name, and 5 functions
+gp.fs.0.name = f0
+gp.fs.0.size = 5
+
+#Is a single function
+gp.fs.0.func.0 = baseline.jobShop.function.Add
+#defines how many parameters it takes
+gp.fs.0.func.0.nc = nc2
+
+gp.fs.0.func.1 = baseline.jobShop.function.Div
+gp.fs.0.func.1.nc = nc2
+
+gp.fs.0.func.2 = baseline.jobShop.function.If
+gp.fs.0.func.2.nc = nc2
+
+gp.fs.0.func.3 = baseline.jobShop.function.Max
+gp.fs.0.func.3.nc = nc2
+
+gp.fs.0.func.4 = baseline.jobShop.function.Mul
+gp.fs.0.func.4.nc = nc2
+
+# ==============================
+# Problem definition
+# ==============================
+
+#which problem file will be used
+#or how the individuals evaluated
+eval.problem = baseline.problem.baselineProblem
+eval.problem.data = baseline.data.DoubleData
+
+
+######## simulation spesfic ########
+
+#defines what is the goal of the model
+#goal right now is to minimize maximum tardiness
+eval.problem.eval-model.objectives = 1
+eval.problem.eval-model.objectives.0 = max-tardiness
+
+#simulates job shop under 85% utilization
+eval.problem.eval-model.sim-models = 1
+eval.problem.eval-model.sim-models.0.util-level = 0.85
+
+#Randomize seed per simulation
+eval.problem.eval-model.rotate-sim-seed = true
