@@ -2,17 +2,22 @@ package baseline.jobShop.components;
 
 public class Job {
 
-    private int arrivalTime;
-    private int departureTime;
+    //Used to calculate mean flow
+    private double arrivalTime;
+    private double departureTime;
+    private double arrivalInQueueTime;
+    private double currentTime;
+
     private Operation[] operations = new Operation[10];
     int currentOperation = 0;
 
-    private Job(Integer arrivalTime, Operation[] operations) {
+    private Job(double arrivalTime, Operation[] operations) {
         this.arrivalTime = arrivalTime;
         this.operations = operations;
+        this.arrivalInQueueTime = 0;
     }
 
-    public static Job generateJob(int arrivalTime, Machine[] machines) {
+    public static Job generateJob(double arrivalTime, Machine[] machines) {
         return new Job(arrivalTime, Operation.generateOperations(machines));
     }
 
@@ -24,16 +29,36 @@ public class Job {
         return operations[currentOperation];
     }
 
-    public int getArrivalTime() {
+    /**
+     * GETTERS AND SETTERS FOR TIME
+     * **/
+
+    public double getArrivalTime() {
         return arrivalTime;
     }
 
-    public int getDepartureTime() {
+    public double getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(int departureTime) {
+    public void setDepartureTime(double departureTime) {
         this.departureTime = departureTime;
+    }
+
+    public double getArrivalInQueueTime() {
+        return arrivalInQueueTime;
+    }
+
+    public void setArrivalInQueueTime(double arrivalInQueueTime) {
+        this.arrivalInQueueTime = arrivalInQueueTime;
+    }
+
+    public double getCurrentTime() {
+        return currentTime;
+    }
+
+    public void setCurrentTime(double currentTime) {
+        this.currentTime = currentTime;
     }
 
     public boolean isFinished(){
@@ -46,6 +71,18 @@ public class Job {
 
     public int getCurrentOpeationIndex() {
         return currentOperation;
+    }
+
+    public int getNumberOfOperationsLeft() {
+        return (operations.length - currentOperation) - 1 ;
+    }
+
+    public double getRemainingProcessingTime() {
+        double remainingTime = 0;
+        for(int i = currentOperation; i < operations.length; i++) {
+            remainingTime += operations[i].getProcessingTime();
+        }
+        return remainingTime;
     }
 
 }

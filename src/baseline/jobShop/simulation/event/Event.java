@@ -4,15 +4,15 @@ import baseline.jobShop.simulation.Simulation;
 
 public abstract  class Event implements Comparable<Event> {
 
-    private int time;
+    private double time;
     private int priority;
 
-    public Event(int time, int priority) {
+    public Event(double time, int priority) {
         this.time = time;
         this.priority = priority;
     }
 
-    public int getTime() {
+    public double getTime() {
         return time;
     }
 
@@ -25,7 +25,7 @@ public abstract  class Event implements Comparable<Event> {
     //If time sheduled is the same base it off priority
     @Override
     public int compareTo(Event o) {
-        int comp= Integer.compare(time, o.time);
+        int comp= Double.compare(time, o.time);
         if (comp == 0){
             return Integer.compare(priority, o.priority);
         }

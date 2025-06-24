@@ -3,17 +3,18 @@ package baseline.problem;
 import baseline.evaluation.EvaluationModel;
 import ec.EvolutionState;
 import ec.Individual;
-import ec.Problem;
 import ec.gp.GPProblem;
 import ec.simple.SimpleProblemForm;
 import ec.util.Parameter;
+import baseline.jobShop.components.Job;
 
-public class BaselineProblem extends GPProblem implements SimpleProblemForm{
+public class JobShopProblem extends GPProblem implements SimpleProblemForm{
 
     String P_EVAL_MODEL = "eval-model";
 
     //inits the evaluation model
     private EvaluationModel evaluationModel;
+    public Job currentJob;
 
     //Called by ECJ before evolution begins
     @Override

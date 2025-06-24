@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class Operation {
 
     private final int machineId;
-    private final int processingTime;
+    private final double processingTime;
     private static Random random = new Random();
 
 
@@ -38,7 +38,7 @@ public class Operation {
         return machineId;
     }
 
-    public int getProcessingTime() {
+    public double getProcessingTime() {
         return processingTime;
     }
 }

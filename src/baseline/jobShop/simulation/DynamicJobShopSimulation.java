@@ -18,7 +18,7 @@ public class DynamicJobShopSimulation implements Simulation {
     final Machine[] machines;
     final Queue<Event> eventQueue;
     final int numOfJobs;
-    int time = 0;
+    double time = 0;
     DynamicJobShopSimulation(int numOfJobs, int numOfMachines) {
         //start simulation with 10 operations
         allJob = new ArrayList<Job>();
@@ -28,7 +28,7 @@ public class DynamicJobShopSimulation implements Simulation {
         this.numOfJobs = numOfJobs;
     }
 
-    public float startSimulation() {
+    public double startSimulation() {
 
         eventQueue.add(new JobArrivalEvent(time, Job.generateJob(time, machines)));
         //As long as num of jobs has not been satsified keep generating new ones
@@ -46,16 +46,16 @@ public class DynamicJobShopSimulation implements Simulation {
             }
         }
 
-        List<Integer> flowTimes = new ArrayList<Integer>();
+        List<Double> flowTimes = new ArrayList<Double>();
 
         // Calculate mean flow
         for (Job job : allJob) {
-            int flowTime = job.getDepartureTime() - job.getArrivalTime();
+            double flowTime = job.getDepartureTime() - job.getArrivalTime();
             flowTimes.add(flowTime);
         }
 
         //calculate mean flow time
-        return (float) flowTimes.stream().mapToInt(Integer::intValue).sum() / flowTimes.size();
+        return  flowTimes.stream().mapToDouble(Double::doubleValue).sum() / flowTimes.size();
 
     }
 

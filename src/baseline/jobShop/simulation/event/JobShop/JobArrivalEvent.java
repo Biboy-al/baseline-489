@@ -11,7 +11,7 @@ public class JobArrivalEvent extends Event {
 
     private Job job;
 
-    public JobArrivalEvent(int time, Job job) {
+    public JobArrivalEvent(double time, Job job) {
         super(time,3);
         this.job = job;
     }
@@ -32,6 +32,8 @@ public class JobArrivalEvent extends Event {
             jobShopSim.addEvent(new OperationStartEvent(super.getTime(), machine, this.job));
         }else{
             //If not, add job to the queue
+            //and track what is the current time
+            this.job.setArrivalInQueueTime(this.getTime());
             machine.addJob(this.job);
         }
 

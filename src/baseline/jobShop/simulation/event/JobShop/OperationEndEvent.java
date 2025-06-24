@@ -10,7 +10,7 @@ public class OperationEndEvent extends Event {
 
     Machine machine;
     Job job;
-    public OperationEndEvent(int time, Machine machine, Job job) {
+    public OperationEndEvent(double time, Machine machine, Job job) {
         super(time, 1);
         this.machine = machine;
         this.job = job;
@@ -31,13 +31,18 @@ public class OperationEndEvent extends Event {
             //And break from event loop
             this.job.setDepartureTime(super.getTime());
         }
+
+        //Set current time
+        for(Job job: machine.getWaitingJobs()){
+            job.setCurrentTime(super.getTime());
+        }
+
         if(!machine.getWaitingJobs().isEmpty()){
             Job nextJob = machine.getWaitingJobs().remove(0);
             jobShopSim.addEvent(new OperationStartEvent(super.getTime(), this.machine,nextJob));
         }
 
     }
-
     @Override
     public int getPriority() {
         return 1;

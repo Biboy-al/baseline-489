@@ -10,7 +10,7 @@ public class OperationStartEvent extends Event {
 
     Job job;
     Machine machine;
-    public OperationStartEvent(int time, Machine machine, Job job) {
+    public OperationStartEvent(double time, Machine machine, Job job) {
         super(time, 2);
         this.machine = machine;
         this.job = job;
@@ -20,7 +20,7 @@ public class OperationStartEvent extends Event {
     public void evalute(Simulation sim) {
         DynamicJobShopSimulation jobShopSim = (DynamicJobShopSimulation) sim;
         machine.setCurrentJob(this.job);
-        int processingTime = job.getCurrentOperation().getProcessingTime();
+        double processingTime = job.getCurrentOperation().getProcessingTime();
         jobShopSim.addEvent(new OperationEndEvent(processingTime + super.getTime(), machine, job));
     }
 
