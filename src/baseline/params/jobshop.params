@@ -58,7 +58,7 @@ pop = ec.Population
 #defines the sub pop
 pop.subpops = 1
 pop.subpop.0 = ec.Subpopulation
-pop.subpop.0.size =
+pop.subpop.0.size = 500
 
 #define elitism, keep best 10 individuals
 breed.elite.0 = 5
