@@ -30,7 +30,7 @@ public class BaselineProblem extends GPProblem implements SimpleProblemForm{
     }
 
     /**
-     * This is where an indivudal is tested and assigned a fitnes
+     * This is where an indivudal is tested and assigned a fitness
      * @param EvolutionState the global state of the run, containing GP
      * @param indi the individual from the population that is being evaluated
      * @param subPopulation index of the subpopulation belongs to

@@ -8,14 +8,15 @@ import ec.gp.GPData;
 import ec.gp.GPIndividual;
 import ec.gp.GPNode;
 
-public class Div extends GPNode {
+public class Sub extends GPNode {
+
     public static int expectedChildren = 2;
 
     public static int getExpectedChildren() { return expectedChildren; }
 
     public void eval(EvolutionState evolutionState, int i, GPData gpData, ADFStack adfStack, GPIndividual gpIndividual, Problem problem) {
 
-        DoubleData re = ((DoubleData) gpData);
+        DoubleData re = (DoubleData) gpData;
 
         children[0].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
 
@@ -23,14 +24,12 @@ public class Div extends GPNode {
 
         children[1].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
 
-        if(re.value == 0){
-            re.value = 1;
-        }else{
-            re.value = childrenOutput / re.value;
-        }
+        re.value = childrenOutput - re.value;
+
+
     }
 
     public String toString() {
-        return "/";
+        return "-";
     }
 }
