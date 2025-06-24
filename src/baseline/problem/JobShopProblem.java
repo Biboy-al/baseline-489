@@ -41,6 +41,8 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
      * @param ThreadNum index of the thread calling this method
      * **/
     public void evaluate(EvolutionState evolutionState, Individual individual, int i, int i1) {
+        //If already evaluated break
+        if (individual.evaluated) return;
         //cast the indivudal to a GP indivudal
         GPIndividual indi = (GPIndividual) individual;
 
@@ -52,6 +54,8 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
         KozaFitness fitness = (KozaFitness) indi.fitness;
 
         fitness.setStandardizedFitness(evolutionState, meanFlowTime);
+//        System.out.println("Tree:\n" + indi.trees[0].child.makeLispTree());
+//        System.out.println("Fitness: " + meanFlowTime);
         individual.evaluated = true;
     }
 }

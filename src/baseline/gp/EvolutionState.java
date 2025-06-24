@@ -103,6 +103,10 @@ public class EvolutionState extends SimpleEvolutionState {
             return R_SUCCESS;
         }
 
+        if(generation >= numGenerations -1 ){
+            return R_SUCCESS;
+        }
+
         statistics.preBreedingStatistics(this);
         //Breeding selected parent from selection mechanism, and apply genetic operators
         //return a new set of indivudals

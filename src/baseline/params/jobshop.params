@@ -22,7 +22,7 @@ checkpoint-prefix = ec
 #evolve() - what happens each generation
 #finish() - how the evolution ends
 #subject to change
-state = ec.simple.SimpleEvolutionState
+state = baseline.gp.EvolutionState
 
 #specifies how the evolutionary run finishes
 finish = ec.simple.SimpleFinisher
@@ -44,7 +44,7 @@ stat.child.0 = ec.gp.koza.KozaShortStatistics
 stat.child.0.file = $outtabular.stat
 
 #run the evolutionary process for 50 gens
-generations = 50
+generations = 10
 
 #exits from ECJ one all generation are done
 quit-on-run-complete = true
@@ -58,10 +58,10 @@ pop = ec.Population
 #defines the sub pop
 pop.subpops = 1
 pop.subpop.0 = ec.Subpopulation
-pop.subpop.0.size = 500
+pop.subpop.0.size =
 
 #define elitism, keep best 10 individuals
-breed.elite.0 = 10
+breed.elite.0 = 5
 
 # ==============================
 # GP general parameters
