@@ -1,9 +1,12 @@
 package baseline.problem;
 
 import baseline.evaluation.EvaluationModel;
+import baseline.jobShop.simulation.DynamicJobShopSimulation;
 import ec.EvolutionState;
 import ec.Individual;
+import ec.gp.GPIndividual;
 import ec.gp.GPProblem;
+import ec.gp.koza.KozaFitness;
 import ec.simple.SimpleProblemForm;
 import ec.util.Parameter;
 import baseline.jobShop.components.Job;
@@ -38,12 +41,17 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
      * @param ThreadNum index of the thread calling this method
      * **/
     public void evaluate(EvolutionState evolutionState, Individual individual, int i, int i1) {
-        //cats the indivudal to a GP indivudal
-//        GPRule rule = new GPRule(((GPIndividual)indi).trees[0]);
+        //cast the indivudal to a GP indivudal
+        GPIndividual indi = (GPIndividual) individual;
 
         //calls the evalutation method, and gives fitness
         //evaluationModel.evalute(indi.fitness, rule, state);
 
+        DynamicJobShopSimulation sim = new DynamicJobShopSimulation(evolutionState, indi, this, i, i1, 2500, 10);
+        double meanFlowTime = sim.startSimulation();
+        KozaFitness fitness = (KozaFitness) indi.fitness;
+
+        fitness.setStandardizedFitness(evolutionState, meanFlowTime);
         individual.evaluated = true;
     }
 }

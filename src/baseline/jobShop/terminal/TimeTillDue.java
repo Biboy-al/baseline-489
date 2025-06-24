@@ -9,7 +9,7 @@ import ec.gp.GPNode;
 
 public class TimeTillDue extends GPNode {
     public String toString() {
-        return "";
+        return "TimeTillDue";
     }
 
     public void eval(EvolutionState evolutionState, int i, GPData gpData, ADFStack adfStack, GPIndividual gpIndividual, Problem problem) {

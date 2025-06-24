@@ -9,7 +9,7 @@ import ec.gp.GPNode;
 
 public class ODD extends GPNode {
     public String toString() {
-        return "";
+        return "ODD";
     }
 
     public void eval(EvolutionState evolutionState, int i, GPData gpData, ADFStack adfStack, GPIndividual gpIndividual, Problem problem) {

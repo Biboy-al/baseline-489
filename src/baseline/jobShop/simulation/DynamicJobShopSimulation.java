@@ -1,17 +1,21 @@
 package baseline.jobShop.simulation;
 
+import baseline.evaluation.Simulation;
 import baseline.jobShop.components.Machine;
 import baseline.jobShop.components.Job;
-import baseline.jobShop.simulation.event.Event;
-import baseline.jobShop.simulation.event.JobShop.JobArrivalEvent;
-import ec.app.majority.func.E;
+import baseline.evaluation.Event;
+import baseline.jobShop.simulation.event.JobArrivalEvent;
+import ec.EvolutionState;
+import ec.Individual;
+import ec.Problem;
+import ec.gp.GPIndividual;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class DynamicJobShopSimulation implements Simulation {
+public class DynamicJobShopSimulation extends Simulation {
 
     final ArrayList<Job> allJob;
     final ArrayList<Job> waitingJob;
@@ -19,7 +23,8 @@ public class DynamicJobShopSimulation implements Simulation {
     final Queue<Event> eventQueue;
     final int numOfJobs;
     double time = 0;
-    DynamicJobShopSimulation(int numOfJobs, int numOfMachines) {
+    public DynamicJobShopSimulation(EvolutionState state, GPIndividual ind, Problem problem, int ii, int i1, int numOfJobs, int numOfMachines) {
+        super(state, ind, problem, ii, i1);
         //start simulation with 10 operations
         allJob = new ArrayList<Job>();
         waitingJob = new ArrayList<Job>();
@@ -40,6 +45,7 @@ public class DynamicJobShopSimulation implements Simulation {
             time = nextEvent.getTime();
             nextEvent.evalute(this);
 
+            //Keep generating new jobs
             if (numOfJobs > allJob.size()) {
                 Job newJob = Job.generateJob(time, machines);
                 eventQueue.add(new JobArrivalEvent(time, newJob));
@@ -66,7 +72,6 @@ public class DynamicJobShopSimulation implements Simulation {
         }
         return machines;
     }
-
 
     public void addEvent(Event e){
         eventQueue.add(e);

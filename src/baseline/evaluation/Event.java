@@ -1,6 +1,4 @@
-package baseline.jobShop.simulation.event;
-
-import baseline.jobShop.simulation.Simulation;
+package baseline.evaluation;
 
 public abstract  class Event implements Comparable<Event> {
 

@@ -12,7 +12,7 @@ import ec.gp.GPNode;
 
 public class RemProcTime extends GPNode {
     public String toString() {
-        return "";
+        return "RemProcTime";
     }
 
     public void eval(EvolutionState evolutionState, int i, GPData gpData, ADFStack adfStack, GPIndividual gpIndividual, Problem problem) {
