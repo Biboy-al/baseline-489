@@ -31,8 +31,9 @@ finish = ec.simple.SimpleFinisher
 exch = ec.simple.SimpleExchanger
 
 #defines the evaluator, which evaluates the fitness for an individual
-breed = ec.simple.SimpleEvaluator
-
+breed = ec.simple.SimpleBreeder
+eval = ec.simple.SimpleEvaluator
+stat = ec.simple.SimpleStatistics
 #controls statisticis gathering and reporting
 #stat = ec.simple.SimpleStatistics
 state.file = $out.stat
@@ -48,6 +49,9 @@ generations = 50
 #exits from ECJ one all generation are done
 quit-on-run-complete = true
 
+init = ec.gp.GPInitializer
+
+
 #defines the population object to use
 pop = ec.Population
 
@@ -58,7 +62,6 @@ pop.subpop.0.size = 500
 
 #define elitism, keep best 10 individuals
 breed.elite.0 = 10
-
 
 # ==============================
 # GP general parameters
@@ -86,11 +89,11 @@ pop.subpop.0.species.ind.tree.0.tc = tc0
 # ------------------------------
 
 #Allow the fitness of the population to be multi objective
-pop.subpop.0.species.fitness = ec.multiobjective.MultiObjectiveFitness
+pop.subpop.0.species.fitness = ec.gp.koza.KozaFitness
 
 #only evaluate one objective
 pop.subpop.0.species.fitness.num-objectives = 1
-pop.subpop.0.species.fitness.maximize = fasle
+pop.subpop.0.species.fitness.maximize = false
 
 #GP will generate new individual if it's a duplicate, up to 100 times
 pop.subpop.0.duplicate-retries = 100
@@ -100,13 +103,24 @@ pop.subpop.0.duplicate-retries = 100
 # Genetic Operators
 # ------------------------------
 
+# GP breeding pipeline
+pop.subpop.0.species.pipe = ec.breed.MultiBreedingPipeline
+pop.subpop.0.species.pipe.generate-max = false
+pop.subpop.0.species.pipe.num-sources = 3
+pop.subpop.0.species.pipe.source.0 = ec.gp.koza.CrossoverPipeline
+pop.subpop.0.species.pipe.source.0.prob = 0.80
+pop.subpop.0.species.pipe.source.1 = ec.gp.koza.MutationPipeline
+pop.subpop.0.species.pipe.source.1.prob = 0.15
+pop.subpop.0.species.pipe.source.2 = ec.breed.ReproductionPipeline
+pop.subpop.0.species.pipe.source.2.prob = 0.05
+
 #set selection mechnism to tournament Selection
-breed.reproduce.Source.0 = ec.select.TournamentSelection
+breed.reproduce.source.0 = ec.select.TournamentSelection
 
 #Both parents use Tournament selection to pick parents
 #"source" what parents are picked
 gp.koza.xover.source.0 = ec.select.TournamentSelection
-gp.koza.xover.source.1 - name
+gp.koza.xover.source.1 = ec.select.TournamentSelection
 
 #decides which subnodes are picked for swapping
 #"ns" dictates how a node is picked
@@ -196,26 +210,46 @@ gp.koza.half.growp = 0.5
 # GP contraint nodes
 # ------------------------------
 
+#Number of node constraints
+
+gp.nc.size = 3
+
+# Nodes with 0 children (terminal)
+gp.nc.0 = ec.gp.GPNodeConstraints
+gp.nc.0.name = nc0
+gp.nc.0.size = 0
+
 #enforces used to enforce what types and arities nodes are allowed
 
 #declare that this constraint is an instance of GPNode constraints
 #each GP node must ferences a node contraint
-gp.nc.2 = ec.gp.GPNodeConstraints
+gp.nc.1 = ec.gp.GPNodeConstraints
 
 #Contraint name
-gp.nc.2.name = nc2
+gp.nc.1.name = nc2
 
 #returns any type
-gp.nc.2.returns = nil
+gp.nc.1.returns = nil
 
 #Specifies that the node takes 2 children
-gp.nc.2.size =2
+gp.nc.1.size =2
 
 #Each child must also return nil, matcging the expected input type
 #if strongly typed you'd use types like boolean, int, or float
 
-pg.nc.2.child.0 = nil
+gp.nc.1.child.0 = nil
+gp.nc.1.child.1 = nil
+
+# constraints for 3 nodes
+
+gp.nc.2 = ec.gp.GPNodeConstraints
+gp.nc.2.name = nc3
+gp.nc.2.returns = nil
+gp.nc.2.size =3
+
+gp.nc.2.child.0 = nil
 gp.nc.2.child.1 = nil
+gp.nc.2.child.2 = nil
 
 # ------------------------------
 # ADF Parameters
@@ -232,10 +266,19 @@ gp.adf-stack.context = ec.gp.ADFContext
 # Function or Termnial Set
 # ==============================
 
+# Adds no children constraints
+gp.nc.0 = ec.gp.GPNodeConstraints
+gp.nc.0.name = nc0
+gp.nc.0.returns = nil
+gp.nc.0.size = 0
+
+
 #only look at one function set
+
 gp.fs.size = 1
 gp.fs.0.name = f0
 gp.fs.0.size = 13
+gp.fs.0 = ec.gp.GPFunctionSet
 
 # Function set
 gp.fs.0.func.0 = baseline.jobShop.function.Add
@@ -246,7 +289,7 @@ gp.fs.0.func.1 = baseline.jobShop.function.Div
 gp.fs.0.func.1.nc = nc2
 
 gp.fs.0.func.2 = baseline.jobShop.function.If
-gp.fs.0.func.2.nc = nc2
+gp.fs.0.func.2.nc = nc3
 
 gp.fs.0.func.3 = baseline.jobShop.function.Max
 gp.fs.0.func.3.nc = nc2
@@ -256,14 +299,21 @@ gp.fs.0.func.4.nc = nc2
 
 # Terminal Set
 gp.fs.0.func.5 = baseline.jobShop.terminal._0
+gp.fs.0.func.5.nc = nc0
 gp.fs.0.func.6 = baseline.jobShop.terminal._1
+gp.fs.0.func.6.nc = nc0
 gp.fs.0.func.7 = baseline.jobShop.terminal.NPT
+gp.fs.0.func.7.nc = nc0
 gp.fs.0.func.8 = baseline.jobShop.terminal.OpsLeft
+gp.fs.0.func.8.nc = nc0
 gp.fs.0.func.9 = baseline.jobShop.terminal.PT
+gp.fs.0.func.9.nc = nc0
 gp.fs.0.func.10 = baseline.jobShop.terminal.RemProcTime
+gp.fs.0.func.10.nc = nc0
 gp.fs.0.func.11 = baseline.jobShop.terminal.TimeInQueue
+gp.fs.0.func.11.nc = nc0
 gp.fs.0.func.12 = baseline.jobShop.terminal.TimeInSystem
-
+gp.fs.0.func.12.nc = nc0
 
 # ==============================
 # Problem definition
@@ -271,20 +321,5 @@ gp.fs.0.func.12 = baseline.jobShop.terminal.TimeInSystem
 
 #which problem file will be used
 #or how the individuals evaluated
-eval.problem = baseline.problem.baselineProblem
+eval.problem = baseline.problem.JobShopProblem
 eval.problem.data = baseline.data.DoubleData
-
-
-######## simulation spesfic ########
-
-#defines what is the goal of the model
-#goal right now is to minimize maximum tardiness
-eval.problem.eval-model.objectives = 1
-eval.problem.eval-model.objectives.0 = max-tardiness
-
-#simulates job shop under 85% utilization
-eval.problem.eval-model.sim-models = 1
-eval.problem.eval-model.sim-models.0.util-level = 0.85
-
-#Randomize seed per simulation
-eval.problem.eval-model.rotate-sim-seed = true

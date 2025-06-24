@@ -25,10 +25,10 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
         super.setup(state, base);
 
         //creates the path, where the evalauton.model is defined
-        Parameter p = base.push(P_EVAL_MODEL);
-
-        //initates the evaluation model found in the param file
-        evaluationModel = (EvaluationModel) state.parameters.getInstanceForParameter(p, null, EvaluationModel.class);
+//        Parameter p = base.push(P_EVAL_MODEL);
+//
+//        //initates the evaluation model found in the param file
+//        evaluationModel = (EvaluationModel) state.parameters.getInstanceForParameter(p, null, EvaluationModel.class);
 
         //evaluationModel.setup(state, p);
     }

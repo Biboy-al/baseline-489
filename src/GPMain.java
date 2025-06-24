@@ -4,11 +4,9 @@ import ec.util.Output;
 import ec.util.Parameter;
 import ec.util.ParameterDatabase;
 
-import java.security.KeyStore;
-
-public class Main extends Evolve {
+public class GPMain extends Evolve {
     public static void main(String[] args) {
-
+        System.out.println("Starting GPMain...\n With Param File: " +args[0]);
         //used to store GP run info
         EvolutionState state;
 
