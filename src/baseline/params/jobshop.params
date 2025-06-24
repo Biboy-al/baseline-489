@@ -142,7 +142,7 @@ select.tournament.size = 7
 gp.koza.grow.min-depth = 4
 gp.koza.grow.max-depth = 4
 
-gp.koza.ns.terminals = 0.1
+gp.koza.ns.terminals  = 0.1
 gp.koza.ns.nonterminals = 0.9
 gp.koza.ns.root = 0.0
 
@@ -234,12 +234,10 @@ gp.adf-stack.context = ec.gp.ADFContext
 
 #only look at one function set
 gp.fs.size = 1
-
-#basic params of function set with name, and 5 functions
 gp.fs.0.name = f0
-gp.fs.0.size = 5
+gp.fs.0.size = 13
 
-#Is a single function
+# Function set
 gp.fs.0.func.0 = baseline.jobShop.function.Add
 #defines how many parameters it takes
 gp.fs.0.func.0.nc = nc2
@@ -255,6 +253,17 @@ gp.fs.0.func.3.nc = nc2
 
 gp.fs.0.func.4 = baseline.jobShop.function.Mul
 gp.fs.0.func.4.nc = nc2
+
+# Terminal Set
+gp.fs.0.func.5 = baseline.jobShop.terminal._0
+gp.fs.0.func.6 = baseline.jobShop.terminal._1
+gp.fs.0.func.7 = baseline.jobShop.terminal.NPT
+gp.fs.0.func.8 = baseline.jobShop.terminal.OpsLeft
+gp.fs.0.func.9 = baseline.jobShop.terminal.PT
+gp.fs.0.func.10 = baseline.jobShop.terminal.RemProcTime
+gp.fs.0.func.11 = baseline.jobShop.terminal.TimeInQueue
+gp.fs.0.func.12 = baseline.jobShop.terminal.TimeInSystem
+
 
 # ==============================
 # Problem definition
