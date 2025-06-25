@@ -40,7 +40,7 @@ state.file = $out.stat
 
 #configures a child stats object to gather GP specific stats
 stat.num-children = 1
-stat.child.0 = ec.gp.koza.KozaShortStatistics
+stat.child.0 = baseline.stats.CustomStats
 stat.child.0.file = $outtabular.stat
 
 #run the evolutionary process for 50 gens

@@ -50,7 +50,16 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
         //evaluationModel.evalute(indi.fitness, rule, state);
 
         DynamicJobShopSimulation sim = new DynamicJobShopSimulation(evolutionState, indi, this, i, i1, 2500, 10);
-        double meanFlowTime = sim.startSimulation();
+
+        //dictates number of replications
+        int numOfReplication = 5;
+        double totalMeanFlow = 0.0;
+        for(int j = 0; j < numOfReplication; j++){
+            totalMeanFlow += sim.startSimulation();
+        }
+
+        double meanFlowTime = totalMeanFlow / numOfReplication;
+
         KozaFitness fitness = (KozaFitness) indi.fitness;
 
         fitness.setStandardizedFitness(evolutionState, meanFlowTime);
@@ -58,4 +67,12 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
 //        System.out.println("Fitness: " + meanFlowTime);
         individual.evaluated = true;
     }
+
+    public double startSimulation(EvolutionState state ,GPIndividual indi, int numOfJobs, int numOfMachines  ) {
+
+        DynamicJobShopSimulation sim = new DynamicJobShopSimulation(state, indi, this, 0, 0, 2500, 10);
+
+        return sim.startSimulation();
+    }
+
 }
