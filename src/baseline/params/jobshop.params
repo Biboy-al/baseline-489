@@ -41,6 +41,8 @@ state.file = $out.stat
 #configures a child stats object to gather GP specific stats
 stat.num-children = 1
 stat.child.0 = baseline.stats.CustomStats
+# How many replications done to best fitness
+baseline.stats.replication = 10
 stat.child.0.file = $outtabular.stat
 
 #run the evolutionary process for 50 gens
@@ -323,3 +325,4 @@ gp.fs.0.func.12.nc = nc0
 #or how the individuals evaluated
 eval.problem = baseline.problem.JobShopProblem
 eval.problem.data = baseline.data.DoubleData
+eval.problem.replication = 5

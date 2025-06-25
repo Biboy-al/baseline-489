@@ -17,6 +17,7 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
 
     //inits the evaluation model
     private EvaluationModel evaluationModel;
+    private int replcation;
     public Job currentJob;
 
     //Called by ECJ before evolution begins
@@ -24,6 +25,11 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
     public void setup(EvolutionState state, final Parameter base) {
         super.setup(state, base);
 
+        Parameter replcationParam = new Parameter("eval.problem.replication");
+
+        this.replcation = state.parameters.getInt(replcationParam, null, 1);
+
+        System.out.println(replcation);
         //creates the path, where the evalauton.model is defined
 //        Parameter p = base.push(P_EVAL_MODEL);
 //
@@ -51,14 +57,12 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
 
         DynamicJobShopSimulation sim = new DynamicJobShopSimulation(evolutionState, indi, this, i, i1, 2500, 10);
 
-        //dictates number of replications
-        int numOfReplication = 5;
         double totalMeanFlow = 0.0;
-        for(int j = 0; j < numOfReplication; j++){
+        for(int j = 0; j < this.replcation; j++){
             totalMeanFlow += sim.startSimulation();
         }
 
-        double meanFlowTime = totalMeanFlow / numOfReplication;
+        double meanFlowTime = totalMeanFlow / this.replcation;
 
         KozaFitness fitness = (KozaFitness) indi.fitness;
 
