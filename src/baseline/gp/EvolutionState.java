@@ -5,9 +5,13 @@ import ec.simple.SimpleEvolutionState;
 import ec.util.Checkpoint;
 import ec.util.Parameter;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Timer.*;
 //Tailors the evolutionary state to the domain it's testing
 
 /***
@@ -53,6 +57,9 @@ public class EvolutionState extends SimpleEvolutionState {
      * **/
     @Override
     public void run(int condition) {
+
+        double totalTime = 0;
+
         if (condition == C_STARTED_FRESH) {
             //function that dicates generation of pop, and evaluators
             //ensures that gp starts with a clean slate
@@ -64,8 +71,38 @@ public class EvolutionState extends SimpleEvolutionState {
 
         int result = R_NOTDONE;
             while (result ==  R_NOTDONE){
+
+                double startTime = System.currentTimeMillis();
+
                 result = evolve();
+
+                //Convert miliseconds to seconds
+                double duration = (System.currentTimeMillis() - startTime) / 1000;
+
+                genTimes.add(duration);
+                totalTime += duration;
+
+                output.message("Generation " + (generation-1) + " elapsed " + duration + " seconds.");
             }
+
+        output.message("The whole program elapsed " + totalTime + " seconds.");
+
+        // outs the time of the job to a csv file
+        File timeFile = new File("job." + jobSeed + ".time.csv");
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(timeFile));
+            writer.write("Gen,Time");
+            writer.newLine();
+            for (int gen = 0; gen < genTimes.size(); gen++) {
+                writer.write(gen + "," + genTimes.get(gen));
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
             finish(result);
     }
 

@@ -5,7 +5,7 @@ stat = pd.read_csv("../src/baseline/outtabular.stat", sep=" ")
 
 print(stat)
 
-plt.figure(figsize=(10,6), )
+plt.figure(figsize=(10,6) )
 
 # plt.plot(stat["generation"], stat["bestOfGenFitness"])
 
