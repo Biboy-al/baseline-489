@@ -1,6 +1,7 @@
 package baseline.problem;
 
 import baseline.evaluation.EvaluationModel;
+import baseline.jobShop.evaluation.DynamicJobShopEvaluation;
 import baseline.jobShop.simulation.DynamicJobShopSimulation;
 import ec.EvolutionState;
 import ec.Individual;
@@ -17,7 +18,7 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
 
     //inits the evaluation model
     private EvaluationModel evaluationModel;
-    private int replcation;
+    private int replication;
     public Job currentJob;
 
     //Called by ECJ before evolution begins
@@ -25,18 +26,12 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
     public void setup(EvolutionState state, final Parameter base) {
         super.setup(state, base);
 
-        Parameter replcationParam = new Parameter("eval.problem.replication");
+        Parameter replicationParam = new Parameter("eval.problem.replication");
 
-        this.replcation = state.parameters.getInt(replcationParam, null, 1);
+        this.replication = state.parameters.getInt(replicationParam, null, 1);
 
-        System.out.println(replcation);
-        //creates the path, where the evalauton.model is defined
-//        Parameter p = base.push(P_EVAL_MODEL);
-//
-//        //initates the evaluation model found in the param file
-//        evaluationModel = (EvaluationModel) state.parameters.getInstanceForParameter(p, null, EvaluationModel.class);
+        this.evaluationModel = new DynamicJobShopEvaluation(state,this);
 
-        //evaluationModel.setup(state, p);
     }
 
     /**
@@ -50,25 +45,18 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
         //If already evaluated break
         if (individual.evaluated) return;
         //cast the indivudal to a GP indivudal
-        GPIndividual indi = (GPIndividual) individual;
-
-        //calls the evalutation method, and gives fitness
-        //evaluationModel.evalute(indi.fitness, rule, state);
-
-        DynamicJobShopSimulation sim = new DynamicJobShopSimulation(evolutionState, indi, this, i, i1, 2500, 10);
+        GPIndividual ind = (GPIndividual) individual;
 
         double totalMeanFlow = 0.0;
-        for(int j = 0; j < this.replcation; j++){
-            totalMeanFlow += sim.startSimulation();
+        for(int j = 0; j < this.replication; j++){
+            totalMeanFlow +=  evaluationModel.startEvaluation(ind);
         }
 
-        double meanFlowTime = totalMeanFlow / this.replcation;
-
-        KozaFitness fitness = (KozaFitness) indi.fitness;
-
+        //Set Fitness
+        double meanFlowTime = totalMeanFlow / this.replication;
+        KozaFitness fitness = (KozaFitness) ind.fitness;
         fitness.setStandardizedFitness(evolutionState, meanFlowTime);
-//        System.out.println("Tree:\n" + indi.trees[0].child.makeLispTree());
-//        System.out.println("Fitness: " + meanFlowTime);
+
         individual.evaluated = true;
     }
 
@@ -79,4 +67,7 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
         return sim.startSimulation();
     }
 
+    public EvaluationModel getEvaluationModel() {
+        return evaluationModel;
+    }
 }

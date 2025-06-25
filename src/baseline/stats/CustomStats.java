@@ -1,5 +1,6 @@
 package baseline.stats;
 
+import baseline.evaluation.EvaluationModel;
 import baseline.problem.JobShopProblem;
 import ec.EvolutionState;
 import ec.gp.GPIndividual;
@@ -29,13 +30,15 @@ public class CustomStats extends KozaShortStatistics {
         GPIndividual bestInd = (GPIndividual) bestOfGeneration[0];
         JobShopProblem problem = (JobShopProblem) state.evaluator.p_problem;
 
+        EvaluationModel evaluationModel = problem.getEvaluationModel();
+
         double meanFlowTime = 0.0;
         for(int i = 1; i < this.replication; i++) {
-            meanFlowTime += problem.startSimulation(state, bestInd, 2500, 10);
+            meanFlowTime += evaluationModel.startEvaluation(bestInd);
         }
 
         double averageFlowTime = meanFlowTime / this.replication;
 
-        System.out.println("Average Flow Time Of best Individual with  "+ this.replication +" replications: " + averageFlowTime);
+        System.out.println("Average Flow Time (Of best Individual with  "+ this.replication +") replications: " + averageFlowTime);
     }
 }

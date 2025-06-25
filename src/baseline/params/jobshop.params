@@ -325,4 +325,6 @@ gp.fs.0.func.12.nc = nc0
 #or how the individuals evaluated
 eval.problem = baseline.problem.JobShopProblem
 eval.problem.data = baseline.data.DoubleData
+eval.problem.numOfMachines = 10
+eval.problem.maxJobs = 2500
 eval.problem.replication = 5
