@@ -42,11 +42,11 @@ state.file = $out.stat
 stat.num-children = 1
 stat.child.0 = baseline.stats.CustomStats
 # How many replications done to best fitness
-baseline.stats.replication = 10
+baseline.stats.replication = 50
 stat.child.0.file = $outtabular.stat
 
 #run the evolutionary process for 50 gens
-generations = 10
+generations = 50
 
 #exits from ECJ one all generation are done
 quit-on-run-complete = true
@@ -60,10 +60,10 @@ pop = ec.Population
 #defines the sub pop
 pop.subpops = 1
 pop.subpop.0 = ec.Subpopulation
-pop.subpop.0.size = 30
+pop.subpop.0.size = 500
 
 #define elitism, keep best 10 individuals
-breed.elite.0 = 5
+breed.elite.0 = 10
 
 # ==============================
 # GP general parameters

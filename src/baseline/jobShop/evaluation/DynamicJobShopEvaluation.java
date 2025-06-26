@@ -34,6 +34,7 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
 
         this.simulation = new DynamicJobShopSimulation(state, ind,problem, 0,0,this.maxJobs, this.numOfMachines );
         return this.simulation.startSimulation();
+          
     }
 
 }
