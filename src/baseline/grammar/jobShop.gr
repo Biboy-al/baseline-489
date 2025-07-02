@@ -1,0 +1,7 @@
+start ::= <op>
+<op> ::= <const> | <term> | ( <biFunc> <term> <term>) ( if <term> <term> <term>)
+<term> ::= (NPT) | (OptLeft) | (PT)
+<term> ::= (RemProcTime) | (TimeInQueue) | (TimeInSystem)
+<term> ::= (TimeTillDue) | (WNQ) | <const>
+<const> ::= 0 | 1
+<biFunc> ::= + | - | / | max | *

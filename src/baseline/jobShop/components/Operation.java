@@ -10,6 +10,9 @@ public class Operation {
     private final double processingTime;
     private static Random random = new Random();
 
+    public static void setSeed(long seed) {
+        random.setSeed(seed);
+    }
 
     private Operation(int machineId, int processingTime) {
         this.machineId = machineId;
@@ -20,7 +23,7 @@ public class Operation {
 
         //shuffle the machine ids
         Machine[] shuffledMachine = machines.clone();
-        Collections.shuffle(Arrays.asList(shuffledMachine));
+        Collections.shuffle(Arrays.asList(shuffledMachine), random);
         Operation[] operations = new Operation[machines.length];
 
         //randomly assign an operation for a given machine

@@ -4,6 +4,7 @@ import baseline.evaluation.Simulation;
 import baseline.jobShop.components.Machine;
 import baseline.jobShop.components.Job;
 import baseline.evaluation.Event;
+import baseline.jobShop.components.Operation;
 import baseline.jobShop.simulation.event.JobArrivalEvent;
 import ec.EvolutionState;
 import ec.Individual;
@@ -23,9 +24,10 @@ public class DynamicJobShopSimulation extends Simulation {
     final Queue<Event> eventQueue;
     final int numOfJobs;
     double time = 0;
-    public DynamicJobShopSimulation(EvolutionState state, GPIndividual ind, Problem problem, int ii, int i1, int numOfJobs, int numOfMachines) {
-        super(state, ind, problem, ii, i1);
+    public DynamicJobShopSimulation(EvolutionState state, GPIndividual ind, Problem problem, int ii, int i1, int numOfJobs, int numOfMachines, int seed) {
+        super(state, ind, problem, ii, i1, seed);
         //start simulation with 10 operations
+        Operation.setSeed(seed);
         allJob = new ArrayList<Job>();
         waitingJob = new ArrayList<Job>();
         eventQueue = new PriorityQueue<Event>();

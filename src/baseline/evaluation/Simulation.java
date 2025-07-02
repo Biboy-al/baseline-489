@@ -5,18 +5,21 @@ import ec.Problem;
 import ec.gp.GPIndividual;
 
 public abstract class Simulation {
-    EvolutionState state;
-    GPIndividual ind;
-    Problem problem;
+    protected int seed;
+    protected EvolutionState state;
+    protected GPIndividual ind;
+    protected Problem problem;
     int ii;
     int i1;
 
-    public Simulation(EvolutionState state, GPIndividual ind, Problem problem, int i, int i1) {
+
+    public Simulation(EvolutionState state, GPIndividual ind, Problem problem, int i, int i1, int seed) {
         this.state = state;
         this.ind = ind;
         this.problem = problem;
         this.ii = i;
         this.i1 = i1;
+        this.seed = seed;
     }
 
     public GPIndividual getInd() {

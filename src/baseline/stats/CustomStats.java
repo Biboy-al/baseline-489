@@ -4,6 +4,7 @@ import baseline.evaluation.EvaluationModel;
 import baseline.problem.JobShopProblem;
 import ec.EvolutionState;
 import ec.gp.GPIndividual;
+import ec.gp.koza.KozaFitness;
 import ec.gp.koza.KozaShortStatistics;
 import ec.simple.SimpleStatistics;
 import ec.util.Parameter;
@@ -24,13 +25,15 @@ public class CustomStats extends KozaShortStatistics {
     @Override
     public void postEvaluationStatistics(EvolutionState state) {
 
-
         super.postEvaluationStatistics(state);
 
         GPIndividual bestInd = (GPIndividual) bestOfGeneration[0];
         JobShopProblem problem = (JobShopProblem) state.evaluator.p_problem;
 
         EvaluationModel evaluationModel = problem.getEvaluationModel();
+        System.out.println(bestInd.fitness.fitness());
+//        double rawFitness = ((KozaFitness) bestInd.fitness).standardizedFitness();
+//        System.out.println("Standardized Fitness of best individual (as set by evaluate()): " + rawFitness);
 
         double meanFlowTime = 0.0;
         for(int i = 1; i < this.replication; i++) {

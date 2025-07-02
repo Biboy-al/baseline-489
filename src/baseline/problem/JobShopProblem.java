@@ -8,6 +8,7 @@ import ec.Individual;
 import ec.gp.GPIndividual;
 import ec.gp.GPProblem;
 import ec.gp.koza.KozaFitness;
+import ec.multiobjective.MultiObjectiveFitness;
 import ec.simple.SimpleProblemForm;
 import ec.util.Parameter;
 import baseline.jobShop.components.Job;
@@ -44,27 +45,24 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
     public void evaluate(EvolutionState evolutionState, Individual individual, int i, int i1) {
         //If already evaluated break
         if (individual.evaluated) return;
-        //cast the indivudal to a GP indivudal
+
         GPIndividual ind = (GPIndividual) individual;
 
         double totalMeanFlow = 0.0;
         for(int j = 0; j < this.replication; j++){
             totalMeanFlow +=  evaluationModel.startEvaluation(ind);
         }
-
         //Set Fitness
         double meanFlowTime = totalMeanFlow / this.replication;
-        KozaFitness fitness = (KozaFitness) ind.fitness;
-        fitness.setStandardizedFitness(evolutionState, meanFlowTime);
+        double[] meanFlowTimes= {meanFlowTime};
 
+//        KozaFitness fitness = (KozaFitness) ind.fitness;
+        MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;
+        fitness.setObjectives(evolutionState, meanFlowTimes);
+
+//        fitness.setStandardizedFitness(evolutionState, meanFlowTime);
+//        MultiObjectiveFitness f = (MultiObjectiveFitness)fitness;
         individual.evaluated = true;
-    }
-
-    public double startSimulation(EvolutionState state ,GPIndividual indi, int numOfJobs, int numOfMachines  ) {
-
-        DynamicJobShopSimulation sim = new DynamicJobShopSimulation(state, indi, this, 0, 0, 2500, 10);
-
-        return sim.startSimulation();
     }
 
     public EvaluationModel getEvaluationModel() {
