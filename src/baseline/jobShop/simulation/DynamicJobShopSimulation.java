@@ -18,24 +18,40 @@ import java.util.Queue;
 
 public class DynamicJobShopSimulation extends Simulation {
 
+    private final int SEED_ROTATE = 1000;
+
     final ArrayList<Job> allJob;
     final ArrayList<Job> waitingJob;
-    final Machine[] machines;
+    Machine[] machines;
     final Queue<Event> eventQueue;
+    final int numOfMachines;
     final int numOfJobs;
+    final int warmupJobs;
+    private double meanFlowTime;
+    private int numOfRuns = 0;
+
+
+
     double time = 0;
-    public DynamicJobShopSimulation(EvolutionState state, GPIndividual ind, Problem problem, int ii, int i1, int numOfJobs, int numOfMachines, int seed) {
+
+    public DynamicJobShopSimulation(EvolutionState state, GPIndividual ind, Problem problem, int ii, int i1, int numOfJobs, int numOfMachines, int seed, int warmupJobs) {
         super(state, ind, problem, ii, i1, seed);
         //start simulation with 10 operations
         Operation.setSeed(seed);
-        allJob = new ArrayList<Job>();
-        waitingJob = new ArrayList<Job>();
-        eventQueue = new PriorityQueue<Event>();
-        machines = populateMachines(numOfMachines);
+        this.allJob = new ArrayList<Job>();
+        this.waitingJob = new ArrayList<Job>();
+        this.eventQueue = new PriorityQueue<Event>();
+        this.numOfMachines = numOfMachines;
         this.numOfJobs = numOfJobs;
+        this.warmupJobs = warmupJobs;
+
     }
 
-    public double startSimulation() {
+    public void run() {
+
+        clear();
+
+        if(numOfRuns > 0)  Operation.setSeed(this.seed + SEED_ROTATE);
 
         eventQueue.add(new JobArrivalEvent(time, Job.generateJob(time, machines)));
         //As long as num of jobs has not been satsified keep generating new ones
@@ -56,15 +72,22 @@ public class DynamicJobShopSimulation extends Simulation {
 
         List<Double> flowTimes = new ArrayList<Double>();
 
-        // Calculate mean flow
-        for (Job job : allJob) {
+        // Calculate mean flow while not including the warm up jobs
+        for (Job job : allJob.subList(warmupJobs, allJob.size())) {
             double flowTime = job.getDepartureTime() - job.getArrivalTime();
             flowTimes.add(flowTime);
         }
 
-        //calculate mean flow time
-        return  flowTimes.stream().mapToDouble(Double::doubleValue).sum() / flowTimes.size();
+        this.meanFlowTime = flowTimes.stream().mapToDouble(Double::doubleValue).sum() / flowTimes.size();
+        numOfRuns++;
 
+    }
+
+    public void clear(){
+        this.allJob.clear();
+        this.waitingJob.clear();
+        this.eventQueue.clear();
+        this.machines = populateMachines(numOfMachines);
     }
 
     private Machine[] populateMachines(int machineCount) {
@@ -85,5 +108,10 @@ public class DynamicJobShopSimulation extends Simulation {
 
     public Machine getMachine(int index){
         return machines[index];
+    }
+
+    public double getMeanFlowTime() {
+        return this.meanFlowTime;
+
     }
 }

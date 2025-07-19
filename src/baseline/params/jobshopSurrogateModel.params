@@ -55,7 +55,8 @@ pop = ec.Population
 #defines the sub pop
 pop.subpops = 1
 pop.subpop.0 = ec.Subpopulation
-pop.subpop.0.size = 10
+pop.subpop.0.size = 1000
+
 #define elitism, keep best 10 individuals
 breed.elite.0 = 10
 
@@ -321,6 +322,5 @@ eval.problem = baseline.problem.JobShopProblem
 eval.problem.data = baseline.data.DoubleData
 eval.problem.numOfMachines = 10
 eval.problem.maxJobs = 2500
-eval.problem.replication = 10
-eval.problem.warmupJobs = 500
+eval.problem.replication = 1
 eval.problem.seed = 23

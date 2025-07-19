@@ -20,6 +20,8 @@ public abstract class EvaluationModel {
 
 
 
-    public abstract double startEvaluation(GPIndividual ind);
+    public abstract void evaluate(GPIndividual ind, EvolutionState evolutionState, int numOfRep);
+
+    public abstract double evaluateForStats(GPIndividual ind, EvolutionState evolutionState, int numOfRep);
 
 }

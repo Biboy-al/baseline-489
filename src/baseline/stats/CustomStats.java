@@ -35,12 +35,7 @@ public class CustomStats extends KozaShortStatistics {
 //        double rawFitness = ((KozaFitness) bestInd.fitness).standardizedFitness();
 //        System.out.println("Standardized Fitness of best individual (as set by evaluate()): " + rawFitness);
 
-        double meanFlowTime = 0.0;
-        for(int i = 1; i < this.replication; i++) {
-            meanFlowTime += evaluationModel.startEvaluation(bestInd);
-        }
-
-        double averageFlowTime = meanFlowTime / this.replication;
+        double averageFlowTime = evaluationModel.evaluateForStats(bestInd,state, this.replication );
 
         System.out.println("Average Flow Time (Of best Individual with  "+ this.replication +") replications: " + averageFlowTime);
     }

@@ -42,7 +42,7 @@ public abstract class Simulation {
         return i1;
     }
 
-    public abstract double startSimulation();
+    public abstract void run();
 
 
 }

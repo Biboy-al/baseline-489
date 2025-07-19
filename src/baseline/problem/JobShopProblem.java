@@ -31,7 +31,7 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
 
         this.replication = state.parameters.getInt(replicationParam, null, 1);
 
-        this.evaluationModel = new DynamicJobShopEvaluation(state,this);
+        this.evaluationModel = new DynamicJobShopEvaluation(state, this);
 
     }
 
@@ -48,20 +48,22 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
 
         GPIndividual ind = (GPIndividual) individual;
 
-        double totalMeanFlow = 0.0;
-        for(int j = 0; j < this.replication; j++){
-            totalMeanFlow +=  evaluationModel.startEvaluation(ind);
-        }
+        int generation = evolutionState.generation;
+
+        //calculates the fitness
+        evaluationModel.evaluate(ind, evolutionState, this.replication);
+
+//        double totalMeanFlow = 0.0;
+//        for(int j = 0; j < this.replication; j++){
+//            totalMeanFlow +=  evaluationModel.startEvaluation(ind, j+generation);
+//        }
         //Set Fitness
-        double meanFlowTime = totalMeanFlow / this.replication;
-        double[] meanFlowTimes= {meanFlowTime};
+//        double meanFlowTime = totalMeanFlow / this.replication;
+//        double[] meanFlowTimes= {meanFlowTime};
+//
+//        MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;
+//        fitness.setObjectives(evolutionState, meanFlowTimes);
 
-//        KozaFitness fitness = (KozaFitness) ind.fitness;
-        MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;
-        fitness.setObjectives(evolutionState, meanFlowTimes);
-
-//        fitness.setStandardizedFitness(evolutionState, meanFlowTime);
-//        MultiObjectiveFitness f = (MultiObjectiveFitness)fitness;
         individual.evaluated = true;
     }
 
