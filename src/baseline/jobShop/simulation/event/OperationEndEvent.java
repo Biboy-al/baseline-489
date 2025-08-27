@@ -51,10 +51,10 @@ public class OperationEndEvent extends Event {
 
             //If not being used by ecj deafult to first in first out rule
             if(problem == null){
-                Job nextJob = machine.getWaitingJobs().remove(0);
+                Job nextJob = machine.getWaitingJobs().removeFirst();
                 jobShopSim.addEvent(new OperationStartEvent(super.getTime(), this.machine,nextJob));
             }else{
-                int jobIndex = selectJobFromRule(this.machine.getWaitingJobs(), sim.getInd(),sim.getEvolutionState(), (JobShopProblem ) sim.getProblem(), 0);
+                int jobIndex = selectJobFromRule(this.machine.getWaitingJobs(), sim, (JobShopProblem ) sim.getProblem(), 0);
                 Job nextJob = machine.getWaitingJobs().remove(jobIndex);
                 jobShopSim.addEvent(new OperationStartEvent(super.getTime(), this.machine,nextJob));
             }
@@ -68,14 +68,19 @@ public class OperationEndEvent extends Event {
     }
 
     //Returns index of best job
-    public int selectJobFromRule(List<Job> waitingJobs, GPIndividual ind, EvolutionState state, JobShopProblem problem, int threadNum) {
+    public int selectJobFromRule(List<Job> waitingJobs, Simulation sim, JobShopProblem problem, int threadNum) {
         DoubleData input = new DoubleData();
+
+        EvolutionState state = sim.getEvolutionState();
+        GPIndividual ind = sim.getInd();
+
 
         int indexOfBestJob = 0;
         double bestScore = Double.NEGATIVE_INFINITY;
 
         for (int i = 0; i<waitingJobs.size(); i++){
             problem.currentJob = waitingJobs.get(i);
+            problem.simulation = sim;
             input.value = 0;
             ind.trees[0].child.eval(state, threadNum, input, null, ind, problem);
 

@@ -2,18 +2,29 @@ package baseline.jobShop.components;
 
 public class Job {
 
+    private final double DUEDATEALLOWANCE = 5.0;
+
     //Used to calculate mean flow
     private double arrivalTime;
     private double departureTime;
     private double arrivalInQueueTime;
     private double currentTime;
-
+    private double dueDate;
     private Operation[] operations = new Operation[10];
     int currentOperation = 0;
 
     private Job(double arrivalTime, Operation[] operations) {
+
+        double totalOperationTime = 0;
+
+        // get total operation time
+        for (Operation operation : operations) {
+            totalOperationTime += operation.getProcessingTime();
+        }
+
         this.arrivalTime = arrivalTime;
         this.operations = operations;
+        this.dueDate = (totalOperationTime + arrivalTime) + DUEDATEALLOWANCE;
         this.arrivalInQueueTime = 0;
     }
 
@@ -32,6 +43,8 @@ public class Job {
     /**
      * GETTERS AND SETTERS FOR TIME
      * **/
+
+    public double getDueDate() { return dueDate;}
 
     public double getArrivalTime() {
         return arrivalTime;
@@ -76,6 +89,8 @@ public class Job {
     public int getNumberOfOperationsLeft() {
         return (operations.length - currentOperation) - 1 ;
     }
+
+
 
     public double getRemainingProcessingTime() {
         double remainingTime = 0;

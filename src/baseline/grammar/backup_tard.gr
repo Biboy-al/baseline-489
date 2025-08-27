@@ -1,0 +1,12 @@
+<rule> ::= (+ <op> <DueDateOp>)
+<uniOp> ::= (exp <op>)
+<biOp> ::= (+ <op> <op>) | (- <op> <op>) | (* <op> <op>) | (/ <op> <nonZeroOp>)
+<biOp> ::= (min <op> <op>) | (max <op> <op>)
+<triOp> ::= (if <op> <op>)
+<DueDateOp> ::= <SlackOP> | (- TimeTillDue PT)
+<SlackOp> ::= SLACK | (- LDD RemProcTime) | (+ SDD RemProcTime)
+<constant> ::= _0 | _1
+<op> ::= <uniOp> | <biOp> | <triOp> | <constant>
+<op> ::= NPT | ODD | OpsLeft | PT | RemProcTime | TimeInQueue | TimeInSystem | TimeTillDue | LDD | SDD
+<op> ::= WINQ
+<nonZeroOp> ::= NPT | ODD | OpsLeft | PT | RemProcTime | TimeTillDue | LDD | SDD | _1

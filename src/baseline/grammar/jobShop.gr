@@ -5,3 +5,13 @@ start ::= <op>
 <term> ::= (TimeTillDue) | (WNQ) | <const>
 <const> ::= 0 | 1
 <biFunc> ::= + | - | / | max | *
+
+
+
+
+<double_var> := (NPT) | (OptLeft) | (PT)
+<double_var> ::= (RemProcTime) | (TimeInQueue) | (TimeInSystem)
+<double_var> ::= (TimeTillDue) | (WNQ) | <const>
+<double_const> :=  0 | 1
+<double_op> := + | - | / | * | max | min
+<bool_op> := if

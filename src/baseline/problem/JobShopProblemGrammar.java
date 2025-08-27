@@ -2,22 +2,17 @@ package baseline.problem;
 
 import baseline.evaluation.EvaluationModel;
 import baseline.evaluation.Simulation;
+import baseline.jobShop.components.Job;
 import baseline.jobShop.evaluation.DynamicJobShopEvaluation;
-import baseline.jobShop.simulation.DynamicJobShopSimulation;
 import ec.EvolutionState;
 import ec.Individual;
-import ec.gp.GPIndividual;
-import ec.gp.GPProblem;
-import ec.gp.GPTree;
+import ec.gp.*;
 import ec.gp.ge.GEIndividual;
-import ec.gp.ge.GESpecies;
-import ec.gp.koza.KozaFitness;
-import ec.multiobjective.MultiObjectiveFitness;
 import ec.simple.SimpleProblemForm;
 import ec.util.Parameter;
-import baseline.jobShop.components.Job;
+import ec.gp.ge.GESpecies;
 
-public class JobShopProblem extends GPProblem implements SimpleProblemForm{
+public class JobShopProblemGrammar extends GPProblem implements SimpleProblemForm{
 
     String P_EVAL_MODEL = "eval-model";
 
@@ -51,30 +46,24 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
         //If already evaluated break
         if (individual.evaluated) return;
 
-        if(individual instanceof GEIndividual){
-            GEIndividual geInd = (GEIndividual) individual;
+        GEIndividual geInd = (GEIndividual) individual;
+        GESpecies species = (GESpecies) geInd.species;
+        GPTree[] trees = new GPTree[1];
+        trees[0] = new GPTree();
+        int pos = species.makeTrees(evolutionState, geInd, trees, i1, null);
 
-            GESpecies species = (GESpecies) geInd.species;
-            GPTree[] trees = new GPTree[1];
-            trees[0] = new GPTree();
-
-            int pos = species.makeTrees(evolutionState, geInd, trees, i1, null);
-
-            GPIndividual gpInd = new GPIndividual();
-
-
-            gpInd.trees = trees;
-            gpInd.fitness = geInd.fitness;
-
-            //calculates the fitness
-            evaluationModel.evaluate(gpInd, evolutionState, this.replication);
-        } else{
-
-            GPIndividual gpInd = (GPIndividual) individual;
-
-            evaluationModel.evaluate(gpInd, evolutionState, this.replication);
+        if (pos == GESpecies.BIG_TREE_ERROR) {
+            System.out.println("Failed to build GPTree!");
+            return;
         }
 
+        System.out.println(trees[0].child.makeLispTree());
+
+//        GPIndividual ind = new GPIndividual();
+//        ind.species = (GPSpecies) evolutionState.population.subpops[0].species;
+//
+//        //calculates the fitness
+//        evaluationModel.evaluate(ind, evolutionState, this.replication);
 
         individual.evaluated = true;
     }

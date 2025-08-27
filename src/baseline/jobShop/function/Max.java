@@ -29,6 +29,6 @@ public class Max extends GPNode {
     }
 
     public String toString() {
-        return "if";
+        return "max";
     }
 }

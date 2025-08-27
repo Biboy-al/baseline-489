@@ -10,15 +10,20 @@ import ec.gp.GPData;
 import ec.gp.GPIndividual;
 import ec.gp.GPNode;
 
-public class _0 extends GPNode {
+public class SLACK extends GPNode {
+    @Override
     public String toString() {
-        return "_0";
+        return "SLACK";
     }
 
+    @Override
     public void eval(EvolutionState evolutionState, int i, GPData gpData, ADFStack adfStack, GPIndividual gpIndividual, Problem problem) {
         DoubleData rd = (DoubleData) gpData;
-        
-        rd.value = 0;
+
+        JobShopProblem jobShopProblem = (JobShopProblem) problem;
+
+        Job currentJob = jobShopProblem.currentJob;
+
+        rd.value = currentJob.getDueDate() - (currentJob.getCurrentTime() + currentJob.getArrivalInQueueTime());
     }
 }
-

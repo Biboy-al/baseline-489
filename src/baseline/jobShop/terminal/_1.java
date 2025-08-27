@@ -12,7 +12,7 @@ import ec.gp.GPNode;
 
 public class _1 extends GPNode {
     public String toString() {
-        return "1";
+        return "_1";
     }
 
     public void eval(EvolutionState evolutionState, int i, GPData gpData, ADFStack adfStack, GPIndividual gpIndividual, Problem problem) {

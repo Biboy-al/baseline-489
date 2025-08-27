@@ -4,6 +4,7 @@ import baseline.evaluation.EvaluationModel;
 import baseline.evaluation.Simulation;
 import ec.EvolutionState;
 import baseline.jobShop.simulation.DynamicJobShopSimulation;
+import ec.Individual;
 import ec.Problem;
 import ec.gp.GPIndividual;
 import ec.multiobjective.MultiObjectiveFitness;

@@ -1,0 +1,7 @@
+<rule> ::= (+ <op> <op>)
+<uniOp> ::= (exp <op>)
+<biOp> ::= (+ <op> <op>) | (- <op> <op>) | (* <op> <op>) | (/ <op> <op>)
+<biOp> ::= (min <op> <op>) | (max <op> <op>)
+<triOp> ::= (if <op> <op> <op>)
+<op> ::= (ODD) | (OpsLeft) | (PT) | (RemProcTime) | (TimeInQueue) | (TimeInSystem) | <LDD> | <SDD> | (WINQ) | <constant>
+<constant> ::= (_1)

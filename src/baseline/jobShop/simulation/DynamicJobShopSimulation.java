@@ -29,10 +29,7 @@ public class DynamicJobShopSimulation extends Simulation {
     final int warmupJobs;
     private double meanFlowTime;
     private int numOfRuns = 0;
-
-
-
-    double time = 0;
+    private double time = 0;
 
     public DynamicJobShopSimulation(EvolutionState state, GPIndividual ind, Problem problem, int ii, int i1, int numOfJobs, int numOfMachines, int seed, int warmupJobs) {
         super(state, ind, problem, ii, i1, seed);
@@ -108,6 +105,10 @@ public class DynamicJobShopSimulation extends Simulation {
 
     public Machine getMachine(int index){
         return machines[index];
+    }
+
+    public double getCurrentTime(){
+        return time;
     }
 
     public double getMeanFlowTime() {

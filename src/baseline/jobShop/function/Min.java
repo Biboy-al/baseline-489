@@ -7,7 +7,7 @@ import ec.gp.GPData;
 import ec.gp.GPIndividual;
 import ec.gp.GPNode;
 
-public class min extends GPNode {
+public class Min extends GPNode {
     @Override
     public String toString() {
         return "min";
