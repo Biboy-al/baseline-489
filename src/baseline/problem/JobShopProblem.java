@@ -49,32 +49,51 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
      * **/
     public void evaluate(EvolutionState evolutionState, Individual individual, int i, int i1) {
         //If already evaluated break
-        if (individual.evaluated) return;
-
-        if(individual instanceof GEIndividual){
-            GEIndividual geInd = (GEIndividual) individual;
-
-            GESpecies species = (GESpecies) geInd.species;
-            GPTree[] trees = new GPTree[1];
-            trees[0] = new GPTree();
-
-            int pos = species.makeTrees(evolutionState, geInd, trees, i1, null);
-
-            GPIndividual gpInd = new GPIndividual();
 
 
-            gpInd.trees = trees;
-            gpInd.fitness = geInd.fitness;
+        if (individual.evaluated) {
+            System.out.println("SKIPPING - Already evaluated!");
+            return;
+        }
 
-            //calculates the fitness
-            evaluationModel.evaluate(gpInd, evolutionState, this.replication);
-        } else{
+
+//        if(individual instanceof GEIndividual){
+//            GEIndividual geInd = (GEIndividual) individual;
+//
+//            GESpecies species = (GESpecies) geInd.species;
+//            GPTree[] trees = new GPTree[1];
+//            trees[0] = new GPTree();
+//
+//            GPIndividual gpInd = (GPIndividual) species.gpspecies.newIndividual(evolutionState, i1);
+//
+//            int pos = species.makeTrees(evolutionState, geInd, gpInd.trees, i1, null);
+//
+//            gpInd.fitness = geInd.fitness;
+//
+//            evolutionState.output.println(
+//                    "GEN " + evolutionState.generation +
+//                            " IND (GE) TREE " + gpInd.trees[0].child.makeLispTree(),
+//                    0); // "0" means write to standard statistics file
+//
+//
+//            //calculates the fitness
+//            evaluationModel.evaluate(gpInd, evolutionState, this.replication);
+//            individual.fitness = gpInd.fitness;
+//        } else{
 
             GPIndividual gpInd = (GPIndividual) individual;
 
-            evaluationModel.evaluate(gpInd, evolutionState, this.replication);
-        }
+            evolutionState.output.println(
+                    "GEN " + evolutionState.generation +
+                            " IND (GE) TREE " + gpInd.trees[0].child.makeLispTree(),
+                    0); // "0" means write to standard statistics file
 
+
+            evaluationModel.evaluate(gpInd, evolutionState, this.replication);
+            individual.fitness = gpInd.fitness;
+//        }
+
+//        System.out.println(individual.fitness.fitness());
 
         individual.evaluated = true;
     }

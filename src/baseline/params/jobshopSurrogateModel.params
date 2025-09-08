@@ -107,9 +107,9 @@ pop.subpop.0.species.pipe.num-sources = 3
 pop.subpop.0.species.pipe.source.0 = ec.gp.koza.CrossoverPipeline
 pop.subpop.0.species.pipe.source.0.prob = 0.90
 pop.subpop.0.species.pipe.source.1 = ec.gp.koza.MutationPipeline
-pop.subpop.0.species.pipe.source.1.prob = 0.15
+pop.subpop.0.species.pipe.source.1.prob = 0.05
 pop.subpop.0.species.pipe.source.2 = ec.breed.ReproductionPipeline
-pop.subpop.0.species.pipe.source.2.prob = 0.1
+pop.subpop.0.species.pipe.source.2.prob = 0.05
 
 #set selection mechnism to tournament Selection
 breed.reproduce.source.0 = ec.select.TournamentSelection

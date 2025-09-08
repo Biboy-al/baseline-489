@@ -55,7 +55,7 @@ pop = ec.Population
 #defines the sub pop
 pop.subpops = 1
 pop.subpop.0 = ec.Subpopulation
-pop.subpop.0.size = 50
+pop.subpop.0.size = 100
 #define elitism, keep best 10 individuals
 breed.elite.0 = 10
 
@@ -85,7 +85,9 @@ pop.subpop.0.species.ind.tree.0.tc = tc0
 # ------------------------------
 
 #Allow the fitness of the population to be multi objective
-pop.subpop.0.species.fitness = ec.multiobjective.MultiObjectiveFitness
+#pop.subpop.0.species.fitness = ec.multiobjective.MultiObjectiveFitness
+pop.subpop.0.species.fitness = ec.gp.koza.KozaFitness
+
 
 #only evaluate one objective
 pop.subpop.0.species.fitness.num-objectives = 1
@@ -104,11 +106,11 @@ pop.subpop.0.species.pipe = ec.breed.MultiBreedingPipeline
 pop.subpop.0.species.pipe.generate-max = false
 pop.subpop.0.species.pipe.num-sources = 3
 pop.subpop.0.species.pipe.source.0 = ec.gp.koza.CrossoverPipeline
-pop.subpop.0.species.pipe.source.0.prob = 0.90
+pop.subpop.0.species.pipe.source.0.prob = 0.70
 pop.subpop.0.species.pipe.source.1 = ec.gp.koza.MutationPipeline
 pop.subpop.0.species.pipe.source.1.prob = 0.15
 pop.subpop.0.species.pipe.source.2 = ec.breed.ReproductionPipeline
-pop.subpop.0.species.pipe.source.2.prob = 0.1
+pop.subpop.0.species.pipe.source.2.prob = 0.15
 
 #set selection mechnism to tournament Selection
 breed.reproduce.source.0 = ec.select.TournamentSelection
@@ -207,7 +209,7 @@ gp.koza.half.growp = 0.5
 
 #Number of node constraints
 
-gp.nc.size = 3
+gp.nc.size = 5
 
 # Nodes with 0 children (terminal)
 gp.nc.0 = ec.gp.GPNodeConstraints
@@ -227,7 +229,7 @@ gp.nc.1.name = nc2
 gp.nc.1.returns = nil
 
 #Specifies that the node takes 2 children
-gp.nc.1.size =2
+gp.nc.1.size = 2
 
 #Each child must also return nil, matcging the expected input type
 #if strongly typed you'd use types like boolean, int, or float
@@ -240,11 +242,35 @@ gp.nc.1.child.1 = nil
 gp.nc.2 = ec.gp.GPNodeConstraints
 gp.nc.2.name = nc3
 gp.nc.2.returns = nil
-gp.nc.2.size =3
+gp.nc.2.size =  3
 
 gp.nc.2.child.0 = nil
 gp.nc.2.child.1 = nil
 gp.nc.2.child.2 = nil
+
+#Constraints for 4 nodes
+
+gp.nc.3 = ec.gp.GPNodeConstraints
+gp.nc.3.name = nc4
+gp.nc.3.returns = nil
+gp.nc.3.size =  4
+
+gp.nc.3.child.0 = nil
+gp.nc.3.child.1 = nil
+gp.nc.3.child.2 = nil
+gp.nc.3.child.3 = nil
+
+
+#Constraints for 1 node
+
+gp.nc.4 = ec.gp.GPNodeConstraints
+gp.nc.4.name = nc1
+gp.nc.4.returns = nil
+gp.nc.4.size = 1
+
+gp.nc.4.child.0 = nil
+
+
 
 # ------------------------------
 # ADF Parameters
@@ -272,7 +298,7 @@ gp.nc.0.size = 0
 
 gp.fs.size = 1
 gp.fs.0.name = f0
-gp.fs.0.size = 13
+gp.fs.0.size = 21
 gp.fs.0 = ec.gp.GPFunctionSet
 
 # Function set
@@ -280,41 +306,67 @@ gp.fs.0.func.0 = baseline.jobShop.function.Add
 #defines how many parameters it takes
 gp.fs.0.func.0.nc = nc2
 
-gp.fs.0.func.1 = baseline.jobShop.function.Div
+gp.fs.0.func.1 = baseline.jobShop.function.Sub
 gp.fs.0.func.1.nc = nc2
 
-gp.fs.0.func.2 = baseline.jobShop.function.If
-gp.fs.0.func.2.nc = nc3
+gp.fs.0.func.2 = baseline.jobShop.function.Div
+gp.fs.0.func.2.nc = nc2
 
-gp.fs.0.func.3 = baseline.jobShop.function.Max
-gp.fs.0.func.3.nc = nc2
+gp.fs.0.func.3 = baseline.jobShop.function.If
+gp.fs.0.func.3.nc = nc4
 
-gp.fs.0.func.4 = baseline.jobShop.function.Mul
+gp.fs.0.func.4 = baseline.jobShop.function.Max
 gp.fs.0.func.4.nc = nc2
 
+gp.fs.0.func.5 = baseline.jobShop.function.Min
+gp.fs.0.func.5.nc = nc2
+
+gp.fs.0.func.6 = baseline.jobShop.function.Mul
+gp.fs.0.func.6.nc = nc2
+
+gp.fs.0.func.7 = baseline.jobShop.function.Exp
+gp.fs.0.func.7.nc = nc1
+
 # Terminal Set
-gp.fs.0.func.5 = baseline.jobShop.terminal._0
-gp.fs.0.func.5.nc = nc0
-gp.fs.0.func.6 = baseline.jobShop.terminal._1
-gp.fs.0.func.6.nc = nc0
-gp.fs.0.func.7 = baseline.jobShop.terminal.NPT
-gp.fs.0.func.7.nc = nc0
-gp.fs.0.func.8 = baseline.jobShop.terminal.OpsLeft
+gp.fs.0.func.8 = baseline.jobShop.terminal._0
 gp.fs.0.func.8.nc = nc0
-gp.fs.0.func.9 = baseline.jobShop.terminal.PT
+
+gp.fs.0.func.9 = baseline.jobShop.terminal._1
 gp.fs.0.func.9.nc = nc0
-gp.fs.0.func.10 = baseline.jobShop.terminal.RemProcTime
+
+gp.fs.0.func.10 = baseline.jobShop.terminal.NPT
 gp.fs.0.func.10.nc = nc0
-gp.fs.0.func.11 = baseline.jobShop.terminal.TimeInQueue
+
+gp.fs.0.func.11 = baseline.jobShop.terminal.OpsLeft
 gp.fs.0.func.11.nc = nc0
-gp.fs.0.func.12 = baseline.jobShop.terminal.TimeInSystem
+
+gp.fs.0.func.12 = baseline.jobShop.terminal.PT
 gp.fs.0.func.12.nc = nc0
-gp.fs.0.func.13 = baseline.jobShop.terminal.SLACK
+
+gp.fs.0.func.13 = baseline.jobShop.terminal.RemProcTime
 gp.fs.0.func.13.nc = nc0
-gp.fs.0.func.14 = baseline.jobShop.terminal.LLD
+
+gp.fs.0.func.14 = baseline.jobShop.terminal.TimeInQueue
 gp.fs.0.func.14.nc = nc0
-gp.fs.0.func.15 = baseline.jobShop.terminal.SSD
+
+gp.fs.0.func.15 = baseline.jobShop.terminal.TimeInSystem
 gp.fs.0.func.15.nc = nc0
+
+gp.fs.0.func.16 = baseline.jobShop.terminal.SLACK
+gp.fs.0.func.16.nc = nc0
+
+gp.fs.0.func.17 = baseline.jobShop.terminal.LLD
+gp.fs.0.func.17.nc = nc0
+
+gp.fs.0.func.18 = baseline.jobShop.terminal.SSD
+gp.fs.0.func.18.nc = nc0
+
+gp.fs.0.func.19 = baseline.jobShop.terminal.ODD
+gp.fs.0.func.19.nc = nc0
+
+gp.fs.0.func.20 = baseline.jobShop.terminal.WINQ
+gp.fs.0.func.20.nc = nc0
+
 
 # ==============================
 # Problem definition

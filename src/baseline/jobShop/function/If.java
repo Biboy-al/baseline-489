@@ -9,7 +9,7 @@ import ec.gp.GPIndividual;
 import ec.gp.GPNode;
 
 public class If extends GPNode {
-    public static int expectedChildren = 3;
+    public static int expectedChildren = 4;
 
     public static int getExpectedChildren() { return expectedChildren; }
 
@@ -19,12 +19,16 @@ public class If extends GPNode {
 
         children[0].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
 
-        double childrenOutput = re.value;
+        double childrenOutput_1 = re.value;
 
-        if(childrenOutput > 0){
-            children[1].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
-        }else{
+        children[1].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
+
+        double childrenOutput_2 = re.value;
+
+        if(childrenOutput_1 > childrenOutput_2) {
             children[2].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
+        }else{
+            children[3].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
         }
     }
 

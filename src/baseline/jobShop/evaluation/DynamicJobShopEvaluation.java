@@ -7,8 +7,11 @@ import baseline.jobShop.simulation.DynamicJobShopSimulation;
 import ec.Individual;
 import ec.Problem;
 import ec.gp.GPIndividual;
+import ec.gp.koza.KozaFitness;
 import ec.multiobjective.MultiObjectiveFitness;
 import ec.util.Parameter;
+
+import java.util.Random;
 
 public class DynamicJobShopEvaluation extends EvaluationModel {
 
@@ -33,7 +36,7 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
 
         this.numOfMachines = state.parameters.getInt(numOfMachinesParams, null, 5);
         this.maxJobs = state.parameters.getInt(maxJobsParam, null,1000);
-        this.seed = state.parameters.getInt(seedParams, null, 0);
+        this.seed = state.parameters.getInt(seedParams, null, new Random().nextInt());
         this.warmupJobs = state.parameters.getInt(numOfWarmupJobsParam, null, 0);
 
     }
@@ -43,20 +46,31 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
 
         this.simulation = new DynamicJobShopSimulation(state, ind,problem, 0,0,this.maxJobs, this.numOfMachines, this.seed, 500);
 
-        double sumFlowTime = 0;
+        double sumTardiness = 0;
 
         for (int i = 0; i < numOfRep; i++) {
             this.simulation.run();
-            sumFlowTime += this.simulation.getMeanFlowTime();
+            sumTardiness += this.simulation.getMeanTardiness();
+
         }
 
-        double meanFlowTime = sumFlowTime / numOfRep;
+        double meanTardiness = sumTardiness / numOfRep;
 
 
-        double[] meanFlowTimes = {meanFlowTime};
+//        double[] meanTardiness_a = {meanTardiness};
 
-        MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;
-        fitness.setObjectives(evolutionState, meanFlowTimes);
+//        MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;
+
+        KozaFitness fitness = (KozaFitness) ind.fitness;
+
+        System.out.println("Fitness: " + meanTardiness);
+
+        fitness.setStandardizedFitness(evolutionState, meanTardiness);
+
+//        fitness.setObjectives(evolutionState, meanTardiness_a);
+
+
+
     }
 
     @Override

@@ -34,15 +34,15 @@ state.file = $out.stat
 
 #configures a child stats object to gather GP specific stats
 stat.num-children = 1
-stat.child.0 = ec.simple.SimpleStatistics
 #stat.child.0 = baseline.stats.CustomStats
+stat.child.0 = ec.simple.SimpleStatistics
 # How many replications done to best fitness
 baseline.stats.replication = 1
 
 stat.child.0.file = $outtabular.stat
 
 #run the evolutionary process for 50 gens
-generations = 20
+generations = 50
 
 #exits from ECJ one all generation are done
 quit-on-run-complete = true
@@ -57,9 +57,9 @@ pop = ec.Population
 #defines the sub pop
 pop.subpops = 1
 pop.subpop.0 = ec.Subpopulation
-pop.subpop.0.size = 50
+pop.subpop.0.size = 500
 #define elitism, keep best 10 individuals
-breed.elite.0 = 10
+breed.elite.0 = 5
 
 # ==============================
 # GP general parameters
@@ -68,8 +68,6 @@ breed.elite.0 = 10
 # ------------------------------
 # GP representation
 # ------------------------------
-
-
 
 #make entire population use GP
 #pop.subpop.0.species = ec.gp.GPSpecies
@@ -88,23 +86,27 @@ breed.elite.0 = 10
 # GP Grammar Ind
 # ------------------------------
 
+pop.subpop.0.species.init = ec.gp.ge.GEInitializer
 pop.subpop.0.species = ec.gp.ge.GESpecies
 pop.subpop.0.species.parser = ec.gp.ge.GrammarParser
 pop.subpop.0.species.ind = ec.gp.ge.GEIndividual
+pop.subpop.0.species.mutation-type = reset
+
 
 pop.subpop.0.species.min-gene = -127
 pop.subpop.0.species.max-gene = 127
 
-pop.subpop.0.species.passes = 4
+pop.subpop.0.species.passes = 64
+
+pop.subpop.0.species.mutation-prob = 0.4
+pop.subpop.0.species.crossover-type = two
+#pop.subpop.0.species.genome-size = 500
 
 
-
-pop.subpop.0.species.mutation-prob = 0.01
-pop.subpop.0.species.crossover-type = one
-pop.subpop.0.species.genome-size = 500
+pop.subpop.0.species.genome-size = geometric
 pop.subpop.0.species.geometric-prob = 0.85
-pop.subpop.0.species.min-initial-size = 3
-pop.subpop.0.species.max-initial-size = 10
+pop.subpop.0.species.min-initial-size = 200
+pop.subpop.0.species.max-initial-size = 500
 
 # ------------------------------
 # GP Grammar
@@ -117,43 +119,61 @@ ge.species.file.0 = tardiness_full_grammar.gr
 # ------------------------------
 
 #Allow the fitness of the population to be multi objective
-pop.subpop.0.species.fitness = ec.multiobjective.MultiObjectiveFitness
+#pop.subpop.0.species.fitness = ec.multiobjective.MultiObjectiveFitness
+pop.subpop.0.species.fitness = ec.gp.koza.KozaFitness
 
 #only evaluate one objective
 pop.subpop.0.species.fitness.num-objectives = 1
 pop.subpop.0.species.fitness.maximize = false
 
 #GP will generate new individual if it's a duplicate, up to 100 times
-pop.subpop.0.duplicate-retries = 100
+pop.subpop.0.duplicate-retries = 30
+
+
+
+#-------------------------------
+# Pipeline from ECJ manual
+#-------------------------------
+
+pop.subpop.0.species.pipe = ec.breed.MultiBreedingPipeline
+pop.subpop.0.species.pipe.num-sources = 3
+pop.subpop.0.species.pipe.source.0 = ec.vector.breed.ListCrossoverPipeline
+pop.subpop.0.species.pipe.source.0.source.0 = ec.gp.ge.breed.GETruncationPipeline
+pop.subpop.0.species.pipe.source.0.source.0.source.0 = ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.0.source.1 = same
+pop.subpop.0.species.pipe.source.0.prob = 0.9
+pop.subpop.0.species.pipe.source.1 = ec.vector.breed.GeneDuplicationPipeline
+pop.subpop.0.species.pipe.source.1.source.0 = ec.gp.ge.breed.GETruncationPipeline
+pop.subpop.0.species.pipe.source.1.source.0.source.0 = ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.1.prob = 0.05
+pop.subpop.0.species.pipe.source.2 = ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.2.source.0 = ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.2.prob = 0.05
 
 
 # ------------------------------
 # Genetic Operators (PIPELINE)
 # ------------------------------
+# Fixed Breeding Pipeline
+#pop.subpop.0.species.pipe = ec.breed.MultiBreedingPipeline
+#pop.subpop.0.species.pipe.generate-max = false
+#pop.subpop.0.species.pipe.num-sources = 2
 
-# GP breeding pipeline
-pop.subpop.0.species.pipe = ec.breed.MultiBreedingPipeline
-pop.subpop.0.species.pipe.generate-max = false
-pop.subpop.0.species.pipe.num-sources = 3
+# Crossover Pipeline - Fixed
+#pop.subpop.0.species.pipe.source.0 = ec.vector.breed.ListCrossoverPipeline
+#pop.subpop.0.species.pipe.source.0.prob = 0.5
+#pop.subpop.0.species.pipe.source.0.source.0 = ec.select.TournamentSelection
+#pop.subpop.0.species.pipe.source.0.source.1 = ec.select.TournamentSelection
 
-#Cross over
-pop.subpop.0.species.pipe.source.0 = ec.vector.breed.ListCrossoverPipeline
-pop.subpop.0.species.pipe.source.0.source.0 = ec.gp.ge.breed.GETruncationPipeline
-pop.subpop.0.species.pipe.source.0.source.0.source.0 = ec.select.TournamentSelection
-pop.subpop.0.species.pipe.source.0.source.1 = same
-pop.subpop.0.species.pipe.source.0.prob = 0.90
+# Mutation Pipeline
+#pop.subpop.0.species.pipe.source.1 = ec.vector.breed.VectorMutationPipeline
+#pop.subpop.0.species.pipe.source.1.prob = 0.5
+#pop.subpop.0.species.pipe.source.1.source.0 = ec.select.TournamentSelection
 
-
-#reproduction
-pop.subpop.0.species.pipe.source.1 = ec.vector.breed.GeneDuplicationPipeline
-pop.subpop.0.species.pipe.source.1.source.0 = ec.gp.ge.breed.GETruncationPipeline
-pop.subpop.0.species.pipe.source.1.source.0.source.0 = ec.select.TournamentSelection
-pop.subpop.0.species.pipe.source.1.prob = 0.1
-
-#Mutation
-pop.subpop.0.species.pipe.source.2 = ec.vector.breed.VectorMutationPipeline
-pop.subpop.0.species.pipe.source.2.source.0 = ec.select.TournamentSelection
-pop.subpop.0.species.pipe.source.2.prob = 0.15
+# GE Vector-specific parameters (equivalent to your Koza parameters)
+# These control the GE crossover behavior
+#vector.species.crossover-type = one  # One-point crossover (similar to tree crossover)
+#vector.species.mutation-prob = 0.6   # Probability of mutating each gene
 
 # ------------------------------
 # Tournament Selection Size
@@ -179,8 +199,9 @@ gp.type.s.size = 0
 # ------------------------------
 
 pop.subpop.0.species.gp-species = ec.gp.GPSpecies
-pop.subpop.0.species.gp-species.fitness = ec.multiobjective.MultiObjectiveFitness
-pop.subpop.0.species.gp-species.fitness.num-objectives = 1
+#pop.subpop.0.species.gp-species.fitness = ec.multiobjective.MultiObjectiveFitness
+pop.subpop.0.species.gp-species.fitness = ec.gp.koza.KozaFitness
+#pop.subpop.0.species.gp-species.fitness.num-objectives = 1
 
 pop.subpop.0.species.gp-species.ind = ec.gp.GPIndividual
 pop.subpop.0.species.gp-species.ind.numtrees = 1
@@ -217,12 +238,14 @@ gp.tc.0.init = ec.gp.koza.HalfBuilder
 # ------------------------------
 # Koza Half builder Parameters
 # ------------------------------
-gp.ge.min-depth = 1
+gp.ge.min-depth = 5
 gp.ge.max-depth = 10
 
 gp.koza.half.min-depth = 2
 gp.koza.half.max-depth = 6
 gp.koza.half.growp = 0.5
+
+
 
 
 # ------------------------------
@@ -231,7 +254,7 @@ gp.koza.half.growp = 0.5
 
 #Number of node constraints
 
-gp.nc.size = 4
+gp.nc.size = 5
 
 # Nodes with 0 children (terminal)
 gp.nc.0 = ec.gp.GPNodeConstraints
@@ -251,7 +274,7 @@ gp.nc.1.name = nc2
 gp.nc.1.returns = nil
 
 #Specifies that the node takes 2 children
-gp.nc.1.size =2
+gp.nc.1.size = 2
 
 #Each child must also return nil, matcging the expected input type
 #if strongly typed you'd use types like boolean, int, or float
@@ -264,17 +287,35 @@ gp.nc.1.child.1 = nil
 gp.nc.2 = ec.gp.GPNodeConstraints
 gp.nc.2.name = nc3
 gp.nc.2.returns = nil
-gp.nc.2.size =3
+gp.nc.2.size =  3
 
 gp.nc.2.child.0 = nil
 gp.nc.2.child.1 = nil
 gp.nc.2.child.2 = nil
 
-gp.nc.3.name = nc1
+#Constraints for 4 nodes
+
+gp.nc.3 = ec.gp.GPNodeConstraints
+gp.nc.3.name = nc4
 gp.nc.3.returns = nil
-gp.nc.3.size = 1
+gp.nc.3.size =  4
 
 gp.nc.3.child.0 = nil
+gp.nc.3.child.1 = nil
+gp.nc.3.child.2 = nil
+gp.nc.3.child.3 = nil
+
+
+#Constraints for 1 node
+
+gp.nc.4 = ec.gp.GPNodeConstraints
+gp.nc.4.name = nc1
+gp.nc.4.returns = nil
+gp.nc.4.size = 1
+
+gp.nc.4.child.0 = nil
+
+
 
 # ------------------------------
 # ADF Parameters
@@ -317,7 +358,7 @@ gp.fs.0.func.2 = baseline.jobShop.function.Div
 gp.fs.0.func.2.nc = nc2
 
 gp.fs.0.func.3 = baseline.jobShop.function.If
-gp.fs.0.func.3.nc = nc3
+gp.fs.0.func.3.nc = nc4
 
 gp.fs.0.func.4 = baseline.jobShop.function.Max
 gp.fs.0.func.4.nc = nc2
@@ -383,10 +424,11 @@ pop.subpop.0.species.gp-species.ind.tree.0.tc = tc0
 
 #which problem file will be used
 #or how the individuals evaluated
-eval.problem = baseline.problem.JobShopProblem
-eval.problem.data = baseline.data.DoubleData
+eval.problem = ec.gp.ge.GEProblem
+eval.problem.problem = baseline.problem.JobShopProblem
+eval.problem.problem.data = baseline.data.DoubleData
 eval.problem.numOfMachines = 10
 eval.problem.maxJobs = 2500
 eval.problem.replication = 10
 eval.problem.warmupJobs = 500
-eval.problem.seed = 23
+#eval.problem.seed = 100

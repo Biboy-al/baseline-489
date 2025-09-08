@@ -28,6 +28,7 @@ public class DynamicJobShopSimulation extends Simulation {
     final int numOfJobs;
     final int warmupJobs;
     private double meanFlowTime;
+    private double meanTardiness;
     private int numOfRuns = 0;
     private double time = 0;
 
@@ -68,13 +69,17 @@ public class DynamicJobShopSimulation extends Simulation {
         }
 
         List<Double> flowTimes = new ArrayList<Double>();
+        List<Double> jobs_tardiness = new ArrayList<>();
 
         // Calculate mean flow while not including the warm up jobs
         for (Job job : allJob.subList(warmupJobs, allJob.size())) {
             double flowTime = job.getDepartureTime() - job.getArrivalTime();
+            double tardiness = job.getDepartureTime() - job.getDueDate();
+            jobs_tardiness.add(tardiness);
             flowTimes.add(flowTime);
         }
 
+        this.meanTardiness = jobs_tardiness.stream().mapToDouble(Double::doubleValue).sum() / jobs_tardiness.size();
         this.meanFlowTime = flowTimes.stream().mapToDouble(Double::doubleValue).sum() / flowTimes.size();
         numOfRuns++;
 
@@ -114,5 +119,9 @@ public class DynamicJobShopSimulation extends Simulation {
     public double getMeanFlowTime() {
         return this.meanFlowTime;
 
+    }
+
+    public double getMeanTardiness() {
+        return this.meanTardiness;
     }
 }
