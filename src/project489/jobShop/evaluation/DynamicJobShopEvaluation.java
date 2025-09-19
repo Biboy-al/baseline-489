@@ -17,6 +17,8 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
     private int numOfMachines;
     private int seed;
     private int warmupJobs;
+    private int numOps;
+    private double util;
 
     public DynamicJobShopEvaluation(EvolutionState state, Problem problem) {
 
@@ -29,19 +31,23 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
         Parameter maxJobsParam = new Parameter("eval.problem.maxJobs");
         Parameter seedParams = new Parameter("eval.problem.seed");
         Parameter numOfWarmupJobsParam = new Parameter("eval.problem.warmupJobs");
+        Parameter numOpsParam = new Parameter("eval.problem.numOps");
+        Parameter utilParam = new Parameter("eval.problem.util");
 
 
         this.numOfMachines = state.parameters.getInt(numOfMachinesParams, null, 5);
         this.maxJobs = state.parameters.getInt(maxJobsParam, null,1000);
         this.seed = state.parameters.getInt(seedParams, null, new Random().nextInt());
         this.warmupJobs = state.parameters.getInt(numOfWarmupJobsParam, null, 0);
+        this.numOps = state.parameters.getInt(numOpsParam, null, 10);
+        this.util = state.parameters.getDouble(utilParam, null,0.85);
 
     }
 
     @Override
     public void evaluate(GPIndividual ind, EvolutionState evolutionState, int numOfRep) {
 
-        this.simulation = new DynamicJobShopSimulation(state, ind,problem, 0,0,maxJobs, this.numOfMachines, this.seed, 500);
+        this.simulation = new DynamicJobShopSimulation(state, ind,problem, 0,0,maxJobs, this.numOfMachines, this.seed, this.warmupJobs, this.numOps , this.util);
 
         double sumTardiness = 0;
 
@@ -64,7 +70,7 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
     @Override
     public double evaluateForStats(GPIndividual ind, EvolutionState evolutionState, int numOfRep) {
 
-        this.simulation = new DynamicJobShopSimulation(state, ind,problem, 0,0,this.maxJobs, this.numOfMachines, this.seed + numOfRep, this.warmupJobs);
+        this.simulation = new DynamicJobShopSimulation(state, ind,problem, 0,0,this.maxJobs, this.numOfMachines, this.seed + numOfRep, this.warmupJobs, this.numOps , this.util);
 
         double sumFlowTime = 0;
 

@@ -1,5 +1,6 @@
 package project489.jobShop.simulation;
 
+import org.apache.commons.math3.random.RandomDataGenerator;
 import project489.evaluation.Simulation;
 import project489.jobShop.components.Machine;
 import project489.jobShop.components.Job;
@@ -10,10 +11,7 @@ import ec.EvolutionState;
 import ec.Problem;
 import ec.gp.GPIndividual;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 public class DynamicJobShopSimulation extends Simulation {
 
@@ -28,9 +26,17 @@ public class DynamicJobShopSimulation extends Simulation {
     final int warmupJobs;
     private double totalFlowTime;
     private double totalTardiness;
+    private double meanProcTime;
+    private double util;
+    private double meanInterArrival;
     private int completedJobCount;
+    private int numOps;
+
+    RandomDataGenerator rng;
+
     private int numOfRuns = 0;
     private double time = 0;
+
 
     // Track job generation
     private int jobsGenerated = 0;
@@ -38,7 +44,7 @@ public class DynamicJobShopSimulation extends Simulation {
 
     public DynamicJobShopSimulation(EvolutionState state, GPIndividual ind, Problem problem,
                                     int ii, int i1, int numOfJobs, int numOfMachines,
-                                    int seed, int warmupJobs) {
+                                    int seed, int warmupJobs, int numOps, double util) {
         super(state, ind, problem, ii, i1, seed);
         Operation.setSeed(seed);
         this.allJob = new ArrayList<Job>();
@@ -47,7 +53,16 @@ public class DynamicJobShopSimulation extends Simulation {
         this.numOfMachines = numOfMachines;
         this.numOfJobs = numOfJobs;
         this.warmupJobs = warmupJobs;
+        this.util = util;
+        this.numOps = numOps;
         machines = populateMachines(numOfMachines);
+
+        this.rng  = new RandomDataGenerator();
+
+        int numSamples = 500;
+        this.meanProcTime = estimateMeanProcessingTime(numSamples);
+
+        this.meanInterArrival = (this.numOps * meanProcTime) / (this.util * this.numOfMachines);
     }
 
     public void run() {
@@ -79,19 +94,17 @@ public class DynamicJobShopSimulation extends Simulation {
             Job newJob = Job.generateJob(arrivalTime, machines);
             eventQueue.add(new JobArrivalEvent(arrivalTime, newJob));
 
-            // Calculate next arrival time (example: exponential inter-arrival times)
             double interArrivalTime = generateInterArrivalTime();
+
+            System.out.println(interArrivalTime);
             nextJobArrivalTime = arrivalTime + interArrivalTime;
 
             jobsGenerated++;
         }
     }
 
-    // Generate inter-arrival time (you can customize this)
     private double generateInterArrivalTime() {
-        // Example: exponential distribution with mean of 5 time units
-        // You can adjust this based on your system requirements
-        return -Math.log(1 - Math.random()) * 5.0;
+        return this.rng.nextExponential(this.meanInterArrival);
     }
 
     public void clear(){
@@ -133,7 +146,17 @@ public class DynamicJobShopSimulation extends Simulation {
 
         }
 
-//        allJob.add(job);
+    }
+
+
+    private double estimateMeanProcessingTime(int samples) {
+        double total = 0.0;
+        for (int i = 0; i < samples; i++) {
+
+            Operation op = Operation.generationOperation();
+            total += op.getProcessingTime();
+        }
+        return total / samples;
     }
 
     public void addEvent(Event e){

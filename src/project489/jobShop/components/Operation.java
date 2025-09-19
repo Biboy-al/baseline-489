@@ -13,7 +13,7 @@ public class Operation {
         random.setSeed(seed);
     }
 
-    private Operation(int machineId, int processingTime) {
+    private Operation(int machineId, double processingTime) {
         this.machineId = machineId;
         this.processingTime = processingTime;
     }
@@ -28,11 +28,15 @@ public class Operation {
         //randomly assign an operation for a given machine
         for (int i = 0; i < shuffledMachine.length; i++) {
 
-            operations[i] = new Operation(shuffledMachine[i].getMachineId(), random.nextInt(48) + 1);
+            operations[i] = new Operation(shuffledMachine[i].getMachineId(), sampleProcessingTime());
         }
 
         //return operations
         return operations;
+    }
+
+    public static Operation generationOperation() {
+        return new Operation(0, sampleProcessingTime());
     }
 
 
@@ -42,5 +46,12 @@ public class Operation {
 
     public double getProcessingTime() {
         return processingTime;
+    }
+
+    private static double sampleProcessingTime() {
+
+        double lambda = 1.0 / 20.0;
+        return -Math.log(1 - random.nextDouble()) / lambda;
+
     }
 }

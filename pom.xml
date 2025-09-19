@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>mortgage-calculator</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>Mortgage Calculator</name>
+    <artifactId>comp-489</artifactId>
+    <version>1.0</version>
+    <name>Comp 489</name>
 
 
 

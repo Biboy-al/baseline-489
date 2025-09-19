@@ -381,3 +381,5 @@ eval.problem.maxJobs = 2500
 eval.problem.replication = 10
 eval.problem.warmupJobs = 500
 eval.problem.seed = 23
+eval.problem.numOps = 10
+eval.problem.util = 0.90
