@@ -24,11 +24,9 @@ public class NPT extends GPNode {
         Operation[] operation = currentJob.getOperations();
         int operationIndex = currentJob.getCurrentOpeationIndex();
 
-        //if no next operation set 0
-        if(operationIndex+1 > operation.length){
+        if(operationIndex+1 > operation.length-1){
             rd.value = 0;
 
-            //If there is a next operation give it the next time
         }else{
            rd.value = operation[operationIndex+1].getProcessingTime();
         }

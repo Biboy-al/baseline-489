@@ -26,14 +26,20 @@ public class DynamicJobShopSimulation extends Simulation {
     final int numOfMachines;
     final int numOfJobs;
     final int warmupJobs;
-    private double meanFlowTime;
-    private double meanTardiness;
+    private double totalFlowTime;
+    private double totalTardiness;
+    private int completedJobCount;
     private int numOfRuns = 0;
     private double time = 0;
 
-    public DynamicJobShopSimulation(EvolutionState state, GPIndividual ind, Problem problem, int ii, int i1, int numOfJobs, int numOfMachines, int seed, int warmupJobs) {
+    // Track job generation
+    private int jobsGenerated = 0;
+    private double nextJobArrivalTime = 0;
+
+    public DynamicJobShopSimulation(EvolutionState state, GPIndividual ind, Problem problem,
+                                    int ii, int i1, int numOfJobs, int numOfMachines,
+                                    int seed, int warmupJobs) {
         super(state, ind, problem, ii, i1, seed);
-        //start simulation with 10 operations
         Operation.setSeed(seed);
         this.allJob = new ArrayList<Job>();
         this.waitingJob = new ArrayList<Job>();
@@ -41,54 +47,68 @@ public class DynamicJobShopSimulation extends Simulation {
         this.numOfMachines = numOfMachines;
         this.numOfJobs = numOfJobs;
         this.warmupJobs = warmupJobs;
-
+        machines = populateMachines(numOfMachines);
     }
 
     public void run() {
+        if(numOfRuns > 0){
+            clear();
+            Operation.setSeed(this.seed + SEED_ROTATE);
+        }
 
-        clear();
+        // Generate first job at time 0
+        generateNextJob();
 
-        if(numOfRuns > 0)  Operation.setSeed(this.seed + SEED_ROTATE);
+        // Process events until we have enough completed jobs
+        while(!eventQueue.isEmpty() && completedJobCount < numOfJobs) {
 
-        eventQueue.add(new JobArrivalEvent(time, Job.generateJob(time, machines)));
-        //As long as num of jobs has not been satsified keep generating new ones
-
-        //Process events as they come
-        while(!eventQueue.isEmpty()) {
             Event nextEvent = eventQueue.poll();
-            //Set the time from the event
-            time = nextEvent.getTime();
+            this.time = nextEvent.getTime();
             nextEvent.evalute(this);
-
-            //Keep generating new jobs
-            if (numOfJobs > allJob.size()) {
-                Job newJob = Job.generateJob(time, machines);
-                eventQueue.add(new JobArrivalEvent(time, newJob));
-            }
         }
 
-        List<Double> flowTimes = new ArrayList<Double>();
-        List<Double> jobs_tardiness = new ArrayList<>();
-
-        // Calculate mean flow while not including the warm up jobs
-        for (Job job : allJob.subList(warmupJobs, allJob.size())) {
-            double flowTime = job.getDepartureTime() - job.getArrivalTime();
-            double tardiness = job.getDepartureTime() - job.getDueDate();
-            jobs_tardiness.add(tardiness);
-            flowTimes.add(flowTime);
-        }
-
-        this.meanTardiness = jobs_tardiness.stream().mapToDouble(Double::doubleValue).sum() / jobs_tardiness.size();
-        this.meanFlowTime = flowTimes.stream().mapToDouble(Double::doubleValue).sum() / flowTimes.size();
         numOfRuns++;
+    }
 
+    // FIXED: Generate jobs with proper time intervals
+    public void generateNextJob() {
+        if (jobsGenerated < numOfJobs + warmupJobs) {
+            // Use current nextJobArrivalTime, then calculate next one
+            double arrivalTime = nextJobArrivalTime;
+
+            Job newJob = Job.generateJob(arrivalTime, machines);
+            eventQueue.add(new JobArrivalEvent(arrivalTime, newJob));
+
+            // Calculate next arrival time (example: exponential inter-arrival times)
+            double interArrivalTime = generateInterArrivalTime();
+            nextJobArrivalTime = arrivalTime + interArrivalTime;
+
+            jobsGenerated++;
+        }
+    }
+
+    // Generate inter-arrival time (you can customize this)
+    private double generateInterArrivalTime() {
+        // Example: exponential distribution with mean of 5 time units
+        // You can adjust this based on your system requirements
+        return -Math.log(1 - Math.random()) * 5.0;
     }
 
     public void clear(){
         this.allJob.clear();
         this.waitingJob.clear();
         this.eventQueue.clear();
-        this.machines = populateMachines(numOfMachines);
+
+        this.totalFlowTime = 0;
+        this.totalTardiness = 0;
+        this.completedJobCount = 0;
+        this.jobsGenerated = 0;
+        this.time = 0;
+        this.nextJobArrivalTime = 0; // Reset arrival time
+
+        for (Machine machine : machines) {
+            machine.reset();
+        }
     }
 
     private Machine[] populateMachines(int machineCount) {
@@ -97,6 +117,23 @@ public class DynamicJobShopSimulation extends Simulation {
             machines[i] = new Machine(i);
         }
         return machines;
+    }
+
+    public void addCompletedJob(Job job) {
+        // Only count jobs after warmup period
+
+        if (allJob.size() >= warmupJobs) {
+            completedJobCount++;
+
+            double flowTime = job.getDepartureTime() - job.getArrivalTime();
+            double tardiness = Math.max(0, job.getDepartureTime() - job.getDueDate());
+
+            totalFlowTime += flowTime;
+            totalTardiness += tardiness;
+
+        }
+
+//        allJob.add(job);
     }
 
     public void addEvent(Event e){
@@ -116,11 +153,14 @@ public class DynamicJobShopSimulation extends Simulation {
     }
 
     public double getMeanFlowTime() {
-        return this.meanFlowTime;
-
+        return completedJobCount > 0 ? totalFlowTime / completedJobCount : 0.0;
     }
 
     public double getMeanTardiness() {
-        return this.meanTardiness;
+        return completedJobCount > 0 ? totalTardiness / completedJobCount : 0.0;
+    }
+
+    public boolean hasReachedTotalJob(){
+        return completedJobCount > numOfJobs;
     }
 }

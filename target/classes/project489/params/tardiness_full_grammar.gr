@@ -1,0 +1,13 @@
+<rule> ::= (+ <expr> <DueDateOp>) | (* <expr> <DueDateOp>)
+<expr> ::= <terminal> | <nested_expr>
+<nested_expr> ::= <uniOp> | <biOp> | <quadOp>
+<uniOp> ::= (exp <expr>)
+<biOp> ::= (+ <expr> <expr>) | (- <expr> <expr>) | (* <expr> <expr>) | (/ <expr> <expr>) | (min <expr> <expr>) | (max <expr> <expr>)
+<quadOp> ::= (if <expr> <expr> <expr> <expr>)
+<RemProcTime> ::= (RemProcTime)
+<LLD> ::= (LLD)
+<SSD> ::= (SSD)
+<SPT> ::= (SPT)
+<terminal> ::= <constant> | (NPT) | (ODD) | (OpsLeft) | (PT) | <RemProcTime> | (TimeInQueue) | (TimeInSystem) | <LLD> | <SSD> | (WINQ) | (SLACK) | <SPT>
+<DueDateOp> ::= (SLACK) | (- <LLD> <RemProcTime>) | (+ <SSD> <RemProcTime>)
+<constant> ::= (_0) | (_1)

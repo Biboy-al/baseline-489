@@ -40,6 +40,8 @@ public class Job {
         return operations[currentOperation];
     }
 
+
+
     /**
      * GETTERS AND SETTERS FOR TIME
      * **/
@@ -75,7 +77,7 @@ public class Job {
     }
 
     public boolean isFinished(){
-        return currentOperation == operations.length - 1;
+        return currentOperation > operations.length - 1;
     }
 
     public void finishCurrentOperation() {

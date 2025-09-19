@@ -24,20 +24,27 @@ public class Machine {
         return currentJob;
     }
 
+    public void reset(){
+        waitingJobs.clear();
+    }
+
     public void addJob(Job job) {
-        waitingJobs.add(job);
+
+        if (job.isFinished()) return;
+
+        if (!waitingJobs.contains(job)) {
+            waitingJobs.add(job);
+        }
     }
 
     public List<Job> getWaitingJobs() {
         return waitingJobs;
     }
 
-//    public void processNextJob() {
-//        //for now first in and first out
-//        if(currentJob == null && !waitingJobs.isEmpty()) {
-//            currentJob = waitingJobs.remove(0);;
-//        }
-//    }
+    public void removeJob(Job job) {
+        waitingJobs.remove(job);
+    }
+
 
     public boolean isIdle(){
         return currentJob == null;

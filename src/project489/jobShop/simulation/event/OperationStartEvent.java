@@ -19,6 +19,7 @@ public class OperationStartEvent extends Event {
     @Override
     public void evalute(Simulation sim) {
         DynamicJobShopSimulation jobShopSim = (DynamicJobShopSimulation) sim;
+
         machine.setCurrentJob(this.job);
         double processingTime = job.getCurrentOperation().getProcessingTime();
         jobShopSim.addEvent(new OperationEndEvent(processingTime + super.getTime(), machine, job));

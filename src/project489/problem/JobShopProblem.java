@@ -43,14 +43,12 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
      * **/
     public void evaluate(EvolutionState evolutionState, Individual individual, int i, int i1) {
 
-        if (individual.evaluated) {
-            System.out.println("SKIPPING - Already evaluated!");
-            return;
-        }
+        if (individual.evaluated) return;
 
         GPIndividual gpInd = (GPIndividual) individual;
 
         evaluationModel.evaluate(gpInd, evolutionState, this.replication);
+
         individual.fitness = gpInd.fitness;
         individual.evaluated = true;
     }

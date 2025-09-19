@@ -41,11 +41,11 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
     @Override
     public void evaluate(GPIndividual ind, EvolutionState evolutionState, int numOfRep) {
 
-        this.simulation = new DynamicJobShopSimulation(state, ind,problem, 0,0,this.maxJobs, this.numOfMachines, this.seed, 500);
+        this.simulation = new DynamicJobShopSimulation(state, ind,problem, 0,0,maxJobs, this.numOfMachines, this.seed, 500);
 
         double sumTardiness = 0;
 
-        for (int i = 0; i < numOfRep; i++) {
+        for (int i = 0; i < 1; i++) {
             this.simulation.run();
             sumTardiness += this.simulation.getMeanTardiness();
 
@@ -53,20 +53,11 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
 
         double meanTardiness = sumTardiness / numOfRep;
 
-
-//        double[] meanTardiness_a = {meanTardiness};
-
-//        MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;
-
         KozaFitness fitness = (KozaFitness) ind.fitness;
-
-        System.out.println("Fitness: " + meanTardiness);
 
         fitness.setStandardizedFitness(evolutionState, meanTardiness);
 
 //        fitness.setObjectives(evolutionState, meanTardiness_a);
-
-
 
     }
 
