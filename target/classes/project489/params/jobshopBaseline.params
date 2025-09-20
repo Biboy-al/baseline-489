@@ -377,14 +377,15 @@ gp.fs.0.func.20.nc = nc0
 
 eval.problem = project489.problem.JobShopProblem
 eval.problem.data = project489.data.DoubleData
-eval.replication = 10
 
 eval.problem.sim.num = 4
+eval.problem.sim.seed = 23
+eval.problem.sim.replication = 10
 
 eval.problem.sim.0.numOfMachines = 10
 eval.problem.sim.0.replication = 10
 eval.problem.sim.0.warmupJobs = 1
-eval.problem.sim.0.seed = 23
+
 eval.problem.sim.0.numOps = 10
 eval.problem.sim.0.util = 0.8
 eval.problem.sim.0.DueDateAllowance = 2.0
