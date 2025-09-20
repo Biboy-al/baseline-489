@@ -427,13 +427,42 @@ pop.subpop.0.species.gp-species.ind.tree.0.tc = tc0
 
 #which problem file will be used
 #or how the individuals evaluated
+
+
 eval.problem = ec.gp.ge.GEProblem
 eval.problem.problem = project489.problem.JobShopProblem
+#eval.problem = project489.problem.JobShopProblem
 eval.problem.problem.data = project489.data.DoubleData
-eval.problem.numOfMachines = 10
-eval.problem.maxJobs = 5000
-eval.problem.replication = 10
-eval.problem.warmupJobs = 500
-eval.problem.seed = 23
-eval.problem.numOps = 10
-eval.problem.util = 0.5
+
+eval.problem.problem.sim.num = 4
+eval.problem.problem.sim.replication = 1
+eval.problem.problem.sim.seed = 23
+eval.problem.problem.sim.seedRotate = 1000
+
+eval.problem.problem.sim.0.numOfMachines = 10
+eval.problem.problem.sim.2.maxJobs = 2500
+eval.problem.problem.sim.0.warmupJobs = 500
+eval.problem.problem.sim.0.numOps = 10
+eval.problem.problem.sim.0.util = 0.8
+eval.problem.problem.sim.0.DueDateAllowance = 2.0
+
+eval.problem.problem.sim.1.numOfMachines = 10
+eval.problem.problem.sim.1.maxJobs = 2500
+eval.problem.problem.sim.1.warmupJobs = 500
+eval.problem.problem.sim.1.numOps = 10
+eval.problem.problem.sim.1.util = 0.85
+eval.problem.problem.sim.1.DueDateAllowance = 2.0
+
+eval.problem.problem.sim.2.numOfMachines = 10
+eval.problem.problem.sim.2.maxJobs = 2500
+eval.problem.problem.sim.2.warmupJobs = 500
+eval.problem.problem.sim.2.numOps = 10
+eval.problem.problem.sim.2.util = 0.9
+eval.problem.problem.sim.2.DueDateAllowance = 2.0
+
+eval.problem.problem.sim.3.numOfMachines = 10
+eval.problem.problem.sim.3.maxJobs = 2500
+eval.problem.problem.sim.3.warmupJobs = 500
+eval.problem.problem.sim.3.numOps = 10
+eval.problem.problem.sim.3.util = 0.95
+eval.problem.problem.sim.3.DueDateAllowance = 2.0

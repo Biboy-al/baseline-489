@@ -1,0 +1,1059 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=311.8757993770706 Adjusted=0.0031961564364868735 Hits=0
+Tree 0:
+ (/ (exp (min (* RemProcTime RemProcTime)
+     (min _0 TimeInSystem))) (max (max (/ LLD
+     LLD) (if TimeInQueue _0 PT RemProcTime))
+     (max (exp SSD) (/ PT TimeInQueue))))
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=309.01983193036995 Adjusted=0.003225600097172489 Hits=0
+Tree 0:
+ (* TimeInSystem (if (+ (min TimeInQueue OpsLeft)
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (exp (- _0 PT))))
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=307.69318410787594 Adjusted=0.0032394625196860193 Hits=0
+Tree 0:
+ (* TimeInSystem (if (+ (- (/ RemProcTime
+     _0) (max LLD PT)) (+ SLACK OpsLeft)) (exp
+     (if _0 PT WINQ _1)) (min (- TimeInSystem
+     _1) (* TimeInSystem RemProcTime)) (exp (-
+     _0 PT))))
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=307.3288936837467 Adjusted=0.003243289942932501 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) (min (if (- (+ ODD WINQ)
+     (* TimeInSystem PT)) (- (+ ODD _1) (* TimeInSystem
+     PT)) (/ (if PT WINQ OpsLeft _0) (max TimeInQueue
+     SLACK)) (exp (if LLD PT _0 TimeInSystem)))
+     (* TimeInSystem RemProcTime)) (exp (- _0
+     PT)))
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=304.45950674654335 Adjusted=0.0032737563503949323 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) (min PT (* TimeInSystem RemProcTime))
+     (exp (- _0 PT)))
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=304.45950674654335 Adjusted=0.0032737563503949323 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) (min PT (* TimeInSystem RemProcTime))
+     (exp (- _0 PT)))
+
+Generation: 6
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=304.45950674654335 Adjusted=0.0032737563503949323 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) (min PT (* TimeInSystem RemProcTime))
+     (exp (- _0 PT)))
+
+Generation: 7
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=304.45950674654335 Adjusted=0.0032737563503949323 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) PT (exp (- _0 PT)))
+
+Generation: 8
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=304.45950674654335 Adjusted=0.0032737563503949323 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) SLACK) (exp (if _0 PT WINQ
+     _1)) PT (exp (- _0 PT)))
+
+Generation: 9
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=303.3227494865847 Adjusted=0.0032859850329529255 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (- _0 PT))
+
+Generation: 10
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=303.3227494865847 Adjusted=0.0032859850329529255 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (- _0 PT))
+
+Generation: 11
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=303.3227494865847 Adjusted=0.0032859850329529255 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (- _0 PT))
+
+Generation: 12
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=303.3227494865847 Adjusted=0.0032859850329529255 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (- _0 PT))
+
+Generation: 13
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=303.3227494865847 Adjusted=0.0032859850329529255 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem (exp (if _0 PT
+     WINQ _1))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))
+
+Generation: 14
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=303.3227494865847 Adjusted=0.0032859850329529255 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (/
+     (if PT WINQ OpsLeft _0) LLD)) (/ (* PT PT)
+     (max TimeInQueue SLACK)) (- _0 PT))
+
+Generation: 15
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=303.3227494865847 Adjusted=0.0032859850329529255 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 (if (+ SLACK OpsLeft) (exp (if _0 PT WINQ
+     _1)) PT (exp (- _0 PT))) WINQ _1)) (/ (*
+     PT PT) (max TimeInQueue SLACK)) (- _0 PT))
+
+Generation: 16
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=303.3227494865847 Adjusted=0.0032859850329529255 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (+
+     SLACK OpsLeft)) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (if (+ (- TimeInSystem _1) (+
+     SLACK OpsLeft)) (exp (if _0 (/ _1 PT) (-
+     _0 PT) _1)) (/ (* PT RemProcTime) (max TimeInQueue
+     SLACK)) (exp (- _0 PT))) (exp (if _0 PT WINQ
+     _1)) (/ (* PT PT) (max TimeInQueue SLACK))
+     (- _0 PT)))
+
+Generation: 17
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=303.3227494865847 Adjusted=0.0032859850329529255 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 (* TimeInSystem RemProcTime) (if (- (-
+     _0 PT) (* TimeInSystem PT)) (+ ODD _1) (/
+     (if PT WINQ RemProcTime _0) RemProcTime)
+     (exp (if LLD PT _0 TimeInSystem))) _1)) (/
+     (* PT PT) (max TimeInQueue SLACK)) (- _0
+     PT))
+
+Generation: 18
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.9767857047459 Adjusted=0.0032897248968587513 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (if (if
+     (+ (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp _1)
+     (/ (* PT PT) (if (+ (min (- TimeInSystem
+         (min TimeInQueue OpsLeft)) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+         _0 PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+         SLACK)) (- _0 PT))) (if _0 PT WINQ _1)) (-
+     TimeInSystem _1) PT (exp (- _0 PT))) (/ (*
+     PT PT) (max TimeInQueue SLACK)) (if (+ (min
+     (- TimeInSystem _1) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (- _0 PT)) (- _0
+     PT) (- _0 PT)))
+
+Generation: 19
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.9767857047459 Adjusted=0.0032897248968587513 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (if (if
+     (+ (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp _1)
+     (/ (* PT PT) (if (+ (min (- TimeInSystem
+         (min TimeInQueue OpsLeft)) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+         _0 PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+         SLACK)) (- _0 PT))) (if _0 PT WINQ _1)) (-
+     TimeInSystem _1) PT (exp (- _0 PT))) (/ (*
+     PT PT) (max TimeInQueue SLACK)) (if (+ (min
+     (- TimeInSystem _1) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (- _0 PT)) (- _0
+     PT) (- _0 PT)))
+
+Generation: 20
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.9767857047459 Adjusted=0.0032897248968587513 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (if (if
+     (+ (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp _1)
+     (/ (* PT PT) (if (+ (min (- TimeInSystem
+         (min TimeInQueue OpsLeft)) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+         _0 PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+         SLACK)) (- _0 PT))) (if _0 PT WINQ _1)) (-
+     TimeInSystem _1) PT (exp (- _0 PT))) (/ (*
+     PT PT) (max TimeInQueue SLACK)) (if (+ (min
+     (- TimeInSystem _1) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (- _0 PT)) (- _0
+     PT) (- _0 PT)))
+
+Generation: 21
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.9767857047459 Adjusted=0.0032897248968587513 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* ODD WINQ))
+     (+ SLACK OpsLeft)) (if (if (+ (min (- TimeInSystem
+     _1) (* TimeInSystem RemProcTime)) (+ SLACK
+     OpsLeft)) (exp _1) (/ (* PT PT) (if (+ (min
+     (- TimeInSystem (min TimeInQueue OpsLeft))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if _0 PT
+     WINQ _1)) (- TimeInSystem _1) PT (exp (-
+     _0 PT))) (/ (* PT PT) (max TimeInQueue SLACK))
+     (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp (-
+         _0 PT)) (- _0 PT) (- _0 PT)))
+
+Generation: 22
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.50018518935536 Adjusted=0.0032948909055066796 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 (- TimeInSystem _1) (if (* TimeInSystem
+     RemProcTime) (+ ODD _1) (min (- _0 PT) (*
+     TimeInSystem (+ (max ODD WINQ) (exp (- PT
+     (min RemProcTime TimeInQueue)))))) (exp (if
+     LLD PT _0 _1))) _1)) (if (+ (min (- TimeInSystem
+     (min TimeInQueue OpsLeft)) (* TimeInSystem
+     RemProcTime)) (exp (- _0 PT))) (exp (if _0
+     PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (- _0 PT)) (- _0 PT))
+
+Generation: 23
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.50018518935536 Adjusted=0.0032948909055066796 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 (- TimeInSystem _1) (if (* TimeInSystem
+     RemProcTime) (+ ODD _1) (min (- _0 PT) (*
+     TimeInSystem (+ (max ODD WINQ) (exp (- PT
+     (min RemProcTime TimeInQueue)))))) (exp (if
+     LLD PT _0 _1))) _1)) (if (+ (min (- TimeInSystem
+     (min TimeInQueue OpsLeft)) (* TimeInSystem
+     RemProcTime)) (exp (- _0 PT))) (exp (if _0
+     PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (- _0 PT)) (- _0 PT))
+
+Generation: 24
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.50018518935536 Adjusted=0.0032948909055066796 Hits=0
+Tree 0:
+ (if (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 (- TimeInSystem _1) (if (* TimeInSystem
+     RemProcTime) (+ ODD _1) (min (- _0 PT) (*
+     TimeInSystem (+ (max ODD WINQ) (exp (- PT
+     (min RemProcTime TimeInQueue)))))) (exp (if
+     LLD PT _0 _1))) _1)) (if (+ (min (- TimeInSystem
+     (min TimeInQueue OpsLeft)) (* TimeInSystem
+     RemProcTime)) (exp (- _0 PT))) (exp (if _0
+     PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (- _0 PT)) (- _0 PT))
+
+Generation: 25
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.3773407684192 Adjusted=0.003296225082160446 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (+
+     (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp _1)
+     (/ (* PT PT) (if (+ (min (- TimeInSystem
+         (+ SLACK OpsLeft)) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+         (/ (* PT PT) (max TimeInQueue SLACK)) (-
+         _0 PT))) (max TimeInQueue SLACK)) (- TimeInSystem
+     _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (if
+     (+ (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp (-
+     _0 PT)) (- _0 PT) (- _0 PT)))
+
+Generation: 26
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.3773407684192 Adjusted=0.003296225082160446 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (+
+     (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp _1)
+     (/ (* PT PT) (if (+ (min (- TimeInSystem
+         (+ SLACK OpsLeft)) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+         (/ (* PT PT) (max TimeInQueue SLACK)) (-
+         _0 PT))) (max TimeInQueue SLACK)) (- TimeInSystem
+     _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (if
+     (+ (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp (-
+     _0 PT)) (- _0 PT) (- _0 PT)))
+
+Generation: 27
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.3773407684192 Adjusted=0.003296225082160446 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (+
+     (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp _1)
+     (/ (* PT PT) (if (+ (min (- TimeInSystem
+         (+ SLACK OpsLeft)) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+         (/ (* PT PT) (max TimeInQueue SLACK)) (/
+         (* PT PT) (if (+ (min (- TimeInSystem (min
+         TimeInQueue OpsLeft)) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+         (/ (* PT PT) (max TimeInQueue SLACK)) (-
+         _0 PT))))) (max TimeInQueue SLACK)) (- TimeInSystem
+     _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (if
+     (+ (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp (-
+     _0 PT)) (- _0 PT) (- _0 PT)))
+
+Generation: 28
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.3773407684192 Adjusted=0.003296225082160446 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (- _0 PT))))) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (- _0 PT))) (if (if (+ (min (- TimeInSystem
+     _1) (* TimeInSystem RemProcTime)) (+ SLACK
+     OpsLeft)) (exp _1) (/ (* PT PT) (if (+ (min
+     (- TimeInSystem (+ SLACK OpsLeft)) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+     _0 PT WINQ _1)) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (- _0 PT))) (max TimeInQueue SLACK))
+     (- TimeInSystem _1) PT (exp (if LLD PT _0
+     TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (+ (min (- TimeInSystem _1) (*
+     TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (- _0 PT)) (- _0 PT) (- _0 PT)))
+
+Generation: 29
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.3773407684192 Adjusted=0.003296225082160446 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (+
+     (min (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp _1)
+     (/ (* PT PT) (if (+ (min (- TimeInSystem
+         (+ SLACK OpsLeft)) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)) (- _0 PT) (/ (* PT PT)
+         (max TimeInQueue SLACK)) (/ (* PT PT) (if
+         (+ (min (- TimeInSystem (min TimeInQueue
+             OpsLeft)) (* TimeInSystem RemProcTime)) (+
+             SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+         (/ (* PT PT) (max TimeInQueue SLACK)) (+
+         (min (- TimeInSystem OpsLeft) (* TimeInSystem
+             RemProcTime)) (exp (- _0 PT))))))) (max TimeInQueue
+     SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+     PT _0 TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (+ (min (- TimeInSystem _1) (*
+     TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (- _0 PT)) (- _0 PT) (- _0 PT)))
+
+Generation: 30
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.13623386324286 Adjusted=0.0032988468163497103 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (+
+     (min (+ SLACK OpsLeft) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp _1) (/ (* PT PT)
+     (min (- TimeInSystem (min TimeInQueue OpsLeft))
+         (* TimeInSystem RemProcTime))) (max TimeInQueue
+     SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+     PT _0 TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (if RemProcTime (if (* TimeInSystem
+     RemProcTime) (+ ODD _1) (if _0 PT WINQ _1)
+     (exp (if LLD PT _0 _1))) PT OpsLeft) (exp
+     (- _0 PT)) (- _0 PT) (- _0 (* PT PT))))
+
+Generation: 31
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.13623386324286 Adjusted=0.0032988468163497103 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (+
+     (min (+ SLACK OpsLeft) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp _1) (/ (* PT PT)
+     (min (- TimeInSystem (min TimeInQueue OpsLeft))
+         (* TimeInSystem RemProcTime))) (max TimeInQueue
+     SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+     PT _0 TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (if RemProcTime (if (* TimeInSystem
+     RemProcTime) (+ ODD _1) (if _0 PT WINQ _1)
+     (exp (if LLD PT _0 _1))) PT OpsLeft) (exp
+     (- _0 PT)) (- _0 PT) (- _0 (* PT PT))))
+
+Generation: 32
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.13623386324286 Adjusted=0.0032988468163497103 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (+
+     (min (+ SLACK OpsLeft) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp _1) (/ (* PT PT)
+     (min (- TimeInSystem (min TimeInQueue OpsLeft))
+         (* TimeInSystem RemProcTime))) (max TimeInQueue
+     SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+     PT _0 TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (if RemProcTime (if (* TimeInSystem
+     RemProcTime) (+ ODD _1) (if _0 PT WINQ _1)
+     (exp (if LLD PT _0 _1))) PT OpsLeft) (exp
+     (- _0 PT)) (- _0 PT) (- _0 (* PT PT))))
+
+Generation: 33
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.1081624311705 Adjusted=0.0032991523289217888 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (+
+     (min (+ SLACK OpsLeft) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp _1) (/ (* PT PT)
+     (min (- TimeInSystem (min TimeInQueue OpsLeft))
+         (* TimeInSystem RemProcTime))) (max TimeInQueue
+     SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+     PT _0 TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (if RemProcTime (if (* TimeInSystem
+     RemProcTime) (+ ODD _1) (if _0 PT WINQ _1)
+     (exp (if LLD PT _0 _1))) PT OpsLeft) (exp
+     (- _0 PT)) (- _0 PT) (- _0 (if PT WINQ RemProcTime
+     _0))))
+
+Generation: 34
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.1081624311705 Adjusted=0.0032991523289217888 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (+
+     (min (+ SLACK OpsLeft) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp _1) (/ (* PT PT)
+     (min (- TimeInSystem (min TimeInQueue OpsLeft))
+         (* TimeInSystem RemProcTime))) (max TimeInQueue
+     SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+     PT _0 TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (if RemProcTime (if (* TimeInSystem
+     RemProcTime) (+ ODD _1) (if _0 PT WINQ _1)
+     (exp (if LLD PT _0 _1))) PT OpsLeft) (exp
+     (- _0 PT)) (- _0 PT) (- _0 (if PT WINQ RemProcTime
+     _0))))
+
+Generation: 35
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=302.0713528097759 Adjusted=0.0032995530284502163 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (/
+     (* PT PT) (max TimeInQueue SLACK)) (/ (*
+     PT PT) (+ (min (- TimeInSystem _1) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft))) (/ (* PT
+     PT) (min (- TimeInSystem (min TimeInQueue
+     OpsLeft)) (* TimeInSystem RemProcTime)))
+     (max TimeInQueue SLACK)) (- TimeInSystem
+     _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (if
+     (if RemProcTime (if (* TimeInSystem RemProcTime)
+         (+ ODD _1) (if _0 PT WINQ _1) (exp (if (if
+         (+ (min (+ SLACK OpsLeft) (* TimeInSystem
+             RemProcTime)) (exp (if _0 PT WINQ _1))) (exp
+         _1) (/ (* PT PT) (min (- TimeInSystem (min
+         TimeInQueue OpsLeft)) (* TimeInSystem RemProcTime)))
+         (max TimeInQueue SLACK)) PT _0 _1))) PT OpsLeft)
+     (exp (- _0 PT)) (- _0 PT) (- _0 (* PT PT))))
+
+Generation: 36
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (if (+ (min (+ SLACK OpsLeft)
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp _1) (/ (* PT PT) (min (- TimeInSystem
+     (min TimeInQueue OpsLeft)) (* TimeInSystem
+     RemProcTime))) (max TimeInQueue SLACK)) (-
+     TimeInSystem _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (if
+     (* PT PT) (exp (- _0 PT)) (- _0 PT) (- _0
+     (if PT WINQ RemProcTime _0))))
+
+Generation: 37
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (if (+ (min (+ SLACK OpsLeft)
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp _1) (/ (* PT PT) (min (- TimeInSystem
+     (min TimeInQueue OpsLeft)) (* TimeInSystem
+     RemProcTime))) (max TimeInQueue SLACK)) (-
+     TimeInSystem _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (if
+     (* PT PT) (exp (- _0 PT)) (- _0 PT) (- _0
+     (if PT WINQ RemProcTime _0))))
+
+Generation: 38
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (if (+ (min (+ SLACK OpsLeft)
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp _1) (/ (* PT PT) (min (- TimeInSystem
+     (min TimeInQueue OpsLeft)) (* TimeInSystem
+     RemProcTime))) (max TimeInQueue SLACK)) (-
+     TimeInSystem _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (if
+     (* PT PT) (exp (- _0 PT)) (- _0 PT) (- _0
+     (if PT WINQ RemProcTime _0))))
+
+Generation: 39
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (if (+ (min (- TimeInSystem (/ (if PT WINQ
+         RemProcTime _0) (min (- TimeInSystem _1)
+         (if (+ (- TimeInSystem _1) (* TimeInSystem
+             RemProcTime)) NPT PT (exp TimeInQueue)))))
+         (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+         (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+         TimeInQueue SLACK)) (- _0 PT)) (- _0 PT)))
+     (if (if (+ (min (+ SLACK OpsLeft) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+         (if (+ (min (+ SLACK OpsLeft) (+ SLACK OpsLeft))
+             (+ SLACK OpsLeft)) (exp _1) (/ (* PT PT)
+             (min (- TimeInSystem (min TimeInQueue OpsLeft))
+                 (* TimeInSystem RemProcTime))) (max TimeInQueue
+             SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+         PT _0 TimeInSystem)))) (/ (* PT PT) (min
+         (- TimeInSystem (min TimeInQueue OpsLeft))
+         (* TimeInSystem RemProcTime))) (max TimeInQueue
+         SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+         PT _0 TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (* PT PT) (exp (- _0 PT)) (-
+     _0 PT) (- _0 (if PT WINQ RemProcTime _0))))
+
+Generation: 40
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (if (+ (min (+ SLACK OpsLeft)
+     (* TimeInSystem RemProcTime)) (+ (min (-
+     TimeInSystem (/ (if PT WINQ RemProcTime _0)
+     (min (- TimeInSystem _1) (if (+ (+ SLACK
+         OpsLeft) (* TimeInSystem RemProcTime)) NPT
+         PT (exp (* TimeInSystem RemProcTime))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft)))
+     (exp _1) (/ (* PT PT) (min (- TimeInSystem
+     (min TimeInQueue OpsLeft)) (* TimeInSystem
+     RemProcTime))) (max TimeInQueue SLACK)) (-
+     TimeInSystem _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (if
+     (* PT PT) (exp (- _0 PT)) (- _0 PT) (- _0
+     (if PT WINQ RemProcTime _0))))
+
+Generation: 41
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (if _0 PT WINQ _1)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (if (+ (min (+ SLACK OpsLeft)
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     _0 (/ (* PT PT) (min (- TimeInSystem (min
+     TimeInQueue OpsLeft)) (* TimeInSystem RemProcTime)))
+     (max TimeInQueue SLACK)) (- TimeInSystem
+     _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT (* PT PT)) (max TimeInQueue SLACK))
+     (if (* PT PT) (exp (- _0 PT)) (- _0 PT) (-
+         _0 (if PT WINQ RemProcTime _0))))
+
+Generation: 42
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (if _0 PT WINQ _1)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (if (+ (min (+ SLACK OpsLeft)
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp _1) (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+         RemProcTime)) NPT PT (exp (- _0 PT))))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (max TimeInQueue
+     SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+     PT _0 TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (* PT PT) (exp (- _0 PT)) (-
+     _0 PT) (- _0 (if PT WINQ RemProcTime _0))))
+
+Generation: 43
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (if (+ (min (+ SLACK OpsLeft)
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+         (/ (if PT WINQ RemProcTime _0) (+ (- TimeInSystem
+             _1) (+ SLACK OpsLeft)))) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+         _0 PT WINQ _1)) (if (+ (min (- TimeInSystem
+         (/ (if PT WINQ RemProcTime _0) (min (- TimeInSystem
+             _1) (if (+ (- TimeInSystem _1) (* TimeInSystem
+             RemProcTime)) NPT PT (exp TimeInQueue)))))
+         (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+         (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+         TimeInQueue SLACK)) (- _0 PT)) (- _0 PT)))
+         (if (if (+ (min (+ SLACK OpsLeft) (* TimeInSystem
+             RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+             (if PT WINQ RemProcTime _0) (- TimeInSystem
+             _1) PT (exp (if LLD PT _0 TimeInSystem))))
+             (/ (* PT PT) (min (- TimeInSystem (min TimeInQueue
+                 OpsLeft)) (* TimeInSystem RemProcTime)))
+             (max TimeInQueue SLACK)) (- TimeInSystem
+             _1) PT (exp (if LLD PT _0 TimeInSystem)))
+         (/ (* PT PT) (max TimeInQueue SLACK)) (if
+         (* PT PT) (exp (- _0 PT)) (- _0 PT) (- _0
+         (if PT WINQ RemProcTime _0))))) (/ (* PT
+     (+ (min (- TimeInSystem (/ (if PT WINQ RemProcTime
+         _0) (+ (min (+ SLACK OpsLeft) (exp (- _0
+         PT))) (+ SLACK OpsLeft)))) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft))) (min (-
+     TimeInSystem (if _0 PT WINQ _1)) (* TimeInSystem
+     RemProcTime))) (max TimeInQueue (- _0 PT)))
+     (- TimeInSystem _1) PT (exp (if LLD PT _0
+     TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (* PT PT) (exp (- _0 PT)) (-
+     _0 PT) (- _0 (if PT WINQ RemProcTime _0))))
+
+Generation: 44
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (* PT PT)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (if (+ (min (- TimeInSystem (/ (if PT WINQ
+         RemProcTime _0) (min (- TimeInSystem _1)
+         (if (+ (- TimeInSystem _1) (* TimeInSystem
+             RemProcTime)) NPT PT (exp TimeInQueue)))))
+         (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+         (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+         TimeInQueue SLACK)) (- _0 PT)) (- _0 PT)))
+     (if (if (+ (min (+ SLACK OpsLeft) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp (if
+         (if (+ (min (+ SLACK OpsLeft) (+ SLACK OpsLeft))
+             (+ SLACK OpsLeft)) (exp _1) (/ (* PT PT)
+             (min (- TimeInSystem (min TimeInQueue OpsLeft))
+                 (* TimeInSystem RemProcTime))) (max TimeInQueue
+             SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+         PT _0 TimeInSystem)))) (/ (* PT PT) (min
+         (- TimeInSystem (min TimeInQueue OpsLeft))
+         (* TimeInSystem RemProcTime))) (max TimeInQueue
+         SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+         PT _0 TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (* PT PT) (exp (- _0 PT)) (-
+     _0 PT) (- _0 (if PT WINQ RemProcTime _0))))
+
+Generation: 45
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (if (+ (min (+ SLACK OpsLeft)
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (if (if (+ (min (+ SLACK OpsLeft) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)) (exp _1)
+         (max TimeInQueue SLACK) (max TimeInQueue
+         SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+         PT _0 TimeInSystem))) (/ (* PT PT) (min (-
+     TimeInSystem (min TimeInQueue OpsLeft)) (*
+     TimeInSystem RemProcTime))) (max TimeInQueue
+     SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+     PT _0 TimeInSystem))) (/ (* PT PT) (max TimeInQueue
+     SLACK)) (if (* PT PT) (exp (- _0 PT)) (-
+     _0 PT) (- _0 (if PT WINQ RemProcTime _0))))
+
+Generation: 46
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (/
+         (if PT WINQ RemProcTime _0) (- TimeInSystem
+         _1)) (* TimeInSystem RemProcTime)) (+ SLACK
+         OpsLeft)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (if (+ (min (exp (if LLD PT
+     _0 TimeInSystem)) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if (if (+ (min (+
+     SLACK OpsLeft) (+ SLACK OpsLeft)) (if PT
+     WINQ RemProcTime _0)) (exp _1) (/ (* PT PT)
+     (min (- TimeInSystem (min TimeInQueue OpsLeft))
+         (* TimeInSystem RemProcTime))) (max TimeInQueue
+     SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+     PT _0 TimeInSystem)))) (+ (min (+ SLACK OpsLeft)
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (max TimeInQueue SLACK)) (- TimeInSystem
+     _1) PT (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (if (* PT PT) (exp (-
+     _0 PT)) (- _0 PT) (- _0 (if PT WINQ RemProcTime
+     _0))))
+
+Generation: 47
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (min (- TimeInSystem (/ (if
+         PT WINQ RemProcTime _0) (min (- TimeInSystem
+         _1) (* PT PT)))) (* TimeInSystem RemProcTime)))
+         (if _0 PT WINQ _1)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (exp (if (if (+ (min (+ SLACK
+     OpsLeft) WINQ) (- _0 PT)) (exp _1) (/ (*
+     PT PT) (min (- TimeInSystem (min TimeInQueue
+     OpsLeft)) (- TimeInSystem (/ (if PT WINQ
+     RemProcTime (min (- TimeInSystem (min TimeInQueue
+     OpsLeft)) (* TimeInSystem RemProcTime)))
+     (+ (min (+ SLACK OpsLeft) (* TimeInSystem
+         RemProcTime)) (+ _0 OpsLeft)))))) (max TimeInQueue
+     SLACK)) (- TimeInSystem _1) PT (exp (if LLD
+     PT _0 TimeInSystem)))) (- TimeInSystem _1)
+     PT (exp (if LLD PT _0 TimeInSystem))) (/
+     (* PT PT) (max TimeInQueue SLACK)) (if (*
+     PT PT) (exp (- _0 PT)) (- _0 PT) (- _0 (if
+     PT WINQ RemProcTime _0))))
+
+Generation: 48
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (if (+ (min (- TimeInSystem (/ (if PT WINQ
+         RemProcTime _0) (min (- TimeInSystem _1)
+         (if (+ (min (+ SLACK OpsLeft) (max TimeInQueue
+             SLACK)) (if _0 PT WINQ _1)) NPT PT (if LLD
+             PT _0 TimeInSystem))))) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+         (/ (* PT PT) (max TimeInQueue SLACK)) (-
+         _0 PT)) (- _0 PT))) (if (if (+ (* PT PT)
+     (+ SLACK OpsLeft)) (exp (max TimeInQueue
+     SLACK)) (/ (* PT PT) (min (- TimeInSystem
+     (* PT PT)) (* TimeInSystem TimeInSystem)))
+     (max TimeInQueue SLACK)) (- TimeInSystem
+     _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (if
+     (* PT PT) (exp (- _0 PT)) (- _0 PT) (- _0
+     (if PT WINQ RemProcTime _0))))
+
+Generation: 49
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if _0 PT WINQ _1) (+ (min (+ SLACK OpsLeft)
+         (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))))
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp (if _0 PT WINQ _1)) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (- _0 PT))) (if (if (+
+     (min (+ SLACK OpsLeft) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if (if (+ (min (min
+     (- TimeInSystem (/ (if PT WINQ RemProcTime
+         _0) (+ (min (+ SLACK OpsLeft) (* TimeInSystem
+         RemProcTime)) (+ SLACK OpsLeft)))) (* TimeInSystem
+     RemProcTime)) (+ SLACK OpsLeft)) (+ SLACK
+     OpsLeft)) (exp _1) (if _0 PT WINQ _1) (max
+     TimeInQueue SLACK)) (- TimeInSystem _1) PT
+     (exp (if LLD PT _0 TimeInSystem)))) (/ (*
+     PT PT) (min (/ (* PT PT) (max TimeInQueue
+     SLACK)) (* TimeInSystem RemProcTime))) (max
+     TimeInQueue SLACK)) (- TimeInSystem _1) PT
+     (if (if (+ (min (+ SLACK OpsLeft) (* PT PT))
+         (+ SLACK OpsLeft)) (exp _1) (/ (* (if _0
+         PT WINQ _1) PT) (- _0 PT)) (if (* PT PT)
+         (exp (- _0 PT)) (- _0 PT) (if _0 PT WINQ
+         _1))) (- TimeInSystem _1) PT (exp (if LLD
+         PT _0 TimeInSystem)))) (/ (* PT PT) (max
+     TimeInQueue SLACK)) (if (* PT PT) (exp (-
+     _0 PT)) (- _0 PT) (exp TimeInQueue)))
+
+Best Individual of Run:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=300.92091735414397 Adjusted=0.0033121256015098506 Hits=0
+Tree 0:
+ (if (/ (* PT PT) (if (+ (min (- TimeInSystem
+     (/ (if PT WINQ RemProcTime _0) (+ (min (+
+         SLACK OpsLeft) (* TimeInSystem RemProcTime))
+         (+ SLACK OpsLeft)))) (* TimeInSystem RemProcTime))
+     (+ SLACK OpsLeft)) (exp (if _0 PT WINQ _1))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (-
+     _0 PT))) (if (if (+ (min (+ SLACK OpsLeft)
+     (* TimeInSystem RemProcTime)) (+ SLACK OpsLeft))
+     (exp _1) (/ (* PT PT) (min (- TimeInSystem
+     (min TimeInQueue OpsLeft)) (* TimeInSystem
+     RemProcTime))) (max TimeInQueue SLACK)) (-
+     TimeInSystem _1) PT (exp (if LLD PT _0 TimeInSystem)))
+     (/ (* PT PT) (max TimeInQueue SLACK)) (if
+     (* PT PT) (exp (- _0 PT)) (- _0 PT) (- _0
+     (if PT WINQ RemProcTime _0))))
