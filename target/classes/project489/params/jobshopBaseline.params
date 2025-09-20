@@ -55,7 +55,7 @@ pop = ec.Population
 #defines the sub pop
 pop.subpops = 1
 pop.subpop.0 = ec.Subpopulation
-pop.subpop.0.size = 500
+pop.subpop.0.size = 1000
 #define elitism, keep best 10 individuals
 breed.elite.0 = 10
 
@@ -374,12 +374,44 @@ gp.fs.0.func.20.nc = nc0
 
 #which problem file will be used
 #or how the individuals evaluated
+
 eval.problem = project489.problem.JobShopProblem
 eval.problem.data = project489.data.DoubleData
-eval.problem.numOfMachines = 10
-eval.problem.maxJobs = 2500
-eval.problem.replication = 10
-eval.problem.warmupJobs = 500
-eval.problem.seed = 23
-eval.problem.numOps = 10
-eval.problem.util = 0.90
+eval.replication = 10
+
+eval.problem.sim.num = 4
+
+eval.problem.sim.0.numOfMachines = 10
+eval.problem.sim.0.replication = 10
+eval.problem.sim.0.warmupJobs = 1
+eval.problem.sim.0.seed = 23
+eval.problem.sim.0.numOps = 10
+eval.problem.sim.0.util = 0.8
+eval.problem.sim.0.DueDateAllowance = 2.0
+
+eval.problem.sim.1.numOfMachines = 10
+eval.problem.sim.1.maxJobs = 10
+eval.problem.sim.1.replication = 10
+eval.problem.sim.1.warmupJobs = 1
+eval.problem.sim.1.seed = 23
+eval.problem.sim.1.numOps = 10
+eval.problem.sim.1.util = 0.85
+eval.problem.sim.1.DueDateAllowance = 2.0
+
+eval.problem.sim.2.numOfMachines = 10
+eval.problem.sim.2.maxJobs = 10
+eval.problem.sim.2.replication = 10
+eval.problem.sim.2.warmupJobs = 1
+eval.problem.sim.2.seed = 23
+eval.problem.sim.2.numOps = 10
+eval.problem.sim.2.util = 0.9
+eval.problem.sim.2.DueDateAllowance = 2.0
+
+eval.problem.sim.3.numOfMachines = 10
+eval.problem.sim.3.maxJobs = 10
+eval.problem.sim.3.replication = 10
+eval.problem.sim.3.warmupJobs = 1
+eval.problem.sim.3.seed = 23
+eval.problem.sim.3.numOps = 10
+eval.problem.sim.3.util = 0.95
+eval.problem.sim.3.DueDateAllowance = 2.0

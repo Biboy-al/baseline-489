@@ -1,0 +1,8 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=206.44133315572833 Adjusted=0.00482064005657585 Hits=0
+Tree 0:
+ (- (if SLACK OpsLeft _0 PT) (* ODD WINQ))
