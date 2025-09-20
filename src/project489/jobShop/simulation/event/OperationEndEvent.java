@@ -38,6 +38,7 @@ public class OperationEndEvent extends Event {
             jobShopSim.addCompletedJob(this.job);
         }
         // Set current time for waiting jobs
+
         for (Job job : machine.getWaitingJobs()) {
             job.setCurrentTime(super.getTime());
         }

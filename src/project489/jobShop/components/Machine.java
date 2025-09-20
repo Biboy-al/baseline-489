@@ -26,6 +26,7 @@ public class Machine {
 
     public void reset(){
         waitingJobs.clear();
+        currentJob = null;
     }
 
     public void addJob(Job job) {

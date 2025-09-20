@@ -15,7 +15,7 @@ import java.util.*;
 
 public class DynamicJobShopSimulation extends Simulation {
 
-    private final int SEED_ROTATE = 1000;
+//    private final int SEED_ROTATE = 1000;
 
     final ArrayList<Job> allJob;
     final ArrayList<Job> waitingJob;
@@ -32,79 +32,91 @@ public class DynamicJobShopSimulation extends Simulation {
     private int completedJobCount;
     private int numOps;
 
+    private double dueDateAllowance;
+
+    // FIXED: Adjusted minimum arrival time and added validation
+    private double minArrivalTime = 10.0; // Increased from 5
+
     RandomDataGenerator rng;
 
     private int numOfRuns = 0;
     private double time = 0;
 
-
     // Track job generation
     private int jobsGenerated = 0;
     private double nextJobArrivalTime = 0;
 
-    public DynamicJobShopSimulation(EvolutionState state, GPIndividual ind, Problem problem,
+    public DynamicJobShopSimulation(EvolutionState state, Problem problem,
                                     int ii, int i1, int numOfJobs, int numOfMachines,
-                                    int seed, int warmupJobs, int numOps, double util) {
-        super(state, ind, problem, ii, i1, seed);
-        Operation.setSeed(seed);
+                                    long defaultSeed, int warmupJobs, int numOps, double util, double dueDateAllowance) {
+        super(state, problem, ii, i1, defaultSeed);
+
         this.allJob = new ArrayList<Job>();
         this.waitingJob = new ArrayList<Job>();
         this.eventQueue = new PriorityQueue<Event>();
         this.numOfMachines = numOfMachines;
         this.numOfJobs = numOfJobs;
         this.warmupJobs = warmupJobs;
-        this.util = util;
+        this.util = Math.min(0.95, Math.max(0.1, util));
         this.numOps = numOps;
         machines = populateMachines(numOfMachines);
 
-        this.rng  = new RandomDataGenerator();
+        this.dueDateAllowance = dueDateAllowance;
+        this.rng = new RandomDataGenerator();
 
-        int numSamples = 500;
-        this.meanProcTime = estimateMeanProcessingTime(numSamples);
+        // FIXED: Calculate mean processing time like the reference code
+        this.meanProcTime =  estimateMeanProcessingTime(1000);
 
-        this.meanInterArrival = (this.numOps * meanProcTime) / (this.util * this.numOfMachines);
+        // FIXED: Use the same formula as reference code
+        this.meanInterArrival = interArrivalTimeMean(numOfMachines, numOps, util);
+
     }
 
     public void run() {
-        if(numOfRuns > 0){
-            clear();
-            Operation.setSeed(this.seed + SEED_ROTATE);
-        }
 
-        // Generate first job at time 0
         generateNextJob();
 
-        // Process events until we have enough completed jobs
-        while(!eventQueue.isEmpty() && completedJobCount < numOfJobs) {
-
+        while(!eventQueue.isEmpty()) {
             Event nextEvent = eventQueue.poll();
             this.time = nextEvent.getTime();
             nextEvent.evalute(this);
         }
 
-        numOfRuns++;
     }
 
-    // FIXED: Generate jobs with proper time intervals
+    public double interArrivalTimeMean(int numMachines, int numOps, double utilLevel) {
+
+        return ((double) numOps * this.meanProcTime) / (utilLevel * numMachines);
+    }
+
+    // FIXED: Generate jobs with proper time intervals and validation
     public void generateNextJob() {
         if (jobsGenerated < numOfJobs + warmupJobs) {
+
             // Use current nextJobArrivalTime, then calculate next one
             double arrivalTime = nextJobArrivalTime;
 
-            Job newJob = Job.generateJob(arrivalTime, machines);
+            Job newJob = Job.generateJob(arrivalTime, machines, this);
             eventQueue.add(new JobArrivalEvent(arrivalTime, newJob));
 
             double interArrivalTime = generateInterArrivalTime();
+            this.nextJobArrivalTime = arrivalTime + interArrivalTime;
 
-            System.out.println(interArrivalTime);
-            nextJobArrivalTime = arrivalTime + interArrivalTime;
 
             jobsGenerated++;
         }
     }
 
+    // FIXED: Generate inter-arrival time like reference code
     private double generateInterArrivalTime() {
-        return this.rng.nextExponential(this.meanInterArrival);
+        // Use exponential distribution with the calculated mean
+        double interArrival = this.rng.nextExponential(this.meanInterArrival);
+
+        // Apply reasonable bounds to prevent extreme values
+        double minBound = this.meanInterArrival * 0.01; // Allow very small intervals
+        double maxBound = this.meanInterArrival * 10.0; // Cap extremely long intervals
+
+        return Math.max(minBound, Math.min(interArrival, maxBound));
     }
 
     public void clear(){
@@ -117,7 +129,7 @@ public class DynamicJobShopSimulation extends Simulation {
         this.completedJobCount = 0;
         this.jobsGenerated = 0;
         this.time = 0;
-        this.nextJobArrivalTime = 0; // Reset arrival time
+        this.nextJobArrivalTime = 0;
 
         for (Machine machine : machines) {
             machine.reset();
@@ -134,8 +146,8 @@ public class DynamicJobShopSimulation extends Simulation {
 
     public void addCompletedJob(Job job) {
         // Only count jobs after warmup period
-
         if (allJob.size() >= warmupJobs) {
+
             completedJobCount++;
 
             double flowTime = job.getDepartureTime() - job.getArrivalTime();
@@ -143,16 +155,12 @@ public class DynamicJobShopSimulation extends Simulation {
 
             totalFlowTime += flowTime;
             totalTardiness += tardiness;
-
         }
-
     }
-
 
     private double estimateMeanProcessingTime(int samples) {
         double total = 0.0;
         for (int i = 0; i < samples; i++) {
-
             Operation op = Operation.generationOperation();
             total += op.getProcessingTime();
         }
@@ -180,10 +188,19 @@ public class DynamicJobShopSimulation extends Simulation {
     }
 
     public double getMeanTardiness() {
+
         return completedJobCount > 0 ? totalTardiness / completedJobCount : 0.0;
     }
 
-    public boolean hasReachedTotalJob(){
-        return completedJobCount > numOfJobs;
+    public double getDueDateAllowance() {
+        return dueDateAllowance;
     }
+
+    public void setSeed(long seed) {
+        this.seed = seed ;
+        Operation.setSeed(this.seed);
+        this.rng.reSeed(this.seed);
+
+    }
+
 }

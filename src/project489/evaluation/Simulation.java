@@ -5,7 +5,7 @@ import ec.Problem;
 import ec.gp.GPIndividual;
 
 public abstract class Simulation {
-    protected int seed;
+    protected long seed;
     protected EvolutionState state;
     protected GPIndividual ind;
     protected Problem problem;
@@ -13,9 +13,18 @@ public abstract class Simulation {
     int i1;
 
 
-    public Simulation(EvolutionState state, GPIndividual ind, Problem problem, int i, int i1, int seed) {
+    public Simulation(EvolutionState state, GPIndividual ind, Problem problem, int i, int i1, long seed) {
         this.state = state;
         this.ind = ind;
+        this.problem = problem;
+        this.ii = i;
+        this.i1 = i1;
+        this.seed = seed;
+    }
+
+    public Simulation(EvolutionState state, Problem problem, int i, int i1, long seed) {
+        this.state = state;
+        this.ind = null;
         this.problem = problem;
         this.ii = i;
         this.i1 = i1;
@@ -25,6 +34,8 @@ public abstract class Simulation {
     public GPIndividual getInd() {
         return ind;
     }
+
+    public void setRule(GPIndividual ind){ this.ind = ind; }
 
     public Problem getProblem() {
         return problem;

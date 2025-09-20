@@ -1,8 +1,9 @@
 package project489.jobShop.components;
 
-public class Job {
+import project489.evaluation.Simulation;
+import project489.jobShop.simulation.DynamicJobShopSimulation;
 
-    private final double DUEDATEALLOWANCE = 5.0;
+public class Job {
 
     //Used to calculate mean flow
     private double arrivalTime;
@@ -13,23 +14,22 @@ public class Job {
     private Operation[] operations = new Operation[10];
     int currentOperation = 0;
 
-    private Job(double arrivalTime, Operation[] operations) {
+    private Job(double arrivalTime, Operation[] operations, DynamicJobShopSimulation sim) {
 
         double totalOperationTime = 0;
 
-        // get total operation time
         for (Operation operation : operations) {
             totalOperationTime += operation.getProcessingTime();
         }
 
         this.arrivalTime = arrivalTime;
         this.operations = operations;
-        this.dueDate = (totalOperationTime + arrivalTime) + DUEDATEALLOWANCE;
+        this.dueDate = arrivalTime + (sim.getDueDateAllowance() * totalOperationTime);
         this.arrivalInQueueTime = 0;
     }
 
-    public static Job generateJob(double arrivalTime, Machine[] machines) {
-        return new Job(arrivalTime, Operation.generateOperations(machines));
+    public static Job generateJob(double arrivalTime, Machine[] machines, DynamicJobShopSimulation sim) {
+        return new Job(arrivalTime, Operation.generateOperations(machines), sim);
     }
 
     public Operation[] getOperations() {

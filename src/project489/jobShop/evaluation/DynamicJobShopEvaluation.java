@@ -2,62 +2,126 @@ package project489.jobShop.evaluation;
 
 import project489.evaluation.EvaluationModel;
 import ec.EvolutionState;
+import project489.evaluation.Simulation;
 import project489.jobShop.simulation.DynamicJobShopSimulation;
 import ec.Problem;
 import ec.gp.GPIndividual;
 import ec.gp.koza.KozaFitness;
 import ec.util.Parameter;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class DynamicJobShopEvaluation extends EvaluationModel {
 
+
+
     private DynamicJobShopSimulation simulation;
-    private int maxJobs;
-    private int numOfMachines;
-    private int seed;
-    private int warmupJobs;
-    private int numOps;
-    private double util;
+    private ArrayList<DynamicJobShopSimulation> simulations;
 
-    public DynamicJobShopEvaluation(EvolutionState state, Problem problem) {
+    public static String P_SIM_BASE = "sim";
 
-        //For now only takes in account one
+    public static String NUM_SIM = "sim.num";
+    public static String REPLICATION_SIM = "sim.replication";
+    public static String SEED_SIM = "sim.seed";
+    public static String SEED_ROTATE = "simRotate";
+
+    public static String NUM_OF_MACHINES = "numOfMachines";
+    public static String MAX_JOBS = "maxJobs";
+    public static String REPLICATION = "replication";
+    public static String WARMUP_JOBS = "warmupJobs";
+    public static String SEED = "seed";
+    public static String NUM_OPS = "numOps";
+    public static String UTIL = "util";
+    public static String DUE_DATE_ALLOWANCE = "DueDateAllowance";
+
+    public int replication;
+    private long seed;
+    private long seedRotate;
+
+    public DynamicJobShopEvaluation(EvolutionState state, Problem problem, Parameter base) {
+
         super(state, problem);
 
-        this.simulation = null;
+        this.simulations = new ArrayList<>();
 
-        Parameter numOfMachinesParams = new Parameter("eval.problem.numOfMachines");
-        Parameter maxJobsParam = new Parameter("eval.problem.maxJobs");
-        Parameter seedParams = new Parameter("eval.problem.seed");
-        Parameter numOfWarmupJobsParam = new Parameter("eval.problem.warmupJobs");
-        Parameter numOpsParam = new Parameter("eval.problem.numOps");
-        Parameter utilParam = new Parameter("eval.problem.util");
+        Parameter p = base.push(NUM_SIM);
+        int simNum = state.parameters.getInt(p, null, 0);
+
+        if(simNum <= 0) {
+            System.err.println("Invalid num of simulations: " + simNum);
+            System.exit(1);
+        }
+
+        p = base.push(REPLICATION_SIM);
+        this.replication = state.parameters.getInt(p, null, 0);
+
+        p = base.push(SEED_SIM);
+        this.seed = state.parameters.getLong(p, null, 23);
+
+        p = base.push(SEED_ROTATE);
+        this.seedRotate = state.parameters.getLong(p, null, 23);
 
 
-        this.numOfMachines = state.parameters.getInt(numOfMachinesParams, null, 5);
-        this.maxJobs = state.parameters.getInt(maxJobsParam, null,1000);
-        this.seed = state.parameters.getInt(seedParams, null, new Random().nextInt());
-        this.warmupJobs = state.parameters.getInt(numOfWarmupJobsParam, null, 0);
-        this.numOps = state.parameters.getInt(numOpsParam, null, 10);
-        this.util = state.parameters.getDouble(utilParam, null,0.85);
+        for(int i = 0; i < simNum; i++) {
+            Parameter b = base.push(P_SIM_BASE).push("" + i);
+
+            p = b.push(NUM_OF_MACHINES);
+            int numOfMachines = state.parameters.getInt(p, null, 5);
+
+            p = b.push(MAX_JOBS);
+            int maxJobs = state.parameters.getInt(p, null, 2500);
+
+
+            p = b.push(WARMUP_JOBS);
+            int warmupJobs = state.parameters.getInt(p, null, 500);
+
+            p = b.push(NUM_OPS);
+            int numOps = state.parameters.getInt(p, null, 10);
+
+            p = b.push(UTIL);
+            double util = state.parameters.getDouble(p, null, 0.8);
+
+            p = b.push(DUE_DATE_ALLOWANCE);
+            double dueDateAllowance = state.parameters.getDouble(p, null, 2.0);
+
+
+
+            simulations.add(new DynamicJobShopSimulation(state, problem, 0,0,maxJobs, numOfMachines, 1, warmupJobs, numOps , util,dueDateAllowance));
+        }
 
     }
 
     @Override
     public void evaluate(GPIndividual ind, EvolutionState evolutionState, int numOfRep) {
 
-        this.simulation = new DynamicJobShopSimulation(state, ind,problem, 0,0,maxJobs, this.numOfMachines, this.seed, this.warmupJobs, this.numOps , this.util);
+        double sumObjective = 0.0;
 
-        double sumTardiness = 0;
+        // Run the rule
+        for (DynamicJobShopSimulation simulation : simulations) {
 
-        for (int i = 0; i < 1; i++) {
-            this.simulation.run();
-            sumTardiness += this.simulation.getMeanTardiness();
+            double objective = 0.0;
+            simulation.setRule(ind);
+
+            for(int i = 0; i < replication; i++) {
+
+                simulation.setSeed(this.seed + this.seedRotate * i);
+
+                simulation.run();
+
+                objective += simulation.getMeanTardiness();
+
+                simulation.clear();
+            }
+
+            sumObjective += objective/replication;
 
         }
 
-        double meanTardiness = sumTardiness / numOfRep;
+        double meanTardiness = sumObjective / simulations.size();
+
+//        System.out.println("meanTardiness: " + meanTardiness);
 
         KozaFitness fitness = (KozaFitness) ind.fitness;
 
@@ -70,7 +134,7 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
     @Override
     public double evaluateForStats(GPIndividual ind, EvolutionState evolutionState, int numOfRep) {
 
-        this.simulation = new DynamicJobShopSimulation(state, ind,problem, 0,0,this.maxJobs, this.numOfMachines, this.seed + numOfRep, this.warmupJobs, this.numOps , this.util);
+        this.simulation = new DynamicJobShopSimulation(state, problem, 0,0,10, 10, this.seed + numOfRep, 10, 5 ,1, 5);
 
         double sumFlowTime = 0;
 

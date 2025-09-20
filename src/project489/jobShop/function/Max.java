@@ -19,13 +19,14 @@ public class Max extends GPNode {
 
         children[0].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
 
-        double childrenOutput = re.value;
+        double childrenOutput1 = re.value;
 
         children[1].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
 
-        if(re.value < childrenOutput ){
-            re.value = childrenOutput;
-        }
+        double childrenOutput2 = re.value;
+
+        re.value = Math.max(childrenOutput1, childrenOutput2);
+
     }
 
     public String toString() {

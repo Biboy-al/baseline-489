@@ -27,7 +27,6 @@ public class Operation {
 
         //randomly assign an operation for a given machine
         for (int i = 0; i < shuffledMachine.length; i++) {
-
             operations[i] = new Operation(shuffledMachine[i].getMachineId(), sampleProcessingTime());
         }
 

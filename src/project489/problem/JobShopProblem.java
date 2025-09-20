@@ -1,5 +1,6 @@
 package project489.problem;
 
+import ec.gp.koza.KozaFitness;
 import project489.evaluation.EvaluationModel;
 import project489.evaluation.Simulation;
 import project489.jobShop.evaluation.DynamicJobShopEvaluation;
@@ -28,9 +29,7 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
 
         Parameter replicationParam = new Parameter("eval.problem.replication");
 
-        this.replication = state.parameters.getInt(replicationParam, null, 1);
-
-        this.evaluationModel = new DynamicJobShopEvaluation(state, this);
+        this.evaluationModel = new DynamicJobShopEvaluation(state, this, base);
 
     }
 
@@ -48,7 +47,6 @@ public class JobShopProblem extends GPProblem implements SimpleProblemForm{
         GPIndividual gpInd = (GPIndividual) individual;
 
         evaluationModel.evaluate(gpInd, evolutionState, this.replication);
-
         individual.fitness = gpInd.fitness;
         individual.evaluated = true;
     }
