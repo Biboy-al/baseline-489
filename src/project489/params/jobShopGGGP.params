@@ -436,13 +436,16 @@ eval.problem.problem = project489.problem.JobShopProblem
 #eval.problem = project489.problem.JobShopProblem
 eval.problem.problem.data = project489.data.DoubleData
 
+eval.problem.problem.objective.mode = mean
+eval.problem.problem.objective.metric = tardiness
+
 eval.problem.problem.sim.num = 4
 eval.problem.problem.sim.replication = 1
 eval.problem.problem.sim.seed = 23
 eval.problem.problem.sim.seedRotate = 1000
 
 eval.problem.problem.sim.0.numOfMachines = 10
-eval.problem.problem.sim.2.maxJobs = 2500
+eval.problem.problem.sim.0.maxJobs = 2500
 eval.problem.problem.sim.0.warmupJobs = 500
 eval.problem.problem.sim.0.numOps = 10
 eval.problem.problem.sim.0.util = 0.8

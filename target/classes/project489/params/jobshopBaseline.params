@@ -385,6 +385,9 @@ gp.fs.0.func.21.nc = nc0
 eval.problem = project489.problem.JobShopProblem
 eval.problem.data = project489.data.DoubleData
 
+eval.problem.objective.mode = mean
+eval.problem.objective.metric = tardiness
+
 eval.problem.sim.num = 4
 eval.problem.sim.replication = 1
 eval.problem.sim.seed = 23

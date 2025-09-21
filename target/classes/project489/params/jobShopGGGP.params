@@ -36,10 +36,9 @@ state.file = $out.stat
 stat.num-children = 1
 stat.child.0 = project489.stats.CustomStats
 stat.child.0.file_name = stats_GGGP.csv
-#stat.child.0 = ec.simple.SimpleStatistics
+stat.child.0.file = $outtabular.stat
 
 
-# How many replications done to best fitness
 project489.stats.replication = 1
 
 stat.child.0.file = $outtabular.stat
@@ -436,6 +435,9 @@ eval.problem = ec.gp.ge.GEProblem
 eval.problem.problem = project489.problem.JobShopProblem
 #eval.problem = project489.problem.JobShopProblem
 eval.problem.problem.data = project489.data.DoubleData
+
+eval.problem.problem.objective.mode = mean
+eval.problem.problem.objective.metric = tardiness
 
 eval.problem.problem.sim.num = 4
 eval.problem.problem.sim.replication = 1

@@ -28,6 +28,10 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
     public static String SEED_SIM = "sim.seed";
     public static String SEED_ROTATE = "simRotate";
 
+    public static String OBJECTIVE = "objective";
+    public static String METRIC = "metric";
+    public static String MODE = "mode";
+
     public static String NUM_OF_MACHINES = "numOfMachines";
     public static String MAX_JOBS = "maxJobs";
     public static String REPLICATION = "replication";
@@ -40,6 +44,8 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
     public int replication;
     private long seed;
     private long seedRotate;
+    private String metric;
+    private String mode;
 
     public DynamicJobShopEvaluation(EvolutionState state, Problem problem, Parameter base) {
 
@@ -55,15 +61,25 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
             System.exit(1);
         }
 
+        // Gets the replication
         p = base.push(REPLICATION_SIM);
         this.replication = state.parameters.getInt(p, null, 0);
 
+        // Gets the seed for the run
         p = base.push(SEED_SIM);
-        this.seed = state.parameters.getLong(p, null, 23);
+        this.seed = state.parameters.getLong(p, null, 0);
 
+        // Gets the seed rotation
         p = base.push(SEED_ROTATE);
         this.seedRotate = state.parameters.getLong(p, null, 23);
 
+        //Get objective
+        Parameter o = base.push(OBJECTIVE);
+        p = o.push(METRIC);
+        this.metric = state.parameters.getString(p, null);
+
+        p = o.push(MODE);
+        this.mode = state.parameters.getString(p, null);
 
         for(int i = 0; i < simNum; i++) {
             Parameter b = base.push(P_SIM_BASE).push("" + i);
@@ -97,45 +113,102 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
     @Override
     public void evaluate(GPIndividual ind, EvolutionState evolutionState, int numOfRep) {
 
-        double sumObjective = 0.0;
 
-        // Run the rule
-        for (DynamicJobShopSimulation simulation : simulations) {
+        switch(mode){
 
-            double objective = 0.0;
-            simulation.setRule(ind);
+            //Find the mean of the objective
+            case "mean": {
+                double sumObjective = 0.0;
 
-            for(int i = 0; i < replication; i++) {
+                // Run the simulation
+                for (DynamicJobShopSimulation simulation : simulations) {
 
-                simulation.setSeed(this.seed + this.seedRotate * i);
+                    double objective = 0.0;
+                    simulation.setRule(ind);
 
-                simulation.run();
+                    for (int i = 0; i < replication; i++) {
 
-                objective += simulation.getMeanTardiness();
+                        simulation.setSeed(this.seed + this.seedRotate * i);
 
-                simulation.clear();
+                        simulation.run();
+
+                        objective += getMetric(simulation);
+
+                        simulation.clear();
+                    }
+
+                    sumObjective += objective / replication;
+
+                }
+
+                double meanObjective = sumObjective / simulations.size();
+
+                KozaFitness fitness = (KozaFitness) ind.fitness;
+
+                fitness.setStandardizedFitness(evolutionState, meanObjective);
+
+                break;
             }
 
-            sumObjective += objective/replication;
+            case "max":{
 
+                double sumObjective = 0.0;
+
+                for (DynamicJobShopSimulation simulation : simulations) {
+                    simulation.setRule(ind);
+
+                    double maxObjective = Double.NEGATIVE_INFINITY;
+
+                    for (int i = 0; i < replication; i++) {
+
+                        simulation.setSeed(this.seed + this.seedRotate * i);
+
+                        simulation.run();
+
+                        maxObjective = Double.max(getMetric(simulation), Double.NEGATIVE_INFINITY);
+
+                        simulation.clear();
+                    }
+
+                    sumObjective += maxObjective;
+
+                }
+
+                double meanObjective = sumObjective / simulations.size();
+
+                KozaFitness fitness = (KozaFitness) ind.fitness;
+
+                fitness.setStandardizedFitness(evolutionState, meanObjective);
+
+                break;
+            }
         }
 
-        double meanTardiness = sumObjective / simulations.size();
 
-//        double[] tardiness_a = new double[1];
 
-//        tardiness_a[0] = meanTardiness;
 
-//        System.out.println("meanTardiness: " + meanTardiness);
+    }
 
-        KozaFitness fitness = (KozaFitness) ind.fitness;
 
-//        MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;
+    public double getMetric(DynamicJobShopSimulation simulation) {
 
-        fitness.setStandardizedFitness(evolutionState, meanTardiness);
+        switch (this.metric){
 
-//        fitness.setObjectives(evolutionState, tardiness_a);
+            case "tardiness": {
+                return simulation.getMeanTardiness();
 
+            }
+            case "flowtime": {
+                return simulation.getMeanFlowTime();
+
+            }
+            default: {
+                System.err.println("Invalid objective: " + this.metric);
+                System.exit(1);
+            }
+        }
+
+        return 0;
     }
 
     @Override

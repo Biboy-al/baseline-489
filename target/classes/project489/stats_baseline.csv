@@ -1,2 +1,0 @@
-generation,best_individual_fitness,mean_fitness,tree
-0,225.43579726731346,1061.37651,"(min (- OpsLeft PT) (if TimeInSystem RemProcTime TimeInSystem PT))"
