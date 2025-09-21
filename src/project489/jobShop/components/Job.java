@@ -40,8 +40,6 @@ public class Job {
         return operations[currentOperation];
     }
 
-
-
     /**
      * GETTERS AND SETTERS FOR TIME
      * **/

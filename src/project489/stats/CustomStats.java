@@ -61,7 +61,7 @@ public class CustomStats extends SimpleStatistics {
                 state.generation,
                 bestFitness,
                 averageFlowTime,
-                bestFitness  // new column: best individual's fitness
+                bestFitness
         );
         csvWriter.flush();
 
@@ -105,7 +105,7 @@ public class CustomStats extends SimpleStatistics {
 
             GPIndividual gpInd = new GPIndividual();
             gpInd.trees = trees;
-            gpInd.fitness = geInd.fitness;  // share fitness object
+            gpInd.fitness = geInd.fitness;
             return gpInd;
         } else {
             return (GPIndividual) ind;

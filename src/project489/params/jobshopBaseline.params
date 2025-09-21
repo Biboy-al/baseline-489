@@ -298,7 +298,7 @@ gp.nc.0.size = 0
 
 gp.fs.size = 1
 gp.fs.0.name = f0
-gp.fs.0.size = 21
+gp.fs.0.size = 22
 gp.fs.0 = ec.gp.GPFunctionSet
 
 # Function set
@@ -366,6 +366,10 @@ gp.fs.0.func.19.nc = nc0
 
 gp.fs.0.func.20 = project489.jobShop.terminal.WINQ
 gp.fs.0.func.20.nc = nc0
+
+gp.fs.0.func.21 = project489.jobShop.terminal.TimeTillDue
+gp.fs.0.func.21.nc = nc0
+
 
 
 # ==============================

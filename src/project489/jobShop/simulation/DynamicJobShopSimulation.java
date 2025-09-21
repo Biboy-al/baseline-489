@@ -203,4 +203,8 @@ public class DynamicJobShopSimulation extends Simulation {
 
     }
 
+    public double getNumOfMachines(){
+        return numOfMachines;
+    }
+
 }
