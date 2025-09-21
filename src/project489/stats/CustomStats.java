@@ -6,6 +6,7 @@ import ec.gp.GPIndividual;
 import ec.gp.GPTree;
 import ec.gp.ge.GEIndividual;
 import ec.gp.ge.GESpecies;
+import ec.gp.koza.KozaFitness;
 import ec.multiobjective.MultiObjectiveFitness;
 import ec.simple.SimpleStatistics;
 import ec.util.Parameter;
@@ -33,7 +34,7 @@ public class CustomStats extends SimpleStatistics {
         try {
             generationWriter = new PrintWriter(new FileWriter(filename, false));
         } catch (IOException e) {
-            state.output.fatal("Failed to open stats_baseline.csv for writing: " + e);
+            state.output.fatal("Failed to open CSV file for writing: " + e);
         }
     }
 
@@ -50,22 +51,18 @@ public class CustomStats extends SimpleStatistics {
         int totalCount = 0;
         for (int subpop = 0; subpop < state.population.subpops.size(); subpop++) {
             for (Individual ind : state.population.subpops.get(subpop).individuals) {
-                totalFitness += ind.fitness.fitness();
+                KozaFitness kf = (KozaFitness) ind.fitness;
+                totalFitness += kf.standardizedFitness();
                 totalCount++;
             }
         }
         double meanFitness = totalFitness / totalCount;
 
-        // --- Prepare fitness string (multi-objective aware) ---
-        String fitnessString;
-        if (gpInd.fitness instanceof MultiObjectiveFitness) {
-            MultiObjectiveFitness moFitness = (MultiObjectiveFitness) gpInd.fitness;
-            fitnessString = Arrays.toString(moFitness.getObjectives());
-        } else {
-            fitnessString = String.valueOf(gpInd.fitness.fitness());
-        }
+        // --- Best fitness as string ---
+        KozaFitness bestKF = (KozaFitness) gpInd.fitness;
+        String bestFitnessStr = String.valueOf(bestKF.standardizedFitness());
 
-        // --- Write one line per generation (no baseline duplication) ---
+        // --- Write one line per generation ---
         if (!wroteGenHeader) {
             generationWriter.println("generation,best_individual_fitness,mean_fitness,tree");
             wroteGenHeader = true;
@@ -81,11 +78,11 @@ public class CustomStats extends SimpleStatistics {
         String bestTreeString = "\"" + bestTreeBuilder.toString().replace("\"", "\"\"") + "\"";
 
         generationWriter.printf("%d,%s,%.5f,%s%n",
-                state.generation, fitnessString, meanFitness, bestTreeString);
+                state.generation, bestFitnessStr, meanFitness, bestTreeString);
         generationWriter.flush();
 
-        // --- Console output for debugging ---
-        state.output.println("Best individual's fitness: " + fitnessString, 0);
+        // --- Console output ---
+        state.output.println("Best individual's fitness: " + bestFitnessStr, 0);
         state.output.println("Mean fitness this generation: " + meanFitness, 0);
         state.output.println("Best Individual:", 0);
         gpInd.printIndividualForHumans(state, 0);
@@ -121,7 +118,17 @@ public class CustomStats extends SimpleStatistics {
 
             GPIndividual gpInd = new GPIndividual();
             gpInd.trees = trees;
-            gpInd.fitness = geInd.fitness;
+
+            // Convert fitness to KozaFitness if needed
+            KozaFitness kf = new KozaFitness();
+            if (geInd.fitness instanceof KozaFitness) {
+                kf.setStandardizedFitness(state, ((KozaFitness) geInd.fitness).standardizedFitness());
+            } else {
+                // fallback: assign 0
+                kf.setStandardizedFitness(state, 0.0);
+            }
+            gpInd.fitness = kf;
+
             return gpInd;
         } else {
             return (GPIndividual) ind;

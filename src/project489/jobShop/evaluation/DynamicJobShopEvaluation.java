@@ -122,19 +122,19 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
 
         double meanTardiness = sumObjective / simulations.size();
 
-        double[] tardiness_a = new double[1];
+//        double[] tardiness_a = new double[1];
 
-        tardiness_a[0] = meanTardiness;
+//        tardiness_a[0] = meanTardiness;
 
 //        System.out.println("meanTardiness: " + meanTardiness);
 
-//        KozaFitness fitness = (KozaFitness) ind.fitness;
+        KozaFitness fitness = (KozaFitness) ind.fitness;
 
-        MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;
+//        MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;
 
-//        fitness.setStandardizedFitness(evolutionState, meanTardiness);
+        fitness.setStandardizedFitness(evolutionState, meanTardiness);
 
-        fitness.setObjectives(evolutionState, tardiness_a);
+//        fitness.setObjectives(evolutionState, tardiness_a);
 
     }
 

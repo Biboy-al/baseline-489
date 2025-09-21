@@ -88,8 +88,8 @@ pop.subpop.0.species.ind.tree.0.tc = tc0
 # ------------------------------
 
 #Allow the fitness of the population to be multi objective
-pop.subpop.0.species.fitness = ec.multiobjective.MultiObjectiveFitness
-#pop.subpop.0.species.fitness = ec.gp.koza.KozaFitness
+#pop.subpop.0.species.fitness = ec.multiobjective.MultiObjectiveFitness
+pop.subpop.0.species.fitness = ec.gp.koza.KozaFitness
 
 
 #only evaluate one objective

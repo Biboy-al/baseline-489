@@ -34,9 +34,11 @@ state.file = $out.stat
 
 #configures a child stats object to gather GP specific stats
 stat.num-children = 1
-#stat.child.0 = project489.stats.CustomStats
-stat.child.0 = ec.simple.SimpleStatistics
-# How many replications done to best fitness
+stat.child.0 = project489.stats.CustomStats
+stat.child.0.file_name = stats_GGGP.csv
+stat.child.0.file = $outtabular.stat
+
+
 project489.stats.replication = 1
 
 stat.child.0.file = $outtabular.stat
