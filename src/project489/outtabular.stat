@@ -42,3 +42,25 @@ Equivalent GP Individual:
 Tree 0:
  (* PT SLACK)
 ERCs: 
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=270.276961951743 Adjusted=0.003686269533562118 Hits=0
+0 -77 -110 107
+Equivalent GP Individual:
+Tree 0:
+ (* PT SLACK)
+ERCs: 
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=270.276961951743 Adjusted=0.003686269533562118 Hits=0
+-108 -103 -32 -94
+Equivalent GP Individual:
+Tree 0:
+ (* PT SLACK)
+ERCs: 

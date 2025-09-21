@@ -40,6 +40,8 @@ project489.stats.replication = 1
 
 stat.child.0.file = $outtabular.stat
 
+stat.child.0.file_name = stats_baseline.csv
+
 #run the evolutionary process for 50 gens
 generations = 50
 
@@ -58,6 +60,7 @@ pop.subpop.0 = ec.Subpopulation
 pop.subpop.0.size = 1000
 #define elitism, keep best 10 individuals
 breed.elite.0 = 10
+
 
 # ==============================
 # GP general parameters
@@ -298,7 +301,7 @@ gp.nc.0.size = 0
 
 gp.fs.size = 1
 gp.fs.0.name = f0
-gp.fs.0.size = 21
+gp.fs.0.size = 22
 gp.fs.0 = ec.gp.GPFunctionSet
 
 # Function set
@@ -366,6 +369,10 @@ gp.fs.0.func.19.nc = nc0
 
 gp.fs.0.func.20 = project489.jobShop.terminal.WINQ
 gp.fs.0.func.20.nc = nc0
+
+gp.fs.0.func.21 = project489.jobShop.terminal.TimeTillDue
+gp.fs.0.func.21.nc = nc0
+
 
 
 # ==============================
