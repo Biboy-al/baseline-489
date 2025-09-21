@@ -40,6 +40,8 @@ project489.stats.replication = 1
 
 stat.child.0.file = $outtabular.stat
 
+stat.child.0.file_name = stats_baseline.csv
+
 #run the evolutionary process for 50 gens
 generations = 50
 
@@ -58,6 +60,7 @@ pop.subpop.0 = ec.Subpopulation
 pop.subpop.0.size = 1000
 #define elitism, keep best 10 individuals
 breed.elite.0 = 10
+
 
 # ==============================
 # GP general parameters
@@ -85,8 +88,8 @@ pop.subpop.0.species.ind.tree.0.tc = tc0
 # ------------------------------
 
 #Allow the fitness of the population to be multi objective
-#pop.subpop.0.species.fitness = ec.multiobjective.MultiObjectiveFitness
-pop.subpop.0.species.fitness = ec.gp.koza.KozaFitness
+pop.subpop.0.species.fitness = ec.multiobjective.MultiObjectiveFitness
+#pop.subpop.0.species.fitness = ec.gp.koza.KozaFitness
 
 
 #only evaluate one objective

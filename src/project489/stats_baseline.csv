@@ -1,0 +1,2 @@
+generation,best_individual_fitness,mean_fitness,tree
+0,[396.77395817239244],1878.36680,"(- (if (max (/ PT TimeInQueue) (+ TimeTillDue TimeInQueue)) (* (min RemProcTime TimeInSystem) (- ODD WINQ)) (min (- TimeInSystem RemProcTime) (min _0 LLD)) (* (if WINQ TimeInSystem _0 _0) (* WINQ TimeTillDue))) (max (- (exp PT) (max TimeInSystem WINQ)) (+ (- SLACK _0) (if SLACK NPT _0 SSD))))"

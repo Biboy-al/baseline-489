@@ -3,64 +3,12 @@ Generation: 0
 Best Individual:
 Subpopulation 0:
 Evaluated: true
-Fitness: Standardized=262.29077735876797 Adjusted=0.0037980821433686975 Hits=0
-Tree 0:
- (/ _1 PT)
-
-Generation: 1
-Best Individual:
-Subpopulation 0:
-Evaluated: true
-Fitness: Standardized=260.9131731980021 Adjusted=0.0038180591979770956 Hits=0
+Fitness: [287.4576260625965]
 Tree 0:
  (- (if (max (/ PT TimeInQueue) (+ TimeTillDue
      TimeInQueue)) (* (min RemProcTime TimeInSystem)
      (- ODD WINQ)) (min (- TimeInSystem RemProcTime)
      (min _0 LLD)) (* (if WINQ TimeInSystem _0
      _0) (* WINQ TimeTillDue))) (max (- (exp PT)
-     (/ TimeInSystem SSD)) (+ (- SLACK _0) (if
-     SLACK NPT _0 SSD))))
-
-Generation: 2
-Best Individual:
-Subpopulation 0:
-Evaluated: true
-Fitness: Standardized=259.97373977967425 Adjusted=0.0038318031570695387 Hits=0
-Tree 0:
- (min (- OpsLeft PT) (* PT SLACK))
-
-Generation: 3
-Best Individual:
-Subpopulation 0:
-Evaluated: true
-Fitness: Standardized=256.8158262270644 Adjusted=0.0038787378363626004 Hits=0
-Tree 0:
- (- (if (max (/ PT TimeInQueue) (+ TimeTillDue
-     TimeInQueue)) (max PT _1) (min (- TimeInSystem
-     RemProcTime) (min _0 LLD)) (* _0 (* WINQ
-     TimeTillDue))) (max (- (exp PT) (max TimeInSystem
-     WINQ)) (+ (- SLACK _0) (if SLACK NPT _0 SSD))))
-
-Generation: 4
-Best Individual:
-Subpopulation 0:
-Evaluated: true
-Fitness: Standardized=256.8158262270644 Adjusted=0.0038787378363626004 Hits=0
-Tree 0:
- (- (if (max (/ PT TimeInQueue) (+ TimeTillDue
-     TimeInQueue)) (max PT _1) (min (- TimeInSystem
-     RemProcTime) (min _0 LLD)) (* _0 (* WINQ
-     TimeTillDue))) (max (- (exp PT) (max TimeInSystem
-     WINQ)) (+ (- SLACK _0) (if SLACK NPT _0 SSD))))
-
-Generation: 5
-Best Individual:
-Subpopulation 0:
-Evaluated: true
-Fitness: Standardized=256.8158262270644 Adjusted=0.0038787378363626004 Hits=0
-Tree 0:
- (- (if (max (/ PT TimeInQueue) (+ TimeTillDue
-     TimeInQueue)) (max PT _1) (min (- TimeInSystem
-     RemProcTime) (min _0 LLD)) (* _0 (* WINQ
-     TimeTillDue))) (max (- (exp PT) (max TimeInSystem
-     WINQ)) (+ (- SLACK _0) (if SLACK NPT _0 SSD))))
+     (max TimeInSystem WINQ)) (+ (- SLACK _0)
+     (if SLACK NPT _0 SSD))))

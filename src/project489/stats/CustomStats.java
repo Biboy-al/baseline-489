@@ -1,25 +1,25 @@
 package project489.stats;
 
-import project489.evaluation.EvaluationModel;
-import project489.problem.JobShopProblem;
 import ec.EvolutionState;
 import ec.Individual;
 import ec.gp.GPIndividual;
 import ec.gp.GPTree;
 import ec.gp.ge.GEIndividual;
 import ec.gp.ge.GESpecies;
+import ec.multiobjective.MultiObjectiveFitness;
 import ec.simple.SimpleStatistics;
 import ec.util.Parameter;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 public class CustomStats extends SimpleStatistics {
 
     private int replication;
-    private PrintWriter csvWriter;
-    private boolean wroteHeader = false;
+    private PrintWriter generationWriter;  // Only for per-generation stats
+    private boolean wroteGenHeader = false;
 
     @Override
     public void setup(EvolutionState state, Parameter base) {
@@ -27,10 +27,13 @@ public class CustomStats extends SimpleStatistics {
         Parameter param = new Parameter("baseline.stats.replication");
         this.replication = state.parameters.getInt(param, null, 1);
 
+        param = new Parameter("stat.child.0.file_name");
+        String filename = state.parameters.getString(param, null);
+
         try {
-            csvWriter = new PrintWriter(new FileWriter("stats.csv", false));
+            generationWriter = new PrintWriter(new FileWriter(filename, false));
         } catch (IOException e) {
-            state.output.fatal("Failed to open CSV file for writing: " + e);
+            state.output.fatal("Failed to open stats_baseline.csv for writing: " + e);
         }
     }
 
@@ -38,47 +41,60 @@ public class CustomStats extends SimpleStatistics {
     public void postEvaluationStatistics(EvolutionState state) {
         super.postEvaluationStatistics(state);
 
-        JobShopProblem problem = (JobShopProblem) state.evaluator.p_problem;
-        EvaluationModel evaluationModel = problem.getEvaluationModel();
-
-        // Find best individual
+        // --- Find best individual of the generation ---
         Individual bestInd = getBestIndividual(state);
-
-        // Translate to GP individual if needed
         GPIndividual gpInd = translateToGPIndividual(state, bestInd);
 
-        double bestFitness = gpInd.fitness.fitness();
-        double averageFlowTime = evaluationModel.evaluateForStats(gpInd, state, this.replication);
+        // --- Compute mean fitness ---
+        double totalFitness = 0.0;
+        int totalCount = 0;
+        for (int subpop = 0; subpop < state.population.subpops.size(); subpop++) {
+            for (Individual ind : state.population.subpops.get(subpop).individuals) {
+                totalFitness += ind.fitness.fitness();
+                totalCount++;
+            }
+        }
+        double meanFitness = totalFitness / totalCount;
 
-        // Write header once
-        if (!wroteHeader) {
-            csvWriter.println("generation,best_fitness,average_flow_time,best_individual_fitness");
-            wroteHeader = true;
+        // --- Prepare fitness string (multi-objective aware) ---
+        String fitnessString;
+        if (gpInd.fitness instanceof MultiObjectiveFitness) {
+            MultiObjectiveFitness moFitness = (MultiObjectiveFitness) gpInd.fitness;
+            fitnessString = Arrays.toString(moFitness.getObjectives());
+        } else {
+            fitnessString = String.valueOf(gpInd.fitness.fitness());
         }
 
-        // Write one line per generation with new column for best individual fitness
-        csvWriter.printf("%d,%.6f,%.6f,%.6f%n",
-                state.generation,
-                bestFitness,
-                averageFlowTime,
-                bestFitness
-        );
-        csvWriter.flush();
+        // --- Write one line per generation (no baseline duplication) ---
+        if (!wroteGenHeader) {
+            generationWriter.println("generation,best_individual_fitness,mean_fitness,tree");
+            wroteGenHeader = true;
+        }
 
-        // Optional human-readable output
-        state.output.println("Best individual's fitness: " + bestFitness, 0);
-        state.output.println("Average Flow Time (best individual, "
-                + this.replication + " reps): " + averageFlowTime, 0);
-        state.output.println("Best Individual (mapped to GP form):", 0);
+        StringBuilder bestTreeBuilder = new StringBuilder();
+        for (int t = 0; t < gpInd.trees.length; t++) {
+            bestTreeBuilder.append(gpInd.trees[t].child.makeLispTree());
+            if (t < gpInd.trees.length - 1) {
+                bestTreeBuilder.append(" | ");
+            }
+        }
+        String bestTreeString = "\"" + bestTreeBuilder.toString().replace("\"", "\"\"") + "\"";
+
+        generationWriter.printf("%d,%s,%.5f,%s%n",
+                state.generation, fitnessString, meanFitness, bestTreeString);
+        generationWriter.flush();
+
+        // --- Console output for debugging ---
+        state.output.println("Best individual's fitness: " + fitnessString, 0);
+        state.output.println("Mean fitness this generation: " + meanFitness, 0);
+        state.output.println("Best Individual:", 0);
         gpInd.printIndividualForHumans(state, 0);
     }
 
     @Override
     public void finalStatistics(EvolutionState state, int result) {
         super.finalStatistics(state, result);
-        if (csvWriter != null) {
-            csvWriter.close();
-        }
+        if (generationWriter != null) generationWriter.close();
     }
 
     private Individual getBestIndividual(EvolutionState state) {

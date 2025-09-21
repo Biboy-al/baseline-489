@@ -1,5 +1,6 @@
 package project489.jobShop.evaluation;
 
+import ec.multiobjective.MultiObjectiveFitness;
 import project489.evaluation.EvaluationModel;
 import ec.EvolutionState;
 import project489.evaluation.Simulation;
@@ -121,13 +122,19 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
 
         double meanTardiness = sumObjective / simulations.size();
 
+        double[] tardiness_a = new double[1];
+
+        tardiness_a[0] = meanTardiness;
+
 //        System.out.println("meanTardiness: " + meanTardiness);
 
-        KozaFitness fitness = (KozaFitness) ind.fitness;
+//        KozaFitness fitness = (KozaFitness) ind.fitness;
 
-        fitness.setStandardizedFitness(evolutionState, meanTardiness);
+        MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;
 
-//        fitness.setObjectives(evolutionState, meanTardiness_a);
+//        fitness.setStandardizedFitness(evolutionState, meanTardiness);
+
+        fitness.setObjectives(evolutionState, tardiness_a);
 
     }
 
