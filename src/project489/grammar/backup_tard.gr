@@ -1,4 +1,4 @@
-<rule> ::= (+ <op> <DueDateOp>)
+<rule> ::= (+ <op> <DueDateOp>) | (+ <op> <DueDateOp>)
 <uniOp> ::= (exp <op>)
 <biOp> ::= (+ <op> <op>) | (- <op> <op>) | (* <op> <op>) | (/ <op> <nonZeroOp>)
 <biOp> ::= (min <op> <op>) | (max <op> <op>)

@@ -57,7 +57,7 @@ pop = ec.Population
 #defines the sub pop
 pop.subpops = 1
 pop.subpop.0 = ec.Subpopulation
-pop.subpop.0.size = 1000
+pop.subpop.0.size = 200
 #define elitism, keep best 10 individuals
 breed.elite.0 = 10
 
@@ -93,7 +93,7 @@ pop.subpop.0.species.fitness = ec.gp.koza.KozaFitness
 
 
 #only evaluate one objective
-pop.subpop.0.species.fitness.num-objectives = 1
+pop.subpop.0.species.fitness.num-object gives = 1
 pop.subpop.0.species.fitness.maximize = false
 
 #GP will generate new individual if it's a duplicate, up to 100 times
@@ -109,11 +109,11 @@ pop.subpop.0.species.pipe = ec.breed.MultiBreedingPipeline
 pop.subpop.0.species.pipe.generate-max = false
 pop.subpop.0.species.pipe.num-sources = 3
 pop.subpop.0.species.pipe.source.0 = ec.gp.koza.CrossoverPipeline
-pop.subpop.0.species.pipe.source.0.prob = 0.70
+pop.subpop.0.species.pipe.source.0.prob = 0.9
 pop.subpop.0.species.pipe.source.1 = ec.gp.koza.MutationPipeline
-pop.subpop.0.species.pipe.source.1.prob = 0.15
+pop.subpop.0.species.pipe.source.1.prob = 0.1
 pop.subpop.0.species.pipe.source.2 = ec.breed.ReproductionPipeline
-pop.subpop.0.species.pipe.source.2.prob = 0.15
+pop.subpop.0.species.pipe.source.2.prob = 0.1
 
 #set selection mechnism to tournament Selection
 breed.reproduce.source.0 = ec.select.TournamentSelection
@@ -129,7 +129,7 @@ gp.koza.xover.ns.0 = ec.gp.koza.KozaNodeSelector
 gp.koza.xover.ns.1 = same
 
 #dictates the resulting child trees must not exceed the number
-gp.koza.xover.maxdepth = 17
+gp.koza.xover.maxdepth = 8
 
 #tries to produce one valid cross over
 gp.koza.xover.tries = 1
@@ -144,18 +144,18 @@ gp.koza.mutate.source.0 = ec.select.TournamentSelection
 gp.koza.mutate.ns.0 = ec.gp.koza.KozaNodeSelector
 
 gp.koza.mutate.build.0 = ec.gp.koza.GrowBuilder
-gp.koza.mutate.maxdepth = 17
-gp.koza.mutate.tries = 1
+gp.koza.mutate.maxdepth = 8
+gp.koza.mutate.tries = 5
 
 # ------------------------------
 # Tournament Selection Size
 # ------------------------------
 
-select.tournament.size = 7
+select.tournament.size = 5
 
 # sub tree mutation is depth fixed at 4
-gp.koza.grow.min-depth = 4
-gp.koza.grow.max-depth = 4
+gp.koza.grow.min-depth = 6
+gp.koza.grow.max-depth = 8
 
 gp.koza.ns.terminals  = 0.1
 gp.koza.ns.nonterminals = 0.9
@@ -201,8 +201,8 @@ gp.tc.0.init = ec.gp.koza.HalfBuilder
 # Koza Half builder Parameters
 # ------------------------------
 
-gp.koza.half.min-depth = 2
-gp.koza.half.max-depth = 6
+gp.koza.half.min-depth = 6
+gp.koza.half.max-depth = 8
 gp.koza.half.growp = 0.5
 
 
@@ -301,7 +301,7 @@ gp.nc.0.size = 0
 
 gp.fs.size = 1
 gp.fs.0.name = f0
-gp.fs.0.size = 22
+gp.fs.0.size = 27
 gp.fs.0 = ec.gp.GPFunctionSet
 
 # Function set
@@ -316,7 +316,7 @@ gp.fs.0.func.2 = project489.jobShop.function.Div
 gp.fs.0.func.2.nc = nc2
 
 gp.fs.0.func.3 = project489.jobShop.function.If
-gp.fs.0.func.3.nc = nc4
+gp.fs.0.func.3.nc = nc3
 
 gp.fs.0.func.4 = project489.jobShop.function.Max
 gp.fs.0.func.4.nc = nc2
@@ -373,6 +373,21 @@ gp.fs.0.func.20.nc = nc0
 gp.fs.0.func.21 = project489.jobShop.terminal.TimeTillDue
 gp.fs.0.func.21.nc = nc0
 
+gp.fs.0.func.22 = project489.jobShop.terminal._2
+gp.fs.0.func.22.nc = nc0
+
+gp.fs.0.func.23 = project489.jobShop.terminal._5
+gp.fs.0.func.23.nc = nc0
+
+gp.fs.0.func.24 = project489.jobShop.terminal._10
+gp.fs.0.func.24.nc = nc0
+
+gp.fs.0.func.25 = project489.jobShop.terminal._01
+gp.fs.0.func.25.nc = nc0
+
+gp.fs.0.func.26 = project489.jobShop.terminal._05
+gp.fs.0.func.26.nc = nc0
+
 
 
 # ==============================
@@ -388,8 +403,8 @@ eval.problem.data = project489.data.DoubleData
 eval.problem.objective.mode = mean
 eval.problem.objective.metric = tardiness
 
-eval.problem.sim.num = 4
-eval.problem.sim.replication = 1
+eval.problem.sim.num = 1
+eval.problem.sim.replication = 3
 eval.problem.sim.seed = 23
 eval.problem.sim.seedRotate = 1000
 
@@ -397,26 +412,6 @@ eval.problem.sim.0.numOfMachines = 10
 eval.problem.sim.2.maxJobs = 2500
 eval.problem.sim.0.warmupJobs = 500
 eval.problem.sim.0.numOps = 10
-eval.problem.sim.0.util = 0.8
+eval.problem.sim.0.util = 0.9
 eval.problem.sim.0.DueDateAllowance = 2.0
 
-eval.problem.sim.1.numOfMachines = 10
-eval.problem.sim.1.maxJobs = 2500
-eval.problem.sim.1.warmupJobs = 500
-eval.problem.sim.1.numOps = 10
-eval.problem.sim.1.util = 0.85
-eval.problem.sim.1.DueDateAllowance = 2.0
-
-eval.problem.sim.2.numOfMachines = 10
-eval.problem.sim.2.maxJobs = 2500
-eval.problem.sim.2.warmupJobs = 500
-eval.problem.sim.2.numOps = 10
-eval.problem.sim.2.util = 0.9
-eval.problem.sim.2.DueDateAllowance = 2.0
-
-eval.problem.sim.3.numOfMachines = 10
-eval.problem.sim.3.maxJobs = 2500
-eval.problem.sim.3.warmupJobs = 500
-eval.problem.sim.3.numOps = 10
-eval.problem.sim.3.util = 0.95
-eval.problem.sim.3.DueDateAllowance = 2.0

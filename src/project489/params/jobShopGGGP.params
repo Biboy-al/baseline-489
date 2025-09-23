@@ -59,9 +59,9 @@ pop = ec.Population
 #defines the sub pop
 pop.subpops = 1
 pop.subpop.0 = ec.Subpopulation
-pop.subpop.0.size = 500
+pop.subpop.0.size = 200
 #define elitism, keep best 10 individuals
-breed.elite.0 = 5
+breed.elite.0 = 10
 
 # ==============================
 # GP general parameters
@@ -240,11 +240,11 @@ gp.tc.0.init = ec.gp.koza.HalfBuilder
 # ------------------------------
 # Koza Half builder Parameters
 # ------------------------------
-gp.ge.min-depth = 5
-gp.ge.max-depth = 10
+gp.ge.min-depth = 6
+gp.ge.max-depth = 8
 
-gp.koza.half.min-depth = 2
-gp.koza.half.max-depth = 6
+gp.koza.half.min-depth = 4
+gp.koza.half.max-depth = 8
 gp.koza.half.growp = 0.5
 
 
@@ -345,7 +345,7 @@ gp.nc.0.size = 0
 
 gp.fs.size = 1
 gp.fs.0.name = f0
-gp.fs.0.size = 22
+gp.fs.0.size = 29
 gp.fs.0 = ec.gp.GPFunctionSet
 
 # Function set
@@ -360,7 +360,7 @@ gp.fs.0.func.2 = project489.jobShop.function.Div
 gp.fs.0.func.2.nc = nc2
 
 gp.fs.0.func.3 = project489.jobShop.function.If
-gp.fs.0.func.3.nc = nc4
+gp.fs.0.func.3.nc = nc3
 
 gp.fs.0.func.4 = project489.jobShop.function.Max
 gp.fs.0.func.4.nc = nc2
@@ -417,6 +417,27 @@ gp.fs.0.func.20.nc = nc0
 gp.fs.0.func.21 = project489.jobShop.terminal.SPT
 gp.fs.0.func.21.nc = nc0
 
+gp.fs.0.func.22 = project489.jobShop.terminal._2
+gp.fs.0.func.22.nc = nc0
+
+gp.fs.0.func.23 = project489.jobShop.terminal._5
+gp.fs.0.func.23.nc = nc0
+
+gp.fs.0.func.24 = project489.jobShop.terminal._10
+gp.fs.0.func.24.nc = nc0
+
+gp.fs.0.func.25 = project489.jobShop.terminal._01
+gp.fs.0.func.25.nc = nc0
+
+gp.fs.0.func.26 = project489.jobShop.terminal._05
+gp.fs.0.func.26.nc = nc0
+
+gp.fs.0.func.27 = project489.jobShop.terminal._02
+gp.fs.0.func.27.nc = nc0
+
+gp.fs.0.func.28 = project489.jobShop.terminal.TimeTillDue
+gp.fs.0.func.28.nc = nc0
+
 
 pop.subpop.0.species.gp-function-set = fs
 pop.subpop.0.species.gp-species.ind.tree.0 = ec.gp.GPTree
@@ -439,8 +460,8 @@ eval.problem.problem.data = project489.data.DoubleData
 eval.problem.problem.objective.mode = mean
 eval.problem.problem.objective.metric = tardiness
 
-eval.problem.problem.sim.num = 4
-eval.problem.problem.sim.replication = 1
+eval.problem.problem.sim.num = 1
+eval.problem.problem.sim.replication = 3
 eval.problem.problem.sim.seed = 23
 eval.problem.problem.sim.seedRotate = 1000
 
@@ -448,26 +469,5 @@ eval.problem.problem.sim.0.numOfMachines = 10
 eval.problem.problem.sim.0.maxJobs = 2500
 eval.problem.problem.sim.0.warmupJobs = 500
 eval.problem.problem.sim.0.numOps = 10
-eval.problem.problem.sim.0.util = 0.8
+eval.problem.problem.sim.0.util = 0.9
 eval.problem.problem.sim.0.DueDateAllowance = 2.0
-
-eval.problem.problem.sim.1.numOfMachines = 10
-eval.problem.problem.sim.1.maxJobs = 2500
-eval.problem.problem.sim.1.warmupJobs = 500
-eval.problem.problem.sim.1.numOps = 10
-eval.problem.problem.sim.1.util = 0.85
-eval.problem.problem.sim.1.DueDateAllowance = 2.0
-
-eval.problem.problem.sim.2.numOfMachines = 10
-eval.problem.problem.sim.2.maxJobs = 2500
-eval.problem.problem.sim.2.warmupJobs = 500
-eval.problem.problem.sim.2.numOps = 10
-eval.problem.problem.sim.2.util = 0.9
-eval.problem.problem.sim.2.DueDateAllowance = 2.0
-
-eval.problem.problem.sim.3.numOfMachines = 10
-eval.problem.problem.sim.3.maxJobs = 2500
-eval.problem.problem.sim.3.warmupJobs = 500
-eval.problem.problem.sim.3.numOps = 10
-eval.problem.problem.sim.3.util = 0.95
-eval.problem.problem.sim.3.DueDateAllowance = 2.0

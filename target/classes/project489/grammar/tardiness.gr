@@ -1,5 +1,0 @@
-<rule> ::= (+ <op> <DueDateOp>)
-<DueDateOp> ::=  SLACK | (- TimeTillDue PT) | (- LDD RemProcTime) | (+ SDD RemProcTime)
-<op> ::= (exp <op>) | (+ <op> <op>) | (- <op> <op>) | (min <op> <op>) |(* <op> <op>)  | (/ <op> <op>)
-<op> ::= (max <op> <op>) | (if <op> <op>) |
-<op> ::=  PT | RemProcTime | TimeInQueue | TimeInSystem | TimeTillDue | LDD | SDD | SLACK | WINQ | _0 | _1

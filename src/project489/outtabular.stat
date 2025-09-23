@@ -2,21 +2,884 @@
 Generation: 0
 Best Individual:
 Subpopulation 0:
-Evaluated: T
-Fitness: Standardized=368.80639050030936 Adjusted=0.0027041176834372836 Hits=0
-98 -12 26 4 -23 -6 14 60 116 105 -43 -34 -15 41 -52 53 -35 -118 -117 -32 48 -116 -113 41 97 -88 110 -83 -50 100 -65 -117 -116 58 -46 64 -14 109 87 95 88 -5 -36 34 101 0 64 -57 -87 -98 -71 7 36 -127 19 81 22 59 -118 -33 -48 126 20 82 119 72 67 -56 116 83 61 87 117 59 102 68 -36 -68 -122 -93 -51 -95 127 -76 29 -64 87 72 -37 -84 98 -15 -18 110 -90 86 -31 40 -14 76 -60 -21 112 100 -6 56 122 -72 35 -44 79 37 -101 116 -96 -77 -26 49 70 99 -14 -28 -80 -64 -7 87 -29 -61 79 30 60 29 -51 -43 -62 -5 120 110 -23 -70 82 73 87 -97 76 108 -3 84 96 37 103 40 -24 87 84 -110 -13 -54 -114 79 -38 82 35 -48 66 96 -57 14 123 119 20 -92 -5 76 66 126 114 -127 -64 -69 -61 54 -27 -56 -4 106 -27 -35 55 -59 -104 56 42 -61 22 17 127 -56 -27 59 -94
-Equivalent GP Individual:
+Evaluated: true
+Fitness: Standardized=572.0518855019068 Adjusted=0.0017450426833935835 Hits=0
 Tree 0:
- (* (exp PT) SLACK)
-ERCs: 
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (+ (- (min PT SLACK) (* NPT
+     SLACK)) (* (exp _10) (* TimeTillDue TimeTillDue))))
+     (max (- (min (+ RemProcTime NPT) (if TimeTillDue
+         _10 PT)) (- (/ _0.5 SSD) (if _1 PT OpsLeft)))
+         (min (exp (/ _0 OpsLeft)) (- (max _1 _1)
+             (exp _0.1)))))
 
 Generation: 1
 Best Individual:
 Subpopulation 0:
-Evaluated: T
-Fitness: Standardized=368.80639050030936 Adjusted=0.0027041176834372836 Hits=0
--44 86 71 4 -69 85 50 49 16 3 -100 38 81 -108 -127 -75 -54 118 -92 30 -21 46 -39 -8 29 70 125 119 -98 8 -36 126 -66 39 78 87 77 -25 -61 -127 -81 -53 114 93 -72 -76 26 39 -23 6 40 89 57 102 16 -105 -14 -57 81 -54 57 9 -14 -116 -82 -74 -2 -67 -47 -54 35 66 77 -39 -109 -8 -112 51 125 48 -21 -47 123 -50 1 51 4 106 -121 110 -91 63 67 118 31 -92 -4 -117 7 -30 -92 -114 -82 33 21 -115 121 101 -59 58 -16 -121 46 -12 -76 113 -15 28 68 -66 65 -18 111 1 -107 101 17 -127 -65 -49 -99 116 -18 -110 97 -119 -67 108 15 -103 18 -55 -84 87 112 -29 71 124 29 -74 112 10 -108 94 -116 -39 -99 111 -19 -109 -40 -88 -97 86 -16 100 5 -109 8 -51 -110 30 112 16 -68 89 123 -95 -123 14 -44 -28 -43 -70 -92 126 -64 79 125 77 -112 12 53 86 49 -117 -97 -115 -30 -51 -102
-Equivalent GP Individual:
+Evaluated: true
+Fitness: Standardized=461.4733263560127 Adjusted=0.0021622868671785805 Hits=0
 Tree 0:
- (* (exp PT) SLACK)
-ERCs: 
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (+ (- (min PT SLACK) (* NPT
+     SLACK)) _0)) (max (- (min (+ RemProcTime
+     NPT) (if TimeTillDue _10 PT)) (- (/ _0.5
+     SSD) (if _1 PT OpsLeft))) (min (exp (/ _0
+     OpsLeft)) (- (max _1 _1) (exp _0.1)))))
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=252.1723194983575 Adjusted=0.0039498788887403925 Hits=0
+Tree 0:
+ (* (* (exp (* (/ _5 _1) (max PT _10))) (*
+     (max (+ _10 PT) (- TimeInQueue SLACK)) (/
+     (/ _2 _0.1) (/ _5 _0.1)))) (+ (if (+ (exp
+     _10) (+ _2 _1)) (* (min _0.1 _2) (if _0.5
+     LLD TimeInQueue)) (- (+ _5 RemProcTime) (exp
+     _0))) (min (- (* (+ _0.1 _0.1) (max TimeInQueue
+     WINQ)) (exp (min PT _10))) (max (exp (max
+     NPT TimeTillDue)) (max (- TimeInQueue _1)
+     (if _0.5 _0 TimeTillDue))))))
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=252.1723194983575 Adjusted=0.0039498788887403925 Hits=0
+Tree 0:
+ (* (* (exp (* (/ _5 _1) (max PT _10))) (*
+     (max (+ _10 PT) (- TimeInQueue SLACK)) (/
+     (/ _2 _0.1) (/ _5 _0.1)))) (+ (if (+ (exp
+     _10) (+ _2 _1)) (* (min _0.1 _2) (if _0.5
+     LLD TimeInQueue)) (- (+ _5 RemProcTime) (exp
+     _0))) (min (- (* (+ _0.1 _0.1) (max TimeInQueue
+     WINQ)) (exp (min PT _10))) (max (exp (max
+     NPT TimeTillDue)) (max (- TimeInQueue _1)
+     (if _0.5 _0 TimeTillDue))))))
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=250.03242018550267 Adjusted=0.003983549213528041 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (+ ODD (+ _5 _5))) (max (-
+     (min (+ RemProcTime NPT) (+ _5 _1)) (- (/
+     _0.5 SSD) (if _1 PT OpsLeft))) (min (exp
+     (/ _0 OpsLeft)) (- (max _1 _1) (exp _0.1)))))
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (if (+ (exp _10) (+ _2 _1))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (+ _5 RemProcTime) (exp _0)))) (max (-
+     (min (+ RemProcTime NPT) (+ _5 _1)) (- (/
+     _0.5 SSD) (if _1 PT OpsLeft))) (min (exp
+     (/ _0 OpsLeft)) (- (max _1 _1) (exp _0.1)))))
+
+Generation: 6
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (if (+ (exp _10) (+ _2 _1))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (+ _5 RemProcTime) (exp _0)))) (max (-
+     (min (+ RemProcTime NPT) (+ _5 _1)) (- (/
+     _0.5 SSD) (if _1 PT OpsLeft))) (min (exp
+     (/ _0 OpsLeft)) (- (max _1 _1) (exp _0.1)))))
+
+Generation: 7
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (if (+ (exp _10) (+ _2 _1))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (+ _5 RemProcTime) (exp _0)))) (max (-
+     (min (+ RemProcTime NPT) (+ _5 _1)) (- (/
+     _0.5 SSD) (if _1 PT OpsLeft))) (min (exp
+     (/ _0 OpsLeft)) (- (max _1 _1) (exp _0.1)))))
+
+Generation: 8
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (if (+ (exp _10) (+ _2 _1))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (+ _5 RemProcTime) (exp _0)))) (max (-
+     (min (+ RemProcTime NPT) (+ _5 _1)) (- (/
+     _0.5 SSD) (if _1 PT OpsLeft))) (min (exp
+     (/ _0 OpsLeft)) (- (max _1 _1) (exp _0.1)))))
+
+Generation: 9
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if (min _0.1 _2) PT _0.5)
+     (max _5 _0.5))) (if (+ (exp _10) (+ _2 _1))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (+ _5 RemProcTime) (exp _0)))) (max (-
+     (min (+ RemProcTime NPT) (+ _5 _1)) (- (/
+     _0.5 SSD) (if _1 PT OpsLeft))) (min (exp
+     (/ _0 OpsLeft)) (- (max _1 _1) (exp _0.1)))))
+
+Generation: 10
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (if (+ (exp _10) (+ _2 _1))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (+ _5 RemProcTime) (exp _0)))) (max (-
+     (min (+ RemProcTime NPT) (+ _5 _1)) (- (/
+     _0.5 SSD) (if _1 PT OpsLeft))) (min (exp
+     (/ _0 OpsLeft)) (- (max _1 _1) (exp _0.1)))))
+
+Generation: 11
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (if (if NPT TimeInSystem
+     TimeInSystem) (* (min _0.1 _2) (if _0.5 LLD
+     TimeInQueue)) (- (+ _5 RemProcTime) (exp
+     _0)))) (max (- (min (+ RemProcTime NPT) (+
+     _5 _1)) (- (/ _0.5 SSD) (if _1 PT OpsLeft)))
+     (min (exp (/ _0 OpsLeft)) (- (max _1 _1)
+         (exp _0.1)))))
+
+Generation: 12
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (if (+ (exp _10) (+ _5 _5))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (min (if NPT TimeInSystem TimeInSystem)
+         (+ NPT SLACK)) (exp _0)))) (max (- (min (+
+     RemProcTime NPT) (+ _5 _1)) (- (/ _0.5 SSD)
+     (if _1 PT OpsLeft))) (min (if (+ (exp _10)
+     (+ _2 _1)) (* (min _0.1 _2) (if _0.5 LLD
+     TimeInQueue)) (- (+ _5 RemProcTime) (- (max
+     _1 _1) (exp _0.1)))) (- (max _1 _1) (exp
+     _0.1)))))
+
+Generation: 13
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT (exp
+     _0)) (max _5 _0.5))) (if (+ (exp _10) (+
+     _2 _1)) (* _0.1 (if _0.5 LLD TimeInQueue))
+     (- (+ _5 RemProcTime) (if NPT TimeInSystem
+         TimeInSystem)))) (max (- (min (+ RemProcTime
+     NPT) (+ _5 _1)) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft))) (min (exp (/ _0 OpsLeft)) (- (max
+     _1 _1) (exp _0.1)))))
+
+Generation: 14
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem (min ODD
+     LLD)) (+ NPT SLACK)) (+ (if RemProcTime PT
+     _0.5) (max _5 _0.5))) (if (+ (exp _10) (+
+     _2 _1)) (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (if (+ (exp _10) (+ _2 _1)) (* (min _0.1
+         _2) (if _0.5 LLD TimeInQueue)) (- (+ _5 RemProcTime)
+         (exp _0))) (exp _0)))) (max (- (min (+ RemProcTime
+     NPT) (+ _5 _1)) (- (/ _0.5 SSD) (if _1 PT
+     (if _1 PT OpsLeft)))) (min (exp (/ _0 OpsLeft))
+     (- (max _1 _1) (exp _0.1)))))
+
+Generation: 15
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (if (+ (min (exp (/ _0 OpsLeft))
+     (if RemProcTime PT _0.5)) (+ _2 _1)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- TimeInSystem
+     (if NPT TimeInSystem TimeInSystem)))) (max
+     (- (min (+ RemProcTime NPT) (+ _5 _1)) (-
+         (/ _0.5 SSD) (if _1 PT OpsLeft))) (min (exp
+     (/ _0 OpsLeft)) (- (max _1 _1) (exp _0.1)))))
+
+Generation: 16
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (if (+ (exp _10) (+ _5 _5))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (+ _5 (+ (/ _0.5 SSD) (max _5 _0.5)))
+         (exp _0)))) (max (- (min (+ RemProcTime NPT)
+     (+ _5 _1)) (- (/ _0.5 SSD) (if _0.1 PT OpsLeft)))
+     (min (if (+ (exp _10) (+ _2 _1)) (* (exp
+         _10) (if _0.5 LLD TimeInQueue)) (- (+ _5
+         RemProcTime) (- (max _1 _1) (exp _0.1))))
+         (- (max _1 _1) (exp _0.1)))))
+
+Generation: 17
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=249.06251903838213 Adjusted=0.003998999945475675 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+     (max _5 _0.5))) (if (+ (exp _10) (+ _5 _5))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (min (if NPT TimeInSystem TimeInSystem)
+         (+ NPT SLACK)) (exp _0)))) (max (- (min (+
+     RemProcTime NPT) (+ _5 _1)) (- (/ _0.5 SSD)
+     (if _1 PT OpsLeft))) (min (if (+ (exp _10)
+     (+ _2 _1)) (* (min _0.1 _2) (if _0.5 LLD
+     TimeInQueue)) (- (+ _5 RemProcTime) (- (max
+     _1 _1) (min _0.1 _2)))) (- (max _1 _1) (exp
+     _0.1)))))
+
+Generation: 18
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80452909188548 Adjusted=0.004003129981811381 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (+ _5 _1)) (- (/ _0.5 SSD)
+         (if _1 PT OpsLeft))) (min (exp (+ (exp _10)
+         (if _1 PT OpsLeft))) (- (min (if NPT TimeInSystem
+         TimeInSystem) (+ NPT SLACK)) (+ (if RemProcTime
+         PT _0.5) (max _5 _0.5))))))
+
+Generation: 19
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80452909188548 Adjusted=0.004003129981811381 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (+ _5 _1)) (- (/ _0.5 SSD)
+         (if _1 PT OpsLeft))) (min (exp (+ (exp _10)
+         (if _1 PT OpsLeft))) (- (min (if NPT TimeInSystem
+         TimeInSystem) (+ NPT SLACK)) (+ (if RemProcTime
+         PT _0.5) (max _5 _0.5))))))
+
+Generation: 20
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80452909188548 Adjusted=0.004003129981811381 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (+ _5 _1)) (- (/ _0.5 SSD)
+         (if _1 PT OpsLeft))) (min (exp (+ (exp _10)
+         (if _1 PT OpsLeft))) (- (min (if NPT TimeInSystem
+         TimeInSystem) (+ NPT SLACK)) (+ (if RemProcTime
+         PT _0.5) (max _5 _0.5))))))
+
+Generation: 21
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80452909188548 Adjusted=0.004003129981811381 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (+ _5 _1)) (- (/ _0.5 SSD)
+         (if _1 PT OpsLeft))) (min (exp (if (min _0.1
+         _2) PT _0.5)) (- (min (if NPT TimeInSystem
+         TimeInSystem) (+ NPT SLACK)) (+ (if RemProcTime
+         PT _0.5) (max _5 _0.5))))))
+
+Generation: 22
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80452909188548 Adjusted=0.004003129981811381 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (+ _5 _1)) (- (/ _0.5 SSD)
+         (if _1 PT OpsLeft))) (min (if _0.5 LLD TimeInQueue)
+         (- (min (if NPT TimeInSystem TimeInSystem)
+             (+ NPT SLACK)) (+ (if RemProcTime PT _0.5)
+             (max _5 _0.5))))))
+
+Generation: 23
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80452909188548 Adjusted=0.004003129981811381 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ RemProcTime NPT) (* (min _0.1
+     _2) (if _0.5 LLD TimeInQueue)) (- (if NPT
+     TimeInSystem TimeInSystem) (exp _0)))) (max
+     (- (min _0.5 (+ _5 _1)) (- (/ _0.5 SSD) (if
+         _1 PT OpsLeft))) (min (exp (+ (exp _10) (if
+     _1 PT OpsLeft))) (- (min (if NPT TimeInSystem
+     TimeInSystem) (+ NPT SLACK)) (+ (if RemProcTime
+     PT _0.5) (max _5 _0.5))))))
+
+Generation: 24
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80452909188548 Adjusted=0.004003129981811381 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (+ _5 _1)) (- (/ _0.5 SSD)
+         (if _1 PT OpsLeft))) (min (exp (if (min _0.1
+         _2) PT _0.5)) (- (if _1 PT OpsLeft) (+ (if
+         RemProcTime PT _0.5) (max _5 _0.5))))))
+
+Generation: 25
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80452909188548 Adjusted=0.004003129981811381 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (min _0.1
+     _2)))) (max (- (min _0.5 (+ _5 _1)) (- (/
+     _0.5 SSD) (if _1 PT OpsLeft))) (min (- (-
+     (min (+ RemProcTime NPT) (+ _5 _1)) (- (/
+     _0.5 SSD) (if RemProcTime PT _0.5))) (exp
+     _0.1)) (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (max _5 _0.5) (* (exp _0)
+     _2))))))
+
+Generation: 26
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80449378146204 Adjusted=0.004003130547662749 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (- (min (+ RemProcTime
+         NPT) (+ _5 _1)) (- (/ _0.5 SSD) (if RemProcTime
+         PT _0.5)))) (- (/ _0.5 SSD) (if _1 PT OpsLeft)))
+         (min (exp (if (min _0.1 _2) PT _0.5)) (-
+             (min (if NPT TimeInSystem TimeInSystem) (min
+                 (+ RemProcTime NPT) (+ _5 _1))) (+ (if RemProcTime
+             PT _0.5) (max _5 _0.5))))))
+
+Generation: 27
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80449378146204 Adjusted=0.004003130547662749 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (- (min (+ RemProcTime
+         NPT) (+ _5 _1)) (- (/ _0.5 SSD) (if RemProcTime
+         PT _0.5)))) (- (/ _0.5 SSD) (if _1 PT OpsLeft)))
+         (min (exp (if (min _0.1 _2) PT _0.5)) (-
+             (min (if NPT TimeInSystem TimeInSystem) (min
+                 (+ RemProcTime NPT) (+ _5 _1))) (+ (if RemProcTime
+             PT _0.5) (max _5 _0.5))))))
+
+Generation: 28
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80449378146204 Adjusted=0.004003130547662749 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (- (min (+ RemProcTime
+         NPT) (+ _5 _1)) (- (/ _0.5 SSD) (if RemProcTime
+         PT _0.5)))) (- (/ _0.5 SSD) (if _1 PT OpsLeft)))
+         (min (exp (if (min _0.1 _2) PT _0.5)) (-
+             (min (if NPT TimeInSystem TimeInSystem) (min
+                 (+ RemProcTime NPT) (+ _5 _1))) (+ (if RemProcTime
+             PT _0.5) (max _5 _0.5))))))
+
+Generation: 29
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80446551769992 Adjusted=0.00400313100059112 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT (min _0.1 _2))
+     (max _5 _0.5))) (if (+ (exp _10) (- (min
+     _0.5 (+ _5 _1)) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft)))) (* (min _0.1 _2) (if _0.5 LLD
+     TimeInQueue)) (- (if NPT TimeInSystem TimeInSystem)
+     (exp _0)))) (max (- (min _0.5 (min (+ RemProcTime
+     NPT) (+ _5 _1))) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft))) (min (exp (+ (exp _10) (exp _10)))
+     (- (min (if NPT TimeInSystem TimeInSystem)
+         (+ NPT SLACK)) (* (min _0.1 _2) (if _0.5
+         LLD TimeInQueue))))))
+
+Generation: 30
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.8043980060601 Adjusted=0.004003132082469343 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (- (min (min _0.1 _2) (+
+         _5 _1)) (- (/ _0.5 SSD) (if RemProcTime PT
+         _0.5)))) (- (/ _0.5 SSD) (if _1 PT OpsLeft)))
+         (min (exp (if (min _0.1 _2) PT _0.5)) (-
+             (min (if NPT TimeInSystem TimeInSystem) (min
+                 (+ RemProcTime NPT) (+ _5 _1))) (+ (/ _0.5
+             SSD) (max _5 _0.5))))))
+
+Generation: 31
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.8043980060601 Adjusted=0.004003132082469343 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (exp _0))))
+     (max (- (min _0.5 (- (min (min _0.1 _2) (+
+         _5 _1)) (- (/ _0.5 SSD) (if RemProcTime PT
+         _0.5)))) (- (/ _0.5 SSD) (if _1 PT OpsLeft)))
+         (min (exp (if (min _0.1 _2) PT _0.5)) (-
+             (min (if NPT TimeInSystem TimeInSystem) (min
+                 (+ RemProcTime NPT) (+ _5 _1))) (+ (/ _0.5
+             SSD) (max _5 _0.5))))))
+
+Generation: 32
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80439192227854 Adjusted=0.004003132179962349 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (if _1 PT
+     OpsLeft)))) (max (- (min _0.5 (- (min (+
+     RemProcTime NPT) (+ _5 _1)) (min _0.1 _2)))
+     (- (/ _0.5 SSD) (if _1 PT OpsLeft))) (min
+     (exp (if (min _0.1 _2) PT _0.5)) (- (min
+     (if NPT TimeInSystem TimeInSystem) (min (+
+     RemProcTime NPT) (+ _5 _1))) (+ (if RemProcTime
+     PT _0.5) (max _5 _0.5))))))
+
+Generation: 33
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80439192227854 Adjusted=0.004003132179962349 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (if _1 PT
+     OpsLeft)))) (max (- (min _0.5 (- (min (+
+     RemProcTime NPT) (+ _5 _1)) (min _0.1 _2)))
+     (- (/ _0.5 SSD) (if _1 PT OpsLeft))) (min
+     (exp (if (min _0.1 _2) PT _0.5)) (- (min
+     (if NPT TimeInSystem TimeInSystem) (min (+
+     RemProcTime NPT) (+ _5 _1))) (+ (if RemProcTime
+     PT _0.5) (max _5 _0.5))))))
+
+Generation: 34
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80439192227854 Adjusted=0.004003132179962349 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (if _1 PT
+     OpsLeft)))) (max (- (min _0.5 (- (min (+
+     RemProcTime NPT) (+ _5 _1)) (min _0.1 _2)))
+     (- (/ _0.5 SSD) (if _1 PT OpsLeft))) (min
+     (exp (if (min _0.1 _2) PT _0.5)) (- (min
+     (if NPT TimeInSystem TimeInSystem) (min (+
+     RemProcTime NPT) (+ _5 _1))) (+ (if RemProcTime
+     PT _0.5) (max _5 _0.5))))))
+
+Generation: 35
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80439192227854 Adjusted=0.004003132179962349 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (if _1 PT
+     OpsLeft)))) (max (- (min _0.5 (- (min (+
+     RemProcTime NPT) (+ _5 _1)) (min _0.1 _2)))
+     (- (/ _0.5 SSD) (if _1 PT OpsLeft))) (min
+     (exp (if (min _0.1 _2) PT _0.5)) (- (min
+     (if NPT TimeInSystem TimeInSystem) (min (+
+     RemProcTime NPT) (+ _5 _1))) (+ (if RemProcTime
+     PT _0.5) (max _5 _0.5))))))
+
+Generation: 36
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80437968366368 Adjusted=0.004003132376086985 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp _10)) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     _1 PT _0.5) (if _1 PT OpsLeft)))) (max (-
+     (min _0.5 (- (min (+ RemProcTime NPT) (+
+         _5 _1)) (min _0.1 _2))) (- (/ _0.5 SSD) (if
+     _1 PT OpsLeft))) (min (exp (if (min _0.1
+     _2) PT _0.5)) (- (min (if NPT TimeInSystem
+     TimeInSystem) (min (+ RemProcTime NPT) (+
+     _5 _1))) RemProcTime))))
+
+Generation: 37
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80433109356704 Adjusted=0.0040031331547467795 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp (* (min _0.1
+     _2) (if _0.5 LLD TimeInQueue)))) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (if _1 PT
+     OpsLeft)))) (max (- (min _0.5 (- (min (+
+     RemProcTime NPT) (+ _5 _1)) (min _0.1 _2)))
+     (- (/ _0.5 SSD) (if _1 PT OpsLeft))) (min
+     (exp (if (min _0.1 _2) PT _0.5)) (- (min
+     (if NPT TimeInSystem TimeInSystem) (min (+
+     RemProcTime NPT) (+ _5 _1))) (max _5 _0.5)))))
+
+Generation: 38
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80433109356704 Adjusted=0.0040031331547467795 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp (* (min _0.1
+     _2) (if _0.5 LLD TimeInQueue)))) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (if _1 PT
+     OpsLeft)))) (max (- (min _0.5 (- (min (+
+     RemProcTime NPT) (+ _5 _1)) (min _0.1 _2)))
+     (- (/ _0.5 SSD) (if _1 PT OpsLeft))) (min
+     (exp (if (min _0.1 _2) PT _0.5)) (- (min
+     (if NPT TimeInSystem TimeInSystem) (min (+
+     RemProcTime NPT) (+ _5 _1))) (max _5 _0.5)))))
+
+Generation: 39
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80433109356704 Adjusted=0.0040031331547467795 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp (* (min _0.1
+     _2) (if _0.5 LLD TimeInQueue)))) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (if _1 PT
+     OpsLeft)))) (max (- (min _0.5 (- PT (min
+     _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT OpsLeft)))
+     (min (exp (if (min _0.1 _2) PT _0.5)) (-
+         (min (if NPT TimeInSystem TimeInSystem) (min
+             (+ RemProcTime NPT) (+ _5 _1))) (max _5 _0.5)))))
+
+Generation: 40
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80433109356704 Adjusted=0.0040031331547467795 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp (* (min _0.1
+     _2) (if _0.5 LLD TimeInQueue)))) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (if _1 PT
+     OpsLeft)))) (max (- (min _0.5 (- PT (min
+     _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT OpsLeft)))
+     (min (exp (if (min _0.1 _2) PT _0.5)) (-
+         (min (if NPT TimeInSystem TimeInSystem) (min
+             (+ RemProcTime NPT) (+ _5 _1))) (max _5 _0.5)))))
+
+Generation: 41
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80433109356704 Adjusted=0.0040031331547467795 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp (* (if _1 PT
+     OpsLeft) (if _0.5 LLD TimeInQueue)))) (*
+     (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (if NPT TimeInSystem TimeInSystem) (if
+         _1 PT OpsLeft)))) (max (- (min _0.5 (- (min
+     (+ RemProcTime NPT) (+ _5 _1)) (min _0.1
+     _2))) (- (/ _0.5 SSD) (if _1 PT OpsLeft)))
+     (min (exp (if (min _0.1 _2) PT _0.5)) (-
+         (min (if NPT TimeInSystem TimeInSystem) (min
+             (+ RemProcTime NPT) (+ _5 _1))) (max _5 _0.5)))))
+
+Generation: 42
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80433109356704 Adjusted=0.0040031331547467795 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (+ (exp _10) (exp (* (min _0.1
+     _2) (if _0.5 LLD TimeInQueue)))) (* (min
+     _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if
+     NPT TimeInSystem TimeInSystem) (if _1 PT
+     OpsLeft)))) (max (- (min _0.5 (- (min (+
+     RemProcTime NPT) (+ _5 _1)) (min _0.1 _2)))
+     (- (/ _0.5 SSD) (if _1 PT OpsLeft))) (min
+     (- (min (+ RemProcTime NPT) (+ _5 _1)) (min
+         _0.1 _2)) (- (min (if NPT TimeInSystem TimeInSystem)
+     (min (+ RemProcTime NPT) (+ _5 _1))) (max
+     _5 _0.5)))))
+
+Generation: 43
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80432666139708 Adjusted=0.0040031332257726366 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (min _0.5 (- PT (min _0.1 _2)))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (if NPT TimeInSystem TimeInSystem) (if
+         _1 PT OpsLeft)))) (max (- (min _0.5 (- PT
+     (min _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft))) (min (exp (if (min _0.1 _2) PT
+     _0.5)) (- (min (if NPT TimeInSystem TimeInSystem)
+     (min (+ RemProcTime NPT) (+ _5 _1))) (max
+     _5 _0.5)))))
+
+Generation: 44
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80432666139708 Adjusted=0.0040031332257726366 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (min _0.5 (- PT (min _0.1 _2)))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (if NPT TimeInSystem TimeInSystem) (if
+         _1 PT OpsLeft)))) (max (- (min _0.5 (- PT
+     (min _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft))) (min (exp (if (min _0.1 _2) PT
+     _0.5)) (- (min (if NPT TimeInSystem TimeInSystem)
+     (min (+ RemProcTime NPT) (+ _5 _1))) (max
+     _5 _0.5)))))
+
+Generation: 45
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80432666139708 Adjusted=0.0040031332257726366 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (min _0.5 (- PT (min _0.1 _2)))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (if NPT TimeInSystem TimeInSystem) (if
+         _1 PT OpsLeft)))) (max (- (min _0.5 (- PT
+     (min _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft))) (min (exp (if (min _0.1 _2) PT
+     _0.5)) (- (min (if NPT TimeInSystem TimeInSystem)
+     (min (+ RemProcTime NPT) (+ _5 _1))) (max
+     _5 _0.5)))))
+
+Generation: 46
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80432666139708 Adjusted=0.0040031332257726366 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (min _0.5 (- PT (min _0.1 _2)))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (if NPT TimeInSystem TimeInSystem) (if
+         _1 PT OpsLeft)))) (max (- (min _0.5 (- PT
+     (min _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft))) (min (exp (if (min _0.1 _2) PT
+     _0.5)) (- (min (if NPT TimeInSystem TimeInSystem)
+     (min (+ RemProcTime NPT) (+ _5 _1))) (max
+     _5 _0.5)))))
+
+Generation: 47
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80432666139708 Adjusted=0.0040031332257726366 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (min _0.5 (- PT (min _0.1 _2)))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (if NPT TimeInSystem TimeInSystem) (if
+         _1 PT OpsLeft)))) (max (- (min _0.5 (- PT
+     (min _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft))) (min (exp (if (min _0.1 _2) PT
+     _0.5)) (- (min (if NPT TimeInSystem TimeInSystem)
+     (min (+ RemProcTime NPT) (+ _5 _1))) (max
+     _5 _0.5)))))
+
+Generation: 48
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80432666139708 Adjusted=0.0040031332257726366 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (min _0.5 (- PT (min _0.1 _2)))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (if NPT TimeInSystem TimeInSystem) (if
+         _1 PT OpsLeft)))) (max (- (min _0.5 (- PT
+     (min _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft))) (min (exp (if (min _0.1 _2) PT
+     _0.5)) (- (min (if NPT TimeInSystem TimeInSystem)
+     (min (+ RemProcTime NPT) (+ _5 _1))) (max
+     _5 _0.5)))))
+
+Generation: 49
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80432666139708 Adjusted=0.0040031332257726366 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (min _0.5 (- PT (min _0.1 _2)))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (if NPT TimeInSystem TimeInSystem) (if
+         _1 PT OpsLeft)))) (max (- (min _0.5 (- PT
+     (min _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft))) (min (exp (if WINQ PT _0.5)) (-
+     (min (if NPT TimeInSystem TimeInSystem) (min
+         (+ RemProcTime NPT) (+ _5 _1))) (max _5 _0.5)))))
+
+Best Individual of Run:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=248.80432666139708 Adjusted=0.0040031332257726366 Hits=0
+Tree 0:
+ (* (- (- (min (if NPT TimeInSystem TimeInSystem)
+     (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5
+     _0.5))) (if (min _0.5 (- PT (min _0.1 _2)))
+     (* (min _0.1 _2) (if _0.5 LLD TimeInQueue))
+     (- (if NPT TimeInSystem TimeInSystem) (if
+         _1 PT OpsLeft)))) (max (- (min _0.5 (- PT
+     (min _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT
+     OpsLeft))) (min (exp (if (min _0.1 _2) PT
+     _0.5)) (- (min (if NPT TimeInSystem TimeInSystem)
+     (min (+ RemProcTime NPT) (+ _5 _1))) (max
+     _5 _0.5)))))

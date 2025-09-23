@@ -9,29 +9,33 @@ import ec.gp.GPIndividual;
 import ec.gp.GPNode;
 
 public class If extends GPNode {
-    public static int expectedChildren = 4;
+    // Only 3 children now: condition, then, else
+    public static int expectedChildren = 3;
 
-    public static int getExpectedChildren() { return expectedChildren; }
+    public static int getExpectedChildren() {
+        return expectedChildren;
+    }
 
-    public void eval(EvolutionState evolutionState, int i, GPData gpData, ADFStack adfStack, GPIndividual gpIndividual, Problem problem) {
+    @Override
+    public void eval(EvolutionState state, int thread, GPData input,
+                     ADFStack stack, GPIndividual individual, Problem problem) {
 
-        DoubleData re = (DoubleData) gpData;
+        DoubleData data = (DoubleData) input;
 
-        children[0].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
+        // Evaluate condition (child 0)
+        children[0].eval(state, thread, data, stack, individual, problem);
+        double condition = data.value;
 
-        double childrenOutput_1 = re.value;
-
-        children[1].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
-
-        double childrenOutput_2 = re.value;
-
-        if(childrenOutput_1 > childrenOutput_2) {
-            children[2].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
-        }else{
-            children[3].eval(evolutionState, i, gpData, adfStack, gpIndividual, problem);
+        if (condition > 0) {
+            // True branch (child 1)
+            children[1].eval(state, thread, data, stack, individual, problem);
+        } else {
+            // False branch (child 2)
+            children[2].eval(state, thread, data, stack, individual, problem);
         }
     }
 
+    @Override
     public String toString() {
         return "if";
     }

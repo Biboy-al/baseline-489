@@ -1,0 +1,581 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=349.6038740892964 Adjusted=0.002852221763371921 Hits=0
+100 71 -96 60 -19 -1 94 -77 58 -29 22 120 49 77 -74 -55 -36 104 118 94 -60 -96 -107 -52 106 40 -92 16 -4 -52 98 -5 -93 -84 73 -53 72 -54 -43 -67 120 127 -73 -41 -85 -93 22 -96 -46 -13 -123 47 78 -88 -85 -71 -78 -8 -21 -25 23 -48 72 -2 -22 -18 -34 106 -71 -27 118 -100 -105 -77 28 -14 -22 61 -70 -107 -80 -97 -4 -105 -104 116 11 50 36 -66 -69 68 49 -79 90 27 -108 109 -112 -104 125 -21 45 -12 -52 -42 -56 102 -60 49 -122 -4 125 56 -87 -56 26 -69 74 31 117 107 -31 14 6 -77 121 111 121 42 87 20 85 99 42 79 -64 26 -94 21 89 20 -27 1 110 -111 -29 15 -40 83 -10 6 -48 -4 -111 -74 96 -123 -124 63 -32 89 -7 74 125 -15 -50 58 -85 115 -32 42 50 -102 -23 -79 -37 -82 117 22 -120 54 55 103 -93 -47 124 108 -91 116 52 29 -16 -33 -95 67 48 79 92 -99 -20 58 -109 -110 19 -85 -77 -6 68 18
+Equivalent GP Individual:
+Tree 0:
+ (* (- (exp (/ PT (max _0.1 SLACK))) (if TimeInSystem
+     (/ NPT (max _1 (- LLD _0.5))) (/ OpsLeft
+     (max _0.1 SSD)))) (- LLD RemProcTime))
+ERCs: 
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=349.6038740892964 Adjusted=0.002852221763371921 Hits=0
+100 71 -96 60 -19 -1 94 -77 58 -29 22 120 49 77 -74 -55 -36 104 118 94 -60 -96 -107 -52 106 40 -92 16 -4 -52 98 -5 -93 -84 73 -53 72 -54 -43 -67 120 127 -73 -41 -85 -93 22 -96 -46 -13 -123 47 78 -88 -85 -71 -78 -8 -21 -25 23 -48 72 -2 -22 -18 -34 106 -71 -27 118 -100 -105 -77 28 -14 -22 61 -70 -107 -80 -97 -4 -105 -104 116 11 50 36 -66 -69 68 49 -79 90 27 -108 109 -112 -104 125 -21 45 -12 -52 -42 -56 102 -60 49 -122 -4 125 56 -87 -56 26 -69 74 31 117 107 -31 14 6 -77 121 111 121 42 87 20 85 99 42 79 -64 26 -94 21 89 20 -27 1 110 -111 -29 15 -40 83 -10 6 -48 -4 -111 -74 96 -123 -124 63 -32 89 -7 74 125 -15 -50 58 -85 115 -32 42 50 -102 -23 -79 -37 -82 117 22 -120 54 55 103 -93 -47 124 108 -91 116 52 29 -16 -33 -95 67 48 79 92 -99 -20 58 -109 -110 19 -85 -77 -6 68 18
+Equivalent GP Individual:
+Tree 0:
+ (* (- (exp (/ PT (max _0.1 SLACK))) (if TimeInSystem
+     (/ NPT (max _1 (- LLD _0.5))) (/ OpsLeft
+     (max _0.1 SSD)))) (- LLD RemProcTime))
+ERCs: 
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=349.6038740892964 Adjusted=0.002852221763371921 Hits=0
+100 71 -96 60 -19 -1 94 -77 58 -29 22 120 49 77 -74 -55 -36 104 118 94 -60 -96 -107 -52 106 40 -92 16 -4 -52 98 -5 -93 -84 73 -53
+Equivalent GP Individual:
+Tree 0:
+ (* (- (exp (/ PT (max _0.1 SLACK))) (if TimeInSystem
+     (/ NPT (max _1 (- LLD _0.5))) (/ OpsLeft
+     (max _0.1 SSD)))) (- LLD RemProcTime))
+ERCs: 
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=349.6038740892964 Adjusted=0.002852221763371921 Hits=0
+100 71 -96 60 -19 -1 94 -77 58 -29 22 120 49 77 -74 -55 -36 104 118 94 -60 -96 -107 -52 106 40 -92 16 -4 -52 98 -5 -93 -84 73 -53
+Equivalent GP Individual:
+Tree 0:
+ (* (- (exp (/ PT (max _0.1 SLACK))) (if TimeInSystem
+     (/ NPT (max _1 (- LLD _0.5))) (/ OpsLeft
+     (max _0.1 SSD)))) (- LLD RemProcTime))
+ERCs: 
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=349.6038740892964 Adjusted=0.002852221763371921 Hits=0
+100 71 -96 60 -19 -1 94 -77 58 -29 22 120 49 77 -74 -55 -36 104 118 94 -60 -96 -107 -52 106 40 -92 16 -4 -52 98 -5 -93 -84 73 -53
+Equivalent GP Individual:
+Tree 0:
+ (* (- (exp (/ PT (max _0.1 SLACK))) (if TimeInSystem
+     (/ NPT (max _1 (- LLD _0.5))) (/ OpsLeft
+     (max _0.1 SSD)))) (- LLD RemProcTime))
+ERCs: 
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=344.77110570387526 Adjusted=0.0028920866535806448 Hits=0
+100 71 -96 60 -19 -1 94 -77 120 -29 54 1 49 77 73 -63 -36 104 118 94 -60 -96 -107 -1 106 40 -92 -45 -4 70 98 -125 58 -101 102 -50
+Equivalent GP Individual:
+Tree 0:
+ (* (- (exp (/ PT (max _1 SLACK))) (if TimeInSystem
+     (/ NPT (max _1 TimeTillDue)) (/ (+ RemProcTime
+     TimeInQueue) (max _1 SSD)))) (- LLD RemProcTime))
+ERCs: 
+
+Generation: 6
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=290.79694482688615 Adjusted=0.0034270406792410667 Hits=0
+-120 71 85 60 -19 -1 -27 32 58 -97 22 120 105 77 -3 -55 -36 72 -81 94 73 -96 -107 -66 106 40 97 16 -4 -52 -114 -5 -93 -84 87 -93
+Equivalent GP Individual:
+Tree 0:
+ (* (if (exp (if (/ (+ RemProcTime TimeInQueue)
+     (max _0.1 SSD)) (/ NPT (max _1 TimeTillDue))
+     (/ (* _10 RemProcTime) (max _1 TimeTillDue))))
+     PT TimeInSystem) SLACK)
+ERCs: 
+
+Generation: 7
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=290.79694482688615 Adjusted=0.0034270406792410667 Hits=0
+-120 71 85 60 -19 -1 -27 32 58 -97 22 120 105 77 -3 -55 -36 72 -81 94 73 -96 -107 -66 106 40 97 16 -4 -52 -114 -5 -93 -84 87 -93
+Equivalent GP Individual:
+Tree 0:
+ (* (if (exp (if (/ (+ RemProcTime TimeInQueue)
+     (max _0.1 SSD)) (/ NPT (max _1 TimeTillDue))
+     (/ (* _10 RemProcTime) (max _1 TimeTillDue))))
+     PT TimeInSystem) SLACK)
+ERCs: 
+
+Generation: 8
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=290.79694482688615 Adjusted=0.0034270406792410667 Hits=0
+-120 71 85 60 -19 -1 -27 32 58 -97 22 120 105 77 -3 -55 -36 72 -81 94 73 -96 -107 -66 106 40 97 16 -4 -52 -114 -5 -93 -84 87 -93
+Equivalent GP Individual:
+Tree 0:
+ (* (if (exp (if (/ (+ RemProcTime TimeInQueue)
+     (max _0.1 SSD)) (/ NPT (max _1 TimeTillDue))
+     (/ (* _10 RemProcTime) (max _1 TimeTillDue))))
+     PT TimeInSystem) SLACK)
+ERCs: 
+
+Generation: 9
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73 32 58 -97 22 120 62 55 -3 -55 -49 72 -81 94 73 -96 -107 11 106 40 97 16 3 -111 -115 -34 -10 -84 87 98
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 10
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73 32 58 -97 22 120 62 55 -3 -55 -49 72 -81 94 73 -96 -107 11 106 40 97 16 3 -111 -115 -34 -10 -84 87 98
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 11
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 12
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 13
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 14
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 -72 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 15
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 16
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 17
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 18
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 19
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 20
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 21
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 22
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 23
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 24
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73 68 90 17
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 25
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -55
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 26
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 27
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 28
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+24 71 44 91 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 29
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 30
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 31
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 32
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 33
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 34
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 35
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 36
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 37
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 38
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 39
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 40
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 41
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 42
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 43
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 44
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 45
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 46
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 47
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=286.8906106712868 Adjusted=0.003473541556872096 Hits=0
+-96 71 44 68 90 17 -73
+Equivalent GP Individual:
+Tree 0:
+ (* (exp PT) SLACK)
+ERCs: 
+
+Generation: 48
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=285.6915648389422 Adjusted=0.0034880691399545734 Hits=0
+-96 -92 44 -41 70 17 -95
+Equivalent GP Individual:
+Tree 0:
+ (* (/ PT (max _1 (+ SLACK _0))) SLACK)
+ERCs: 
+
+Generation: 49
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=285.6915648389422 Adjusted=0.0034880691399545734 Hits=0
+-96 -92 44 -41 70 17 -95
+Equivalent GP Individual:
+Tree 0:
+ (* (/ PT (max _1 (+ SLACK _0))) SLACK)
+ERCs: 
+
+Best Individual of Run:
+Subpopulation 0:
+Evaluated: T
+Fitness: Standardized=285.6915648389422 Adjusted=0.0034880691399545734 Hits=0
+-96 -92 44 -41 70 17 -95
+Equivalent GP Individual:
+Tree 0:
+ (* (/ PT (max _1 (+ SLACK _0))) SLACK)
+ERCs: 
