@@ -22,7 +22,7 @@ public class Operation {
 
         //shuffle the machine ids
         Machine[] shuffledMachine = machines.clone();
-        Collections.shuffle(Arrays.asList(shuffledMachine), random);
+        Collections.shuffle(Arrays.asList(shuffledMachine), Operation.random);
         Operation[] operations = new Operation[machines.length];
 
         //randomly assign an operation for a given machine

@@ -27,7 +27,7 @@ public class OperationEndEvent extends Event {
     public void evalute(Simulation sim) {
         DynamicJobShopSimulation jobShopSim = (DynamicJobShopSimulation) sim;
 
-        this.machine.releaseCurrentJob();
+        this.machine.releaseCurrentJob(((DynamicJobShopSimulation) sim).getCurrentTime());
         this.job.finishCurrentOperation();
 
         // If current job is not finished, reintegrate into event lifecycle

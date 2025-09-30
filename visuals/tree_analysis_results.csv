@@ -1,0 +1,9 @@
+tree_depth,unqiue_nodes,tree,dataset
+7,20,(* (* (exp (* (/ _5 _1) (max PT _10))) (* PT (/ (exp (+ _5 _10)) (exp _1)))) (+ (if (max (* (/ _5 _1) (max PT _10)) _10) (* (max PT (/ TimeTillDue (exp TimeInSystem))) (exp _0)) (- (max PT _10) (/ (exp (+ _5 _10)) (if LLD _0.5 PT)))) (min (if (/ _2 (* (max _0 _0.5) _2)) (if _5 _0.1 _2) (/ _5 _1)) (- SLACK (max PT _10))))),baseline_95
+7,23,(* (- (- (min (if NPT TimeInSystem TimeInSystem) (+ NPT SLACK)) (+ (if _1 PT _0.5) (max _5 _0.5))) (if (min _0.5 (- PT (min _0.1 _2))) (* (min _0.1 _2) (if _0.5 LLD TimeInQueue)) (- (if NPT TimeInSystem TimeInSystem) (if _1 PT OpsLeft)))) (max (- (min _0.5 (- PT (min _0.1 _2))) (- (/ _0.5 SSD) (if _1 PT OpsLeft))) (min (exp (if WINQ PT _0.5)) (- (min (if NPT TimeInSystem TimeInSystem) (min (+ RemProcTime NPT) (+ _5 _1))) (max _5 _0.5))))),baseline_9
+7,16,(* (* (exp (* (/ _5 _1) (max PT _10))) (* (max (+ _10 PT) (exp _0)) (exp _10))) (+ (if (/ _5 (exp (* (/ _5 _1) (max PT _10)))) (+ (exp SLACK) (exp _0)) (+ _10 PT)) (min (if (max PT _10) (if (exp WINQ) NPT NPT) (exp _10)) (- SLACK (/ (* (/ _5 _1) (max PT _10)) PT))))),baseline_85
+7,17,(* (- (- (min (if NPT TimeInSystem TimeInSystem) (+ NPT SLACK)) (+ (if RemProcTime PT _0.5) (if (min (if _0.5 LLD TimeInQueue) (if WINQ WINQ NPT)) (max _5 _0.5) (if RemProcTime PT _0.5)))) (+ (- (+ _5 TimeTillDue) (+ NPT SLACK)) PT)) (max (if RemProcTime PT _0.5) (- (min (if (min (if NPT TimeInSystem TimeInSystem) (+ NPT SLACK)) TimeInSystem TimeInSystem) (+ NPT SLACK)) (if WINQ WINQ NPT)))),baseline_8
+4,7,(* (* _10 (/ PT (max _0.1 SLACK))) SLACK),GGGP_95
+4,8,(* (/ PT (max _1 (+ SLACK _0))) SLACK),GGGP_9
+3,7,(* (/ PT (max _0.1 SSD)) SLACK),GGGP_85
+1,3,(* PT SLACK),GGGP_8

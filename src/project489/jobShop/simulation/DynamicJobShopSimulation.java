@@ -64,10 +64,10 @@ public class DynamicJobShopSimulation extends Simulation {
         this.dueDateAllowance = dueDateAllowance;
         this.rng = new RandomDataGenerator();
 
-        // FIXED: Calculate mean processing time like the reference code
+        setSeed(defaultSeed);
+
         this.meanProcTime =  estimateMeanProcessingTime(1000);
 
-        // FIXED: Use the same formula as reference code
         this.meanInterArrival = interArrivalTimeMean(numOfMachines, numOps, util);
 
     }
@@ -89,7 +89,6 @@ public class DynamicJobShopSimulation extends Simulation {
         return ((double) numOps * this.meanProcTime) / (utilLevel * numMachines);
     }
 
-    // FIXED: Generate jobs with proper time intervals and validation
     public void generateNextJob() {
         if (jobsGenerated < numOfJobs + warmupJobs) {
 
@@ -205,6 +204,10 @@ public class DynamicJobShopSimulation extends Simulation {
 
     public double getNumOfMachines(){
         return numOfMachines;
+    }
+
+    public long getSeed(){
+        return this.seed;
     }
 
 }

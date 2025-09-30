@@ -20,7 +20,7 @@ public class OperationStartEvent extends Event {
     public void evalute(Simulation sim) {
         DynamicJobShopSimulation jobShopSim = (DynamicJobShopSimulation) sim;
 
-        machine.setCurrentJob(this.job);
+        machine.setCurrentJob(this.job, ((DynamicJobShopSimulation) sim).getCurrentTime());
         double processingTime = job.getCurrentOperation().getProcessingTime();
         jobShopSim.addEvent(new OperationEndEvent(processingTime + super.getTime(), machine, job));
     }

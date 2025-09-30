@@ -1,0 +1,2 @@
+generation,best_individual_fitness,mean_fitness,tree
+0,465.9210284154255,1369.57695,"(/ (+ (- SLACK _2) (min _0.1 _0)) (min (/ _2 _1) (/ _5 PT)))"

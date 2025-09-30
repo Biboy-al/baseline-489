@@ -105,14 +105,13 @@ public class DynamicJobShopEvaluation extends EvaluationModel {
 
 
 
-            simulations.add(new DynamicJobShopSimulation(state, problem, 0,0,maxJobs, numOfMachines, 1, warmupJobs, numOps , util,dueDateAllowance));
+            simulations.add(new DynamicJobShopSimulation(state, problem, 0,0,maxJobs, numOfMachines, seed, warmupJobs, numOps , util,dueDateAllowance));
         }
 
     }
 
     @Override
     public void evaluate(GPIndividual ind, EvolutionState evolutionState, int numOfRep) {
-
 
         switch(mode){
 
